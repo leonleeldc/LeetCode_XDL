@@ -5,7 +5,7 @@ from typing import (
     List,
 )
 
-class Solution:
+class RemoveInvalidParenthesis:
     """
     @param s: The input string
     @return: Return all possible results
