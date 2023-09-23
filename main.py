@@ -1,8 +1,9 @@
-from DFS import RemoveInvalidParenthesis, WordPattern
+from DFS import RemoveInvalidParenthesis
+from backtrack import WordPattern
 wp1 = WordPattern()
 pattern = "abab"
 str = "redblueredblue"
-print(f"solution = {wp1.dfs(pattern, str, {})}")
+print(f"solution = {wp1.backtrack(pattern, str, {})}")
 
 
 # rip = RemoveInvalidParenthesis()
