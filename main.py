@@ -1,9 +1,33 @@
 from DFS import RemoveInvalidParenthesis
 from backtrack import WordPattern
-wp1 = WordPattern()
-pattern = "abab"
-str = "redblueredblue"
-print(f"solution = {wp1.backtrack(pattern, str, {})}")
+from linkedList import LinkedList, ListNode
+
+input = [1,4,3,2,5,2]
+x = 3
+#Output: [1,2,2,4,3,5]
+head = ListNode(input[0])
+walker = head
+for val in input[1:]:
+  walker.next = ListNode(val)
+  walker = walker.next
+ll = LinkedList()
+par = ll.partition(head, 3)
+print(par)
+# input = [1,2,3,4,5]
+# head = ListNode(input[0])
+# walker = head
+# for val in input[1:]:
+#   walker.next = ListNode(val)
+#   walker = walker.next
+# ll = LinkedList()
+# revLL = ll.reverseList(head)
+# print(revLL)
+
+
+# wp1 = WordPattern()
+# pattern = "abab"
+# str = "redblueredblue"
+# print(f"solution = {wp1.backtrack(pattern, str, {})}")
 
 
 # rip = RemoveInvalidParenthesis()
@@ -23,3 +47,4 @@ print(f"solution = {wp1.backtrack(pattern, str, {})}")
 # '''
 # s = "()())()"
 # print(rip.remove_invalid_parentheses(s))
+
