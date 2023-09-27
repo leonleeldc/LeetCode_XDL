@@ -75,6 +75,8 @@ All the strings of wordDict are unique.
 Input is generated in a way that the length of the answer doesn't exceed 105.
 '''
 from collections import Counter
+import sys, os
+from functools import lru_cache, partial
 class WordBreakII:
   def wordBreak_iter(self, s: str, wordDict: List[str]) -> List[str]:
     if set(Counter(s).keys()) > set(Counter(''.join(wordDict)).keys()): return []
@@ -108,4 +110,43 @@ class WordBreakII:
               sentences.append(s[start:end])
       return sentences
     return dp(0)
+
+class StickerToSpellWord:
+  def minStickers(self, stickers: List[str], target: str) -> int:
+    present = {}
+    # present maps index of target to character
+    # for example for target='that' it will be as follows-
+    # present={0:'t', 1:'h', 2:'a', 3:'t'}
+    for i, c in enumerate(target):
+      present[i] = c
+    n = len(stickers)
+    m = len(target)
+    @lru_cache(None)
+    def dp(idx, mask):
+      if idx == n:
+        flag = True
+        for i in range(m):
+          if ((1 << i) & mask) != 0:
+            flag = False
+            break
+        if flag: return 0
+        return sys.maxsize
+      ans = sys.maxsize
+      Flag = False
+      temp_mask = mask
+      # check and use this idx
+      count = Counter(stickers[idx])
+      for i in range(m):
+        if ((1 << i) & mask) != 0 and count[present[i]] > 0:
+          mask ^= (1 << i)
+          count[present[i]] -= 1
+          Flag = True
+      if Flag:
+        ans = min(ans, 1 + dp(idx, mask))
+      # dont use this idx
+      ans = min(ans, dp(idx + 1, temp_mask))
+      return ans
+
+    res = dp(0, (1 << m) - 1)
+    return res if res < sys.maxsize else -1
 

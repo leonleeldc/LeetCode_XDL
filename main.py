@@ -1,13 +1,35 @@
 from DFS import RemoveInvalidParenthesis
 from backtrack import WordPattern
 from linkedList import LinkedList, ListNode
-from dynamic_programming import WordBreakII
-s = "catsanddog"
-wordDict = ["cat","cats","and","sand","dog"]
-wb2 = WordBreakII()
-output = wb2.wordBreak_iter(wordDict=wordDict, s=s)
-output2 = wb2.wordBreak_rec(wordDict=wordDict, s=s)
-print(output)
+from dynamic_programming import WordBreakII, StickerToSpellWord
+from topological_sorting import TopologicalSorting
+from math_related import MathRelated
+sts = StickerToSpellWord()
+stickers = ["with","example","science"]
+target = "thehat"
+sts.minStickers(stickers, target=target)
+
+# math_prob = MathRelated()
+# x = 0
+# math_prob.reverse(x)
+# x = 123
+# math_prob.reverse(x)
+# x = -123
+# math_prob.reverse(x)
+# x = 120
+# math_prob.reverse(x)
+
+#words = ["wrt","wrf","er","ett","rftt"]
+# words = ["z","x","z"]
+# top_sort = TopologicalSorting()
+# print(top_sort.alienOrder_bfs(words))
+# print(top_sort.alienOrder_dfs(words))
+# s = "catsanddog"
+# wordDict = ["cat","cats","and","sand","dog"]
+# wb2 = WordBreakII()
+# output = wb2.wordBreak_iter(wordDict=wordDict, s=s)
+# output2 = wb2.wordBreak_rec(wordDict=wordDict, s=s)
+# print(output)
 # input = [1,4,3,2,5,2]
 # x = 3
 # #Output: [1,2,2,4,3,5]
