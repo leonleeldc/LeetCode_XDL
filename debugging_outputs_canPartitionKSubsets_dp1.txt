@@ -1,0 +1,660 @@
+import sys; print('Python %s on %s' % (sys.version, sys.platform))
+/Users/lidingcheng/miniconda3/bin/python3 /Applications/PyCharm.app/Contents/plugins/python/helpers/pydev/pydevd.py --multiprocess --qt-support=auto --client 127.0.0.1 --port 54992 --file /Users/lidingcheng/Documents/workspace/LeetCode_XDL/main.py
+Connected to pydev debugger (build 232.9559.58)
+mask = 0 j =0  mask ^ (1 << j) = 1 mask & (1 << j) = 0 and neib = -1
+mask = 0 j =1  mask ^ (1 << j) = 2 mask & (1 << j) = 0 and neib = -1
+mask = 0 j =2  mask ^ (1 << j) = 4 mask & (1 << j) = 0 and neib = -1
+mask = 0 j =3  mask ^ (1 << j) = 8 mask & (1 << j) = 0 and neib = -1
+mask = 0 j =4  mask ^ (1 << j) = 16 mask & (1 << j) = 0 and neib = -1
+mask = 0 j =5  mask ^ (1 << j) = 32 mask & (1 << j) = 0 and neib = -1
+mask = 0 j =6  mask ^ (1 << j) = 64 mask & (1 << j) = 0 and neib = -1
+mask = 1 j =0  mask ^ (1 << j) = 0 mask & (1 << j) = 1 and neib = 0
+mask & (1 << j) = 1 dp[mask] = 0
+mask = 2 j =0  mask ^ (1 << j) = 3 mask & (1 << j) = 0 and neib = -1
+mask = 2 j =1  mask ^ (1 << j) = 0 mask & (1 << j) = 2 and neib = 0
+mask & (1 << j) = 2 dp[mask] = 4
+mask = 3 j =0  mask ^ (1 << j) = 2 mask & (1 << j) = 1 and neib = 4
+mask = 3 j =1  mask ^ (1 << j) = 1 mask & (1 << j) = 2 and neib = 0
+mask & (1 << j) = 2 dp[mask] = 4
+mask = 4 j =0  mask ^ (1 << j) = 5 mask & (1 << j) = 0 and neib = -1
+mask = 4 j =1  mask ^ (1 << j) = 6 mask & (1 << j) = 0 and neib = -1
+mask = 4 j =2  mask ^ (1 << j) = 0 mask & (1 << j) = 4 and neib = 0
+mask & (1 << j) = 4 dp[mask] = 3
+mask = 5 j =0  mask ^ (1 << j) = 4 mask & (1 << j) = 1 and neib = 3
+mask = 5 j =1  mask ^ (1 << j) = 7 mask & (1 << j) = 0 and neib = -1
+mask = 5 j =2  mask ^ (1 << j) = 1 mask & (1 << j) = 4 and neib = 0
+mask & (1 << j) = 4 dp[mask] = 3
+mask = 6 j =0  mask ^ (1 << j) = 7 mask & (1 << j) = 0 and neib = -1
+mask = 6 j =1  mask ^ (1 << j) = 4 mask & (1 << j) = 2 and neib = 3
+mask = 6 j =2  mask ^ (1 << j) = 2 mask & (1 << j) = 4 and neib = 4
+mask = 6 j =3  mask ^ (1 << j) = 14 mask & (1 << j) = 0 and neib = -1
+mask = 6 j =4  mask ^ (1 << j) = 22 mask & (1 << j) = 0 and neib = -1
+mask = 6 j =5  mask ^ (1 << j) = 38 mask & (1 << j) = 0 and neib = -1
+mask = 6 j =6  mask ^ (1 << j) = 70 mask & (1 << j) = 0 and neib = -1
+mask = 7 j =0  mask ^ (1 << j) = 6 mask & (1 << j) = 1 and neib = -1
+mask = 7 j =1  mask ^ (1 << j) = 5 mask & (1 << j) = 2 and neib = 3
+mask = 7 j =2  mask ^ (1 << j) = 3 mask & (1 << j) = 4 and neib = 4
+mask = 7 j =3  mask ^ (1 << j) = 15 mask & (1 << j) = 0 and neib = -1
+mask = 7 j =4  mask ^ (1 << j) = 23 mask & (1 << j) = 0 and neib = -1
+mask = 7 j =5  mask ^ (1 << j) = 39 mask & (1 << j) = 0 and neib = -1
+mask = 7 j =6  mask ^ (1 << j) = 71 mask & (1 << j) = 0 and neib = -1
+mask = 8 j =0  mask ^ (1 << j) = 9 mask & (1 << j) = 0 and neib = -1
+mask = 8 j =1  mask ^ (1 << j) = 10 mask & (1 << j) = 0 and neib = -1
+mask = 8 j =2  mask ^ (1 << j) = 12 mask & (1 << j) = 0 and neib = -1
+mask = 8 j =3  mask ^ (1 << j) = 0 mask & (1 << j) = 8 and neib = 0
+mask & (1 << j) = 8 dp[mask] = 3
+mask = 9 j =0  mask ^ (1 << j) = 8 mask & (1 << j) = 1 and neib = 3
+mask = 9 j =1  mask ^ (1 << j) = 11 mask & (1 << j) = 0 and neib = -1
+mask = 9 j =2  mask ^ (1 << j) = 13 mask & (1 << j) = 0 and neib = -1
+mask = 9 j =3  mask ^ (1 << j) = 1 mask & (1 << j) = 8 and neib = 0
+mask & (1 << j) = 8 dp[mask] = 3
+mask = 10 j =0  mask ^ (1 << j) = 11 mask & (1 << j) = 0 and neib = -1
+mask = 10 j =1  mask ^ (1 << j) = 8 mask & (1 << j) = 2 and neib = 3
+mask = 10 j =2  mask ^ (1 << j) = 14 mask & (1 << j) = 0 and neib = -1
+mask = 10 j =3  mask ^ (1 << j) = 2 mask & (1 << j) = 8 and neib = 4
+mask = 10 j =4  mask ^ (1 << j) = 26 mask & (1 << j) = 0 and neib = -1
+mask = 10 j =5  mask ^ (1 << j) = 42 mask & (1 << j) = 0 and neib = -1
+mask = 10 j =6  mask ^ (1 << j) = 74 mask & (1 << j) = 0 and neib = -1
+mask = 11 j =0  mask ^ (1 << j) = 10 mask & (1 << j) = 1 and neib = -1
+mask = 11 j =1  mask ^ (1 << j) = 9 mask & (1 << j) = 2 and neib = 3
+mask = 11 j =2  mask ^ (1 << j) = 15 mask & (1 << j) = 0 and neib = -1
+mask = 11 j =3  mask ^ (1 << j) = 3 mask & (1 << j) = 8 and neib = 4
+mask = 11 j =4  mask ^ (1 << j) = 27 mask & (1 << j) = 0 and neib = -1
+mask = 11 j =5  mask ^ (1 << j) = 43 mask & (1 << j) = 0 and neib = -1
+mask = 11 j =6  mask ^ (1 << j) = 75 mask & (1 << j) = 0 and neib = -1
+mask = 12 j =0  mask ^ (1 << j) = 13 mask & (1 << j) = 0 and neib = -1
+mask = 12 j =1  mask ^ (1 << j) = 14 mask & (1 << j) = 0 and neib = -1
+mask = 12 j =2  mask ^ (1 << j) = 8 mask & (1 << j) = 4 and neib = 3
+mask = 12 j =3  mask ^ (1 << j) = 4 mask & (1 << j) = 8 and neib = 3
+mask = 12 j =4  mask ^ (1 << j) = 28 mask & (1 << j) = 0 and neib = -1
+mask = 12 j =5  mask ^ (1 << j) = 44 mask & (1 << j) = 0 and neib = -1
+mask = 12 j =6  mask ^ (1 << j) = 76 mask & (1 << j) = 0 and neib = -1
+mask = 13 j =0  mask ^ (1 << j) = 12 mask & (1 << j) = 1 and neib = -1
+mask = 13 j =1  mask ^ (1 << j) = 15 mask & (1 << j) = 0 and neib = -1
+mask = 13 j =2  mask ^ (1 << j) = 9 mask & (1 << j) = 4 and neib = 3
+mask = 13 j =3  mask ^ (1 << j) = 5 mask & (1 << j) = 8 and neib = 3
+mask = 13 j =4  mask ^ (1 << j) = 29 mask & (1 << j) = 0 and neib = -1
+mask = 13 j =5  mask ^ (1 << j) = 45 mask & (1 << j) = 0 and neib = -1
+mask = 13 j =6  mask ^ (1 << j) = 77 mask & (1 << j) = 0 and neib = -1
+mask = 14 j =0  mask ^ (1 << j) = 15 mask & (1 << j) = 0 and neib = -1
+mask = 14 j =1  mask ^ (1 << j) = 12 mask & (1 << j) = 2 and neib = -1
+mask = 14 j =2  mask ^ (1 << j) = 10 mask & (1 << j) = 4 and neib = -1
+mask = 14 j =3  mask ^ (1 << j) = 6 mask & (1 << j) = 8 and neib = -1
+mask = 14 j =4  mask ^ (1 << j) = 30 mask & (1 << j) = 0 and neib = -1
+mask = 14 j =5  mask ^ (1 << j) = 46 mask & (1 << j) = 0 and neib = -1
+mask = 14 j =6  mask ^ (1 << j) = 78 mask & (1 << j) = 0 and neib = -1
+mask = 15 j =0  mask ^ (1 << j) = 14 mask & (1 << j) = 1 and neib = -1
+mask = 15 j =1  mask ^ (1 << j) = 13 mask & (1 << j) = 2 and neib = -1
+mask = 15 j =2  mask ^ (1 << j) = 11 mask & (1 << j) = 4 and neib = -1
+mask = 15 j =3  mask ^ (1 << j) = 7 mask & (1 << j) = 8 and neib = -1
+mask = 15 j =4  mask ^ (1 << j) = 31 mask & (1 << j) = 0 and neib = -1
+mask = 15 j =5  mask ^ (1 << j) = 47 mask & (1 << j) = 0 and neib = -1
+mask = 15 j =6  mask ^ (1 << j) = 79 mask & (1 << j) = 0 and neib = -1
+mask = 16 j =0  mask ^ (1 << j) = 17 mask & (1 << j) = 0 and neib = -1
+mask = 16 j =1  mask ^ (1 << j) = 18 mask & (1 << j) = 0 and neib = -1
+mask = 16 j =2  mask ^ (1 << j) = 20 mask & (1 << j) = 0 and neib = -1
+mask = 16 j =3  mask ^ (1 << j) = 24 mask & (1 << j) = 0 and neib = -1
+mask = 16 j =4  mask ^ (1 << j) = 0 mask & (1 << j) = 16 and neib = 0
+mask & (1 << j) = 16 dp[mask] = 2
+mask = 17 j =0  mask ^ (1 << j) = 16 mask & (1 << j) = 1 and neib = 2
+mask = 17 j =1  mask ^ (1 << j) = 19 mask & (1 << j) = 0 and neib = -1
+mask = 17 j =2  mask ^ (1 << j) = 21 mask & (1 << j) = 0 and neib = -1
+mask = 17 j =3  mask ^ (1 << j) = 25 mask & (1 << j) = 0 and neib = -1
+mask = 17 j =4  mask ^ (1 << j) = 1 mask & (1 << j) = 16 and neib = 0
+mask & (1 << j) = 16 dp[mask] = 2
+mask = 18 j =0  mask ^ (1 << j) = 19 mask & (1 << j) = 0 and neib = -1
+mask = 18 j =1  mask ^ (1 << j) = 16 mask & (1 << j) = 2 and neib = 2
+mask = 18 j =2  mask ^ (1 << j) = 22 mask & (1 << j) = 0 and neib = -1
+mask = 18 j =3  mask ^ (1 << j) = 26 mask & (1 << j) = 0 and neib = -1
+mask = 18 j =4  mask ^ (1 << j) = 2 mask & (1 << j) = 16 and neib = 4
+mask = 18 j =5  mask ^ (1 << j) = 50 mask & (1 << j) = 0 and neib = -1
+mask = 18 j =6  mask ^ (1 << j) = 82 mask & (1 << j) = 0 and neib = -1
+mask = 19 j =0  mask ^ (1 << j) = 18 mask & (1 << j) = 1 and neib = -1
+mask = 19 j =1  mask ^ (1 << j) = 17 mask & (1 << j) = 2 and neib = 2
+mask = 19 j =2  mask ^ (1 << j) = 23 mask & (1 << j) = 0 and neib = -1
+mask = 19 j =3  mask ^ (1 << j) = 27 mask & (1 << j) = 0 and neib = -1
+mask = 19 j =4  mask ^ (1 << j) = 3 mask & (1 << j) = 16 and neib = 4
+mask = 19 j =5  mask ^ (1 << j) = 51 mask & (1 << j) = 0 and neib = -1
+mask = 19 j =6  mask ^ (1 << j) = 83 mask & (1 << j) = 0 and neib = -1
+mask = 20 j =0  mask ^ (1 << j) = 21 mask & (1 << j) = 0 and neib = -1
+mask = 20 j =1  mask ^ (1 << j) = 22 mask & (1 << j) = 0 and neib = -1
+mask = 20 j =2  mask ^ (1 << j) = 16 mask & (1 << j) = 4 and neib = 2
+mask & (1 << j) = 4 dp[mask] = 0
+mask = 21 j =0  mask ^ (1 << j) = 20 mask & (1 << j) = 1 and neib = 0
+mask & (1 << j) = 1 dp[mask] = 0
+mask = 22 j =0  mask ^ (1 << j) = 23 mask & (1 << j) = 0 and neib = -1
+mask = 22 j =1  mask ^ (1 << j) = 20 mask & (1 << j) = 2 and neib = 0
+mask & (1 << j) = 2 dp[mask] = 4
+mask = 23 j =0  mask ^ (1 << j) = 22 mask & (1 << j) = 1 and neib = 4
+mask = 23 j =1  mask ^ (1 << j) = 21 mask & (1 << j) = 2 and neib = 0
+mask & (1 << j) = 2 dp[mask] = 4
+mask = 24 j =0  mask ^ (1 << j) = 25 mask & (1 << j) = 0 and neib = -1
+mask = 24 j =1  mask ^ (1 << j) = 26 mask & (1 << j) = 0 and neib = -1
+mask = 24 j =2  mask ^ (1 << j) = 28 mask & (1 << j) = 0 and neib = -1
+mask = 24 j =3  mask ^ (1 << j) = 16 mask & (1 << j) = 8 and neib = 2
+mask & (1 << j) = 8 dp[mask] = 0
+mask = 25 j =0  mask ^ (1 << j) = 24 mask & (1 << j) = 1 and neib = 0
+mask & (1 << j) = 1 dp[mask] = 0
+mask = 26 j =0  mask ^ (1 << j) = 27 mask & (1 << j) = 0 and neib = -1
+mask = 26 j =1  mask ^ (1 << j) = 24 mask & (1 << j) = 2 and neib = 0
+mask & (1 << j) = 2 dp[mask] = 4
+mask = 27 j =0  mask ^ (1 << j) = 26 mask & (1 << j) = 1 and neib = 4
+mask = 27 j =1  mask ^ (1 << j) = 25 mask & (1 << j) = 2 and neib = 0
+mask & (1 << j) = 2 dp[mask] = 4
+mask = 28 j =0  mask ^ (1 << j) = 29 mask & (1 << j) = 0 and neib = -1
+mask = 28 j =1  mask ^ (1 << j) = 30 mask & (1 << j) = 0 and neib = -1
+mask = 28 j =2  mask ^ (1 << j) = 24 mask & (1 << j) = 4 and neib = 0
+mask & (1 << j) = 4 dp[mask] = 3
+mask = 29 j =0  mask ^ (1 << j) = 28 mask & (1 << j) = 1 and neib = 3
+mask = 29 j =1  mask ^ (1 << j) = 31 mask & (1 << j) = 0 and neib = -1
+mask = 29 j =2  mask ^ (1 << j) = 25 mask & (1 << j) = 4 and neib = 0
+mask & (1 << j) = 4 dp[mask] = 3
+mask = 30 j =0  mask ^ (1 << j) = 31 mask & (1 << j) = 0 and neib = -1
+mask = 30 j =1  mask ^ (1 << j) = 28 mask & (1 << j) = 2 and neib = 3
+mask = 30 j =2  mask ^ (1 << j) = 26 mask & (1 << j) = 4 and neib = 4
+mask = 30 j =3  mask ^ (1 << j) = 22 mask & (1 << j) = 8 and neib = 4
+mask = 30 j =4  mask ^ (1 << j) = 14 mask & (1 << j) = 16 and neib = -1
+mask = 30 j =5  mask ^ (1 << j) = 62 mask & (1 << j) = 0 and neib = -1
+mask = 30 j =6  mask ^ (1 << j) = 94 mask & (1 << j) = 0 and neib = -1
+mask = 31 j =0  mask ^ (1 << j) = 30 mask & (1 << j) = 1 and neib = -1
+mask = 31 j =1  mask ^ (1 << j) = 29 mask & (1 << j) = 2 and neib = 3
+mask = 31 j =2  mask ^ (1 << j) = 27 mask & (1 << j) = 4 and neib = 4
+mask = 31 j =3  mask ^ (1 << j) = 23 mask & (1 << j) = 8 and neib = 4
+mask = 31 j =4  mask ^ (1 << j) = 15 mask & (1 << j) = 16 and neib = -1
+mask = 31 j =5  mask ^ (1 << j) = 63 mask & (1 << j) = 0 and neib = -1
+mask = 31 j =6  mask ^ (1 << j) = 95 mask & (1 << j) = 0 and neib = -1
+mask = 32 j =0  mask ^ (1 << j) = 33 mask & (1 << j) = 0 and neib = -1
+mask = 32 j =1  mask ^ (1 << j) = 34 mask & (1 << j) = 0 and neib = -1
+mask = 32 j =2  mask ^ (1 << j) = 36 mask & (1 << j) = 0 and neib = -1
+mask = 32 j =3  mask ^ (1 << j) = 40 mask & (1 << j) = 0 and neib = -1
+mask = 32 j =4  mask ^ (1 << j) = 48 mask & (1 << j) = 0 and neib = -1
+mask = 32 j =5  mask ^ (1 << j) = 0 mask & (1 << j) = 32 and neib = 0
+mask & (1 << j) = 32 dp[mask] = 2
+mask = 33 j =0  mask ^ (1 << j) = 32 mask & (1 << j) = 1 and neib = 2
+mask = 33 j =1  mask ^ (1 << j) = 35 mask & (1 << j) = 0 and neib = -1
+mask = 33 j =2  mask ^ (1 << j) = 37 mask & (1 << j) = 0 and neib = -1
+mask = 33 j =3  mask ^ (1 << j) = 41 mask & (1 << j) = 0 and neib = -1
+mask = 33 j =4  mask ^ (1 << j) = 49 mask & (1 << j) = 0 and neib = -1
+mask = 33 j =5  mask ^ (1 << j) = 1 mask & (1 << j) = 32 and neib = 0
+mask & (1 << j) = 32 dp[mask] = 2
+mask = 34 j =0  mask ^ (1 << j) = 35 mask & (1 << j) = 0 and neib = -1
+mask = 34 j =1  mask ^ (1 << j) = 32 mask & (1 << j) = 2 and neib = 2
+mask = 34 j =2  mask ^ (1 << j) = 38 mask & (1 << j) = 0 and neib = -1
+mask = 34 j =3  mask ^ (1 << j) = 42 mask & (1 << j) = 0 and neib = -1
+mask = 34 j =4  mask ^ (1 << j) = 50 mask & (1 << j) = 0 and neib = -1
+mask = 34 j =5  mask ^ (1 << j) = 2 mask & (1 << j) = 32 and neib = 4
+mask = 34 j =6  mask ^ (1 << j) = 98 mask & (1 << j) = 0 and neib = -1
+mask = 35 j =0  mask ^ (1 << j) = 34 mask & (1 << j) = 1 and neib = -1
+mask = 35 j =1  mask ^ (1 << j) = 33 mask & (1 << j) = 2 and neib = 2
+mask = 35 j =2  mask ^ (1 << j) = 39 mask & (1 << j) = 0 and neib = -1
+mask = 35 j =3  mask ^ (1 << j) = 43 mask & (1 << j) = 0 and neib = -1
+mask = 35 j =4  mask ^ (1 << j) = 51 mask & (1 << j) = 0 and neib = -1
+mask = 35 j =5  mask ^ (1 << j) = 3 mask & (1 << j) = 32 and neib = 4
+mask = 35 j =6  mask ^ (1 << j) = 99 mask & (1 << j) = 0 and neib = -1
+mask = 36 j =0  mask ^ (1 << j) = 37 mask & (1 << j) = 0 and neib = -1
+mask = 36 j =1  mask ^ (1 << j) = 38 mask & (1 << j) = 0 and neib = -1
+mask = 36 j =2  mask ^ (1 << j) = 32 mask & (1 << j) = 4 and neib = 2
+mask & (1 << j) = 4 dp[mask] = 0
+mask = 37 j =0  mask ^ (1 << j) = 36 mask & (1 << j) = 1 and neib = 0
+mask & (1 << j) = 1 dp[mask] = 0
+mask = 38 j =0  mask ^ (1 << j) = 39 mask & (1 << j) = 0 and neib = -1
+mask = 38 j =1  mask ^ (1 << j) = 36 mask & (1 << j) = 2 and neib = 0
+mask & (1 << j) = 2 dp[mask] = 4
+mask = 39 j =0  mask ^ (1 << j) = 38 mask & (1 << j) = 1 and neib = 4
+mask = 39 j =1  mask ^ (1 << j) = 37 mask & (1 << j) = 2 and neib = 0
+mask & (1 << j) = 2 dp[mask] = 4
+mask = 40 j =0  mask ^ (1 << j) = 41 mask & (1 << j) = 0 and neib = -1
+mask = 40 j =1  mask ^ (1 << j) = 42 mask & (1 << j) = 0 and neib = -1
+mask = 40 j =2  mask ^ (1 << j) = 44 mask & (1 << j) = 0 and neib = -1
+mask = 40 j =3  mask ^ (1 << j) = 32 mask & (1 << j) = 8 and neib = 2
+mask & (1 << j) = 8 dp[mask] = 0
+mask = 41 j =0  mask ^ (1 << j) = 40 mask & (1 << j) = 1 and neib = 0
+mask & (1 << j) = 1 dp[mask] = 0
+mask = 42 j =0  mask ^ (1 << j) = 43 mask & (1 << j) = 0 and neib = -1
+mask = 42 j =1  mask ^ (1 << j) = 40 mask & (1 << j) = 2 and neib = 0
+mask & (1 << j) = 2 dp[mask] = 4
+mask = 43 j =0  mask ^ (1 << j) = 42 mask & (1 << j) = 1 and neib = 4
+mask = 43 j =1  mask ^ (1 << j) = 41 mask & (1 << j) = 2 and neib = 0
+mask & (1 << j) = 2 dp[mask] = 4
+mask = 44 j =0  mask ^ (1 << j) = 45 mask & (1 << j) = 0 and neib = -1
+mask = 44 j =1  mask ^ (1 << j) = 46 mask & (1 << j) = 0 and neib = -1
+mask = 44 j =2  mask ^ (1 << j) = 40 mask & (1 << j) = 4 and neib = 0
+mask & (1 << j) = 4 dp[mask] = 3
+mask = 45 j =0  mask ^ (1 << j) = 44 mask & (1 << j) = 1 and neib = 3
+mask = 45 j =1  mask ^ (1 << j) = 47 mask & (1 << j) = 0 and neib = -1
+mask = 45 j =2  mask ^ (1 << j) = 41 mask & (1 << j) = 4 and neib = 0
+mask & (1 << j) = 4 dp[mask] = 3
+mask = 46 j =0  mask ^ (1 << j) = 47 mask & (1 << j) = 0 and neib = -1
+mask = 46 j =1  mask ^ (1 << j) = 44 mask & (1 << j) = 2 and neib = 3
+mask = 46 j =2  mask ^ (1 << j) = 42 mask & (1 << j) = 4 and neib = 4
+mask = 46 j =3  mask ^ (1 << j) = 38 mask & (1 << j) = 8 and neib = 4
+mask = 46 j =4  mask ^ (1 << j) = 62 mask & (1 << j) = 0 and neib = -1
+mask = 46 j =5  mask ^ (1 << j) = 14 mask & (1 << j) = 32 and neib = -1
+mask = 46 j =6  mask ^ (1 << j) = 110 mask & (1 << j) = 0 and neib = -1
+mask = 47 j =0  mask ^ (1 << j) = 46 mask & (1 << j) = 1 and neib = -1
+mask = 47 j =1  mask ^ (1 << j) = 45 mask & (1 << j) = 2 and neib = 3
+mask = 47 j =2  mask ^ (1 << j) = 43 mask & (1 << j) = 4 and neib = 4
+mask = 47 j =3  mask ^ (1 << j) = 39 mask & (1 << j) = 8 and neib = 4
+mask = 47 j =4  mask ^ (1 << j) = 63 mask & (1 << j) = 0 and neib = -1
+mask = 47 j =5  mask ^ (1 << j) = 15 mask & (1 << j) = 32 and neib = -1
+mask = 47 j =6  mask ^ (1 << j) = 111 mask & (1 << j) = 0 and neib = -1
+mask = 48 j =0  mask ^ (1 << j) = 49 mask & (1 << j) = 0 and neib = -1
+mask = 48 j =1  mask ^ (1 << j) = 50 mask & (1 << j) = 0 and neib = -1
+mask = 48 j =2  mask ^ (1 << j) = 52 mask & (1 << j) = 0 and neib = -1
+mask = 48 j =3  mask ^ (1 << j) = 56 mask & (1 << j) = 0 and neib = -1
+mask = 48 j =4  mask ^ (1 << j) = 32 mask & (1 << j) = 16 and neib = 2
+mask & (1 << j) = 16 dp[mask] = 4
+mask = 49 j =0  mask ^ (1 << j) = 48 mask & (1 << j) = 1 and neib = 4
+mask = 49 j =1  mask ^ (1 << j) = 51 mask & (1 << j) = 0 and neib = -1
+mask = 49 j =2  mask ^ (1 << j) = 53 mask & (1 << j) = 0 and neib = -1
+mask = 49 j =3  mask ^ (1 << j) = 57 mask & (1 << j) = 0 and neib = -1
+mask = 49 j =4  mask ^ (1 << j) = 33 mask & (1 << j) = 16 and neib = 2
+mask & (1 << j) = 16 dp[mask] = 4
+mask = 50 j =0  mask ^ (1 << j) = 51 mask & (1 << j) = 0 and neib = -1
+mask = 50 j =1  mask ^ (1 << j) = 48 mask & (1 << j) = 2 and neib = 4
+mask = 50 j =2  mask ^ (1 << j) = 54 mask & (1 << j) = 0 and neib = -1
+mask = 50 j =3  mask ^ (1 << j) = 58 mask & (1 << j) = 0 and neib = -1
+mask = 50 j =4  mask ^ (1 << j) = 34 mask & (1 << j) = 16 and neib = -1
+mask = 50 j =5  mask ^ (1 << j) = 18 mask & (1 << j) = 32 and neib = -1
+mask = 50 j =6  mask ^ (1 << j) = 114 mask & (1 << j) = 0 and neib = -1
+mask = 51 j =0  mask ^ (1 << j) = 50 mask & (1 << j) = 1 and neib = -1
+mask = 51 j =1  mask ^ (1 << j) = 49 mask & (1 << j) = 2 and neib = 4
+mask = 51 j =2  mask ^ (1 << j) = 55 mask & (1 << j) = 0 and neib = -1
+mask = 51 j =3  mask ^ (1 << j) = 59 mask & (1 << j) = 0 and neib = -1
+mask = 51 j =4  mask ^ (1 << j) = 35 mask & (1 << j) = 16 and neib = -1
+mask = 51 j =5  mask ^ (1 << j) = 19 mask & (1 << j) = 32 and neib = -1
+mask = 51 j =6  mask ^ (1 << j) = 115 mask & (1 << j) = 0 and neib = -1
+mask = 52 j =0  mask ^ (1 << j) = 53 mask & (1 << j) = 0 and neib = -1
+mask = 52 j =1  mask ^ (1 << j) = 54 mask & (1 << j) = 0 and neib = -1
+mask = 52 j =2  mask ^ (1 << j) = 48 mask & (1 << j) = 4 and neib = 4
+mask = 52 j =3  mask ^ (1 << j) = 60 mask & (1 << j) = 0 and neib = -1
+mask = 52 j =4  mask ^ (1 << j) = 36 mask & (1 << j) = 16 and neib = 0
+mask & (1 << j) = 16 dp[mask] = 2
+mask = 53 j =0  mask ^ (1 << j) = 52 mask & (1 << j) = 1 and neib = 2
+mask = 53 j =1  mask ^ (1 << j) = 55 mask & (1 << j) = 0 and neib = -1
+mask = 53 j =2  mask ^ (1 << j) = 49 mask & (1 << j) = 4 and neib = 4
+mask = 53 j =3  mask ^ (1 << j) = 61 mask & (1 << j) = 0 and neib = -1
+mask = 53 j =4  mask ^ (1 << j) = 37 mask & (1 << j) = 16 and neib = 0
+mask & (1 << j) = 16 dp[mask] = 2
+mask = 54 j =0  mask ^ (1 << j) = 55 mask & (1 << j) = 0 and neib = -1
+mask = 54 j =1  mask ^ (1 << j) = 52 mask & (1 << j) = 2 and neib = 2
+mask = 54 j =2  mask ^ (1 << j) = 50 mask & (1 << j) = 4 and neib = -1
+mask = 54 j =3  mask ^ (1 << j) = 62 mask & (1 << j) = 0 and neib = -1
+mask = 54 j =4  mask ^ (1 << j) = 38 mask & (1 << j) = 16 and neib = 4
+mask = 54 j =5  mask ^ (1 << j) = 22 mask & (1 << j) = 32 and neib = 4
+mask = 54 j =6  mask ^ (1 << j) = 118 mask & (1 << j) = 0 and neib = -1
+mask = 55 j =0  mask ^ (1 << j) = 54 mask & (1 << j) = 1 and neib = -1
+mask = 55 j =1  mask ^ (1 << j) = 53 mask & (1 << j) = 2 and neib = 2
+mask = 55 j =2  mask ^ (1 << j) = 51 mask & (1 << j) = 4 and neib = -1
+mask = 55 j =3  mask ^ (1 << j) = 63 mask & (1 << j) = 0 and neib = -1
+mask = 55 j =4  mask ^ (1 << j) = 39 mask & (1 << j) = 16 and neib = 4
+mask = 55 j =5  mask ^ (1 << j) = 23 mask & (1 << j) = 32 and neib = 4
+mask = 55 j =6  mask ^ (1 << j) = 119 mask & (1 << j) = 0 and neib = -1
+mask = 56 j =0  mask ^ (1 << j) = 57 mask & (1 << j) = 0 and neib = -1
+mask = 56 j =1  mask ^ (1 << j) = 58 mask & (1 << j) = 0 and neib = -1
+mask = 56 j =2  mask ^ (1 << j) = 60 mask & (1 << j) = 0 and neib = -1
+mask = 56 j =3  mask ^ (1 << j) = 48 mask & (1 << j) = 8 and neib = 4
+mask = 56 j =4  mask ^ (1 << j) = 40 mask & (1 << j) = 16 and neib = 0
+mask & (1 << j) = 16 dp[mask] = 2
+mask = 57 j =0  mask ^ (1 << j) = 56 mask & (1 << j) = 1 and neib = 2
+mask = 57 j =1  mask ^ (1 << j) = 59 mask & (1 << j) = 0 and neib = -1
+mask = 57 j =2  mask ^ (1 << j) = 61 mask & (1 << j) = 0 and neib = -1
+mask = 57 j =3  mask ^ (1 << j) = 49 mask & (1 << j) = 8 and neib = 4
+mask = 57 j =4  mask ^ (1 << j) = 41 mask & (1 << j) = 16 and neib = 0
+mask & (1 << j) = 16 dp[mask] = 2
+mask = 58 j =0  mask ^ (1 << j) = 59 mask & (1 << j) = 0 and neib = -1
+mask = 58 j =1  mask ^ (1 << j) = 56 mask & (1 << j) = 2 and neib = 2
+mask = 58 j =2  mask ^ (1 << j) = 62 mask & (1 << j) = 0 and neib = -1
+mask = 58 j =3  mask ^ (1 << j) = 50 mask & (1 << j) = 8 and neib = -1
+mask = 58 j =4  mask ^ (1 << j) = 42 mask & (1 << j) = 16 and neib = 4
+mask = 58 j =5  mask ^ (1 << j) = 26 mask & (1 << j) = 32 and neib = 4
+mask = 58 j =6  mask ^ (1 << j) = 122 mask & (1 << j) = 0 and neib = -1
+mask = 59 j =0  mask ^ (1 << j) = 58 mask & (1 << j) = 1 and neib = -1
+mask = 59 j =1  mask ^ (1 << j) = 57 mask & (1 << j) = 2 and neib = 2
+mask = 59 j =2  mask ^ (1 << j) = 63 mask & (1 << j) = 0 and neib = -1
+mask = 59 j =3  mask ^ (1 << j) = 51 mask & (1 << j) = 8 and neib = -1
+mask = 59 j =4  mask ^ (1 << j) = 43 mask & (1 << j) = 16 and neib = 4
+mask = 59 j =5  mask ^ (1 << j) = 27 mask & (1 << j) = 32 and neib = 4
+mask = 59 j =6  mask ^ (1 << j) = 123 mask & (1 << j) = 0 and neib = -1
+mask = 60 j =0  mask ^ (1 << j) = 61 mask & (1 << j) = 0 and neib = -1
+mask = 60 j =1  mask ^ (1 << j) = 62 mask & (1 << j) = 0 and neib = -1
+mask = 60 j =2  mask ^ (1 << j) = 56 mask & (1 << j) = 4 and neib = 2
+mask & (1 << j) = 4 dp[mask] = 0
+mask = 61 j =0  mask ^ (1 << j) = 60 mask & (1 << j) = 1 and neib = 0
+mask & (1 << j) = 1 dp[mask] = 0
+mask = 62 j =0  mask ^ (1 << j) = 63 mask & (1 << j) = 0 and neib = -1
+mask = 62 j =1  mask ^ (1 << j) = 60 mask & (1 << j) = 2 and neib = 0
+mask & (1 << j) = 2 dp[mask] = 4
+mask = 63 j =0  mask ^ (1 << j) = 62 mask & (1 << j) = 1 and neib = 4
+mask = 63 j =1  mask ^ (1 << j) = 61 mask & (1 << j) = 2 and neib = 0
+mask & (1 << j) = 2 dp[mask] = 4
+mask = 64 j =0  mask ^ (1 << j) = 65 mask & (1 << j) = 0 and neib = -1
+mask = 64 j =1  mask ^ (1 << j) = 66 mask & (1 << j) = 0 and neib = -1
+mask = 64 j =2  mask ^ (1 << j) = 68 mask & (1 << j) = 0 and neib = -1
+mask = 64 j =3  mask ^ (1 << j) = 72 mask & (1 << j) = 0 and neib = -1
+mask = 64 j =4  mask ^ (1 << j) = 80 mask & (1 << j) = 0 and neib = -1
+mask = 64 j =5  mask ^ (1 << j) = 96 mask & (1 << j) = 0 and neib = -1
+mask = 64 j =6  mask ^ (1 << j) = 0 mask & (1 << j) = 64 and neib = 0
+mask & (1 << j) = 64 dp[mask] = 1
+mask = 65 j =0  mask ^ (1 << j) = 64 mask & (1 << j) = 1 and neib = 1
+mask = 65 j =1  mask ^ (1 << j) = 67 mask & (1 << j) = 0 and neib = -1
+mask = 65 j =2  mask ^ (1 << j) = 69 mask & (1 << j) = 0 and neib = -1
+mask = 65 j =3  mask ^ (1 << j) = 73 mask & (1 << j) = 0 and neib = -1
+mask = 65 j =4  mask ^ (1 << j) = 81 mask & (1 << j) = 0 and neib = -1
+mask = 65 j =5  mask ^ (1 << j) = 97 mask & (1 << j) = 0 and neib = -1
+mask = 65 j =6  mask ^ (1 << j) = 1 mask & (1 << j) = 64 and neib = 0
+mask & (1 << j) = 64 dp[mask] = 1
+mask = 66 j =0  mask ^ (1 << j) = 67 mask & (1 << j) = 0 and neib = -1
+mask = 66 j =1  mask ^ (1 << j) = 64 mask & (1 << j) = 2 and neib = 1
+mask & (1 << j) = 2 dp[mask] = 0
+mask = 67 j =0  mask ^ (1 << j) = 66 mask & (1 << j) = 1 and neib = 0
+mask & (1 << j) = 1 dp[mask] = 0
+mask = 68 j =0  mask ^ (1 << j) = 69 mask & (1 << j) = 0 and neib = -1
+mask = 68 j =1  mask ^ (1 << j) = 70 mask & (1 << j) = 0 and neib = -1
+mask = 68 j =2  mask ^ (1 << j) = 64 mask & (1 << j) = 4 and neib = 1
+mask & (1 << j) = 4 dp[mask] = 4
+mask = 69 j =0  mask ^ (1 << j) = 68 mask & (1 << j) = 1 and neib = 4
+mask = 69 j =1  mask ^ (1 << j) = 71 mask & (1 << j) = 0 and neib = -1
+mask = 69 j =2  mask ^ (1 << j) = 65 mask & (1 << j) = 4 and neib = 1
+mask & (1 << j) = 4 dp[mask] = 4
+mask = 70 j =0  mask ^ (1 << j) = 71 mask & (1 << j) = 0 and neib = -1
+mask = 70 j =1  mask ^ (1 << j) = 68 mask & (1 << j) = 2 and neib = 4
+mask = 70 j =2  mask ^ (1 << j) = 66 mask & (1 << j) = 4 and neib = 0
+mask & (1 << j) = 4 dp[mask] = 3
+mask = 71 j =0  mask ^ (1 << j) = 70 mask & (1 << j) = 1 and neib = 3
+mask = 71 j =1  mask ^ (1 << j) = 69 mask & (1 << j) = 2 and neib = 4
+mask = 71 j =2  mask ^ (1 << j) = 67 mask & (1 << j) = 4 and neib = 0
+mask & (1 << j) = 4 dp[mask] = 3
+mask = 72 j =0  mask ^ (1 << j) = 73 mask & (1 << j) = 0 and neib = -1
+mask = 72 j =1  mask ^ (1 << j) = 74 mask & (1 << j) = 0 and neib = -1
+mask = 72 j =2  mask ^ (1 << j) = 76 mask & (1 << j) = 0 and neib = -1
+mask = 72 j =3  mask ^ (1 << j) = 64 mask & (1 << j) = 8 and neib = 1
+mask & (1 << j) = 8 dp[mask] = 4
+mask = 73 j =0  mask ^ (1 << j) = 72 mask & (1 << j) = 1 and neib = 4
+mask = 73 j =1  mask ^ (1 << j) = 75 mask & (1 << j) = 0 and neib = -1
+mask = 73 j =2  mask ^ (1 << j) = 77 mask & (1 << j) = 0 and neib = -1
+mask = 73 j =3  mask ^ (1 << j) = 65 mask & (1 << j) = 8 and neib = 1
+mask & (1 << j) = 8 dp[mask] = 4
+mask = 74 j =0  mask ^ (1 << j) = 75 mask & (1 << j) = 0 and neib = -1
+mask = 74 j =1  mask ^ (1 << j) = 72 mask & (1 << j) = 2 and neib = 4
+mask = 74 j =2  mask ^ (1 << j) = 78 mask & (1 << j) = 0 and neib = -1
+mask = 74 j =3  mask ^ (1 << j) = 66 mask & (1 << j) = 8 and neib = 0
+mask & (1 << j) = 8 dp[mask] = 3
+mask = 75 j =0  mask ^ (1 << j) = 74 mask & (1 << j) = 1 and neib = 3
+mask = 75 j =1  mask ^ (1 << j) = 73 mask & (1 << j) = 2 and neib = 4
+mask = 75 j =2  mask ^ (1 << j) = 79 mask & (1 << j) = 0 and neib = -1
+mask = 75 j =3  mask ^ (1 << j) = 67 mask & (1 << j) = 8 and neib = 0
+mask & (1 << j) = 8 dp[mask] = 3
+mask = 76 j =0  mask ^ (1 << j) = 77 mask & (1 << j) = 0 and neib = -1
+mask = 76 j =1  mask ^ (1 << j) = 78 mask & (1 << j) = 0 and neib = -1
+mask = 76 j =2  mask ^ (1 << j) = 72 mask & (1 << j) = 4 and neib = 4
+mask = 76 j =3  mask ^ (1 << j) = 68 mask & (1 << j) = 8 and neib = 4
+mask = 76 j =4  mask ^ (1 << j) = 92 mask & (1 << j) = 0 and neib = -1
+mask = 76 j =5  mask ^ (1 << j) = 108 mask & (1 << j) = 0 and neib = -1
+mask = 76 j =6  mask ^ (1 << j) = 12 mask & (1 << j) = 64 and neib = -1
+mask = 77 j =0  mask ^ (1 << j) = 76 mask & (1 << j) = 1 and neib = -1
+mask = 77 j =1  mask ^ (1 << j) = 79 mask & (1 << j) = 0 and neib = -1
+mask = 77 j =2  mask ^ (1 << j) = 73 mask & (1 << j) = 4 and neib = 4
+mask = 77 j =3  mask ^ (1 << j) = 69 mask & (1 << j) = 8 and neib = 4
+mask = 77 j =4  mask ^ (1 << j) = 93 mask & (1 << j) = 0 and neib = -1
+mask = 77 j =5  mask ^ (1 << j) = 109 mask & (1 << j) = 0 and neib = -1
+mask = 77 j =6  mask ^ (1 << j) = 13 mask & (1 << j) = 64 and neib = -1
+mask = 78 j =0  mask ^ (1 << j) = 79 mask & (1 << j) = 0 and neib = -1
+mask = 78 j =1  mask ^ (1 << j) = 76 mask & (1 << j) = 2 and neib = -1
+mask = 78 j =2  mask ^ (1 << j) = 74 mask & (1 << j) = 4 and neib = 3
+mask = 78 j =3  mask ^ (1 << j) = 70 mask & (1 << j) = 8 and neib = 3
+mask = 78 j =4  mask ^ (1 << j) = 94 mask & (1 << j) = 0 and neib = -1
+mask = 78 j =5  mask ^ (1 << j) = 110 mask & (1 << j) = 0 and neib = -1
+mask = 78 j =6  mask ^ (1 << j) = 14 mask & (1 << j) = 64 and neib = -1
+mask = 79 j =0  mask ^ (1 << j) = 78 mask & (1 << j) = 1 and neib = -1
+mask = 79 j =1  mask ^ (1 << j) = 77 mask & (1 << j) = 2 and neib = -1
+mask = 79 j =2  mask ^ (1 << j) = 75 mask & (1 << j) = 4 and neib = 3
+mask = 79 j =3  mask ^ (1 << j) = 71 mask & (1 << j) = 8 and neib = 3
+mask = 79 j =4  mask ^ (1 << j) = 95 mask & (1 << j) = 0 and neib = -1
+mask = 79 j =5  mask ^ (1 << j) = 111 mask & (1 << j) = 0 and neib = -1
+mask = 79 j =6  mask ^ (1 << j) = 15 mask & (1 << j) = 64 and neib = -1
+mask = 80 j =0  mask ^ (1 << j) = 81 mask & (1 << j) = 0 and neib = -1
+mask = 80 j =1  mask ^ (1 << j) = 82 mask & (1 << j) = 0 and neib = -1
+mask = 80 j =2  mask ^ (1 << j) = 84 mask & (1 << j) = 0 and neib = -1
+mask = 80 j =3  mask ^ (1 << j) = 88 mask & (1 << j) = 0 and neib = -1
+mask = 80 j =4  mask ^ (1 << j) = 64 mask & (1 << j) = 16 and neib = 1
+mask & (1 << j) = 16 dp[mask] = 3
+mask = 81 j =0  mask ^ (1 << j) = 80 mask & (1 << j) = 1 and neib = 3
+mask = 81 j =1  mask ^ (1 << j) = 83 mask & (1 << j) = 0 and neib = -1
+mask = 81 j =2  mask ^ (1 << j) = 85 mask & (1 << j) = 0 and neib = -1
+mask = 81 j =3  mask ^ (1 << j) = 89 mask & (1 << j) = 0 and neib = -1
+mask = 81 j =4  mask ^ (1 << j) = 65 mask & (1 << j) = 16 and neib = 1
+mask & (1 << j) = 16 dp[mask] = 3
+mask = 82 j =0  mask ^ (1 << j) = 83 mask & (1 << j) = 0 and neib = -1
+mask = 82 j =1  mask ^ (1 << j) = 80 mask & (1 << j) = 2 and neib = 3
+mask = 82 j =2  mask ^ (1 << j) = 86 mask & (1 << j) = 0 and neib = -1
+mask = 82 j =3  mask ^ (1 << j) = 90 mask & (1 << j) = 0 and neib = -1
+mask = 82 j =4  mask ^ (1 << j) = 66 mask & (1 << j) = 16 and neib = 0
+mask & (1 << j) = 16 dp[mask] = 2
+mask = 83 j =0  mask ^ (1 << j) = 82 mask & (1 << j) = 1 and neib = 2
+mask = 83 j =1  mask ^ (1 << j) = 81 mask & (1 << j) = 2 and neib = 3
+mask = 83 j =2  mask ^ (1 << j) = 87 mask & (1 << j) = 0 and neib = -1
+mask = 83 j =3  mask ^ (1 << j) = 91 mask & (1 << j) = 0 and neib = -1
+mask = 83 j =4  mask ^ (1 << j) = 67 mask & (1 << j) = 16 and neib = 0
+mask & (1 << j) = 16 dp[mask] = 2
+mask = 84 j =0  mask ^ (1 << j) = 85 mask & (1 << j) = 0 and neib = -1
+mask = 84 j =1  mask ^ (1 << j) = 86 mask & (1 << j) = 0 and neib = -1
+mask = 84 j =2  mask ^ (1 << j) = 80 mask & (1 << j) = 4 and neib = 3
+mask = 84 j =3  mask ^ (1 << j) = 92 mask & (1 << j) = 0 and neib = -1
+mask = 84 j =4  mask ^ (1 << j) = 68 mask & (1 << j) = 16 and neib = 4
+mask = 84 j =5  mask ^ (1 << j) = 116 mask & (1 << j) = 0 and neib = -1
+mask = 84 j =6  mask ^ (1 << j) = 20 mask & (1 << j) = 64 and neib = 0
+mask & (1 << j) = 64 dp[mask] = 1
+mask = 85 j =0  mask ^ (1 << j) = 84 mask & (1 << j) = 1 and neib = 1
+mask = 85 j =1  mask ^ (1 << j) = 87 mask & (1 << j) = 0 and neib = -1
+mask = 85 j =2  mask ^ (1 << j) = 81 mask & (1 << j) = 4 and neib = 3
+mask = 85 j =3  mask ^ (1 << j) = 93 mask & (1 << j) = 0 and neib = -1
+mask = 85 j =4  mask ^ (1 << j) = 69 mask & (1 << j) = 16 and neib = 4
+mask = 85 j =5  mask ^ (1 << j) = 117 mask & (1 << j) = 0 and neib = -1
+mask = 85 j =6  mask ^ (1 << j) = 21 mask & (1 << j) = 64 and neib = 0
+mask & (1 << j) = 64 dp[mask] = 1
+mask = 86 j =0  mask ^ (1 << j) = 87 mask & (1 << j) = 0 and neib = -1
+mask = 86 j =1  mask ^ (1 << j) = 84 mask & (1 << j) = 2 and neib = 1
+mask & (1 << j) = 2 dp[mask] = 0
+mask = 87 j =0  mask ^ (1 << j) = 86 mask & (1 << j) = 1 and neib = 0
+mask & (1 << j) = 1 dp[mask] = 0
+mask = 88 j =0  mask ^ (1 << j) = 89 mask & (1 << j) = 0 and neib = -1
+mask = 88 j =1  mask ^ (1 << j) = 90 mask & (1 << j) = 0 and neib = -1
+mask = 88 j =2  mask ^ (1 << j) = 92 mask & (1 << j) = 0 and neib = -1
+mask = 88 j =3  mask ^ (1 << j) = 80 mask & (1 << j) = 8 and neib = 3
+mask = 88 j =4  mask ^ (1 << j) = 72 mask & (1 << j) = 16 and neib = 4
+mask = 88 j =5  mask ^ (1 << j) = 120 mask & (1 << j) = 0 and neib = -1
+mask = 88 j =6  mask ^ (1 << j) = 24 mask & (1 << j) = 64 and neib = 0
+mask & (1 << j) = 64 dp[mask] = 1
+mask = 89 j =0  mask ^ (1 << j) = 88 mask & (1 << j) = 1 and neib = 1
+mask = 89 j =1  mask ^ (1 << j) = 91 mask & (1 << j) = 0 and neib = -1
+mask = 89 j =2  mask ^ (1 << j) = 93 mask & (1 << j) = 0 and neib = -1
+mask = 89 j =3  mask ^ (1 << j) = 81 mask & (1 << j) = 8 and neib = 3
+mask = 89 j =4  mask ^ (1 << j) = 73 mask & (1 << j) = 16 and neib = 4
+mask = 89 j =5  mask ^ (1 << j) = 121 mask & (1 << j) = 0 and neib = -1
+mask = 89 j =6  mask ^ (1 << j) = 25 mask & (1 << j) = 64 and neib = 0
+mask & (1 << j) = 64 dp[mask] = 1
+mask = 90 j =0  mask ^ (1 << j) = 91 mask & (1 << j) = 0 and neib = -1
+mask = 90 j =1  mask ^ (1 << j) = 88 mask & (1 << j) = 2 and neib = 1
+mask & (1 << j) = 2 dp[mask] = 0
+mask = 91 j =0  mask ^ (1 << j) = 90 mask & (1 << j) = 1 and neib = 0
+mask & (1 << j) = 1 dp[mask] = 0
+mask = 92 j =0  mask ^ (1 << j) = 93 mask & (1 << j) = 0 and neib = -1
+mask = 92 j =1  mask ^ (1 << j) = 94 mask & (1 << j) = 0 and neib = -1
+mask = 92 j =2  mask ^ (1 << j) = 88 mask & (1 << j) = 4 and neib = 1
+mask & (1 << j) = 4 dp[mask] = 4
+mask = 93 j =0  mask ^ (1 << j) = 92 mask & (1 << j) = 1 and neib = 4
+mask = 93 j =1  mask ^ (1 << j) = 95 mask & (1 << j) = 0 and neib = -1
+mask = 93 j =2  mask ^ (1 << j) = 89 mask & (1 << j) = 4 and neib = 1
+mask & (1 << j) = 4 dp[mask] = 4
+mask = 94 j =0  mask ^ (1 << j) = 95 mask & (1 << j) = 0 and neib = -1
+mask = 94 j =1  mask ^ (1 << j) = 92 mask & (1 << j) = 2 and neib = 4
+mask = 94 j =2  mask ^ (1 << j) = 90 mask & (1 << j) = 4 and neib = 0
+mask & (1 << j) = 4 dp[mask] = 3
+mask = 95 j =0  mask ^ (1 << j) = 94 mask & (1 << j) = 1 and neib = 3
+mask = 95 j =1  mask ^ (1 << j) = 93 mask & (1 << j) = 2 and neib = 4
+mask = 95 j =2  mask ^ (1 << j) = 91 mask & (1 << j) = 4 and neib = 0
+mask & (1 << j) = 4 dp[mask] = 3
+mask = 96 j =0  mask ^ (1 << j) = 97 mask & (1 << j) = 0 and neib = -1
+mask = 96 j =1  mask ^ (1 << j) = 98 mask & (1 << j) = 0 and neib = -1
+mask = 96 j =2  mask ^ (1 << j) = 100 mask & (1 << j) = 0 and neib = -1
+mask = 96 j =3  mask ^ (1 << j) = 104 mask & (1 << j) = 0 and neib = -1
+mask = 96 j =4  mask ^ (1 << j) = 112 mask & (1 << j) = 0 and neib = -1
+mask = 96 j =5  mask ^ (1 << j) = 64 mask & (1 << j) = 32 and neib = 1
+mask & (1 << j) = 32 dp[mask] = 3
+mask = 97 j =0  mask ^ (1 << j) = 96 mask & (1 << j) = 1 and neib = 3
+mask = 97 j =1  mask ^ (1 << j) = 99 mask & (1 << j) = 0 and neib = -1
+mask = 97 j =2  mask ^ (1 << j) = 101 mask & (1 << j) = 0 and neib = -1
+mask = 97 j =3  mask ^ (1 << j) = 105 mask & (1 << j) = 0 and neib = -1
+mask = 97 j =4  mask ^ (1 << j) = 113 mask & (1 << j) = 0 and neib = -1
+mask = 97 j =5  mask ^ (1 << j) = 65 mask & (1 << j) = 32 and neib = 1
+mask & (1 << j) = 32 dp[mask] = 3
+mask = 98 j =0  mask ^ (1 << j) = 99 mask & (1 << j) = 0 and neib = -1
+mask = 98 j =1  mask ^ (1 << j) = 96 mask & (1 << j) = 2 and neib = 3
+mask = 98 j =2  mask ^ (1 << j) = 102 mask & (1 << j) = 0 and neib = -1
+mask = 98 j =3  mask ^ (1 << j) = 106 mask & (1 << j) = 0 and neib = -1
+mask = 98 j =4  mask ^ (1 << j) = 114 mask & (1 << j) = 0 and neib = -1
+mask = 98 j =5  mask ^ (1 << j) = 66 mask & (1 << j) = 32 and neib = 0
+mask & (1 << j) = 32 dp[mask] = 2
+mask = 99 j =0  mask ^ (1 << j) = 98 mask & (1 << j) = 1 and neib = 2
+mask = 99 j =1  mask ^ (1 << j) = 97 mask & (1 << j) = 2 and neib = 3
+mask = 99 j =2  mask ^ (1 << j) = 103 mask & (1 << j) = 0 and neib = -1
+mask = 99 j =3  mask ^ (1 << j) = 107 mask & (1 << j) = 0 and neib = -1
+mask = 99 j =4  mask ^ (1 << j) = 115 mask & (1 << j) = 0 and neib = -1
+mask = 99 j =5  mask ^ (1 << j) = 67 mask & (1 << j) = 32 and neib = 0
+mask & (1 << j) = 32 dp[mask] = 2
+mask = 100 j =0  mask ^ (1 << j) = 101 mask & (1 << j) = 0 and neib = -1
+mask = 100 j =1  mask ^ (1 << j) = 102 mask & (1 << j) = 0 and neib = -1
+mask = 100 j =2  mask ^ (1 << j) = 96 mask & (1 << j) = 4 and neib = 3
+mask = 100 j =3  mask ^ (1 << j) = 108 mask & (1 << j) = 0 and neib = -1
+mask = 100 j =4  mask ^ (1 << j) = 116 mask & (1 << j) = 0 and neib = -1
+mask = 100 j =5  mask ^ (1 << j) = 68 mask & (1 << j) = 32 and neib = 4
+mask = 100 j =6  mask ^ (1 << j) = 36 mask & (1 << j) = 64 and neib = 0
+mask & (1 << j) = 64 dp[mask] = 1
+mask = 101 j =0  mask ^ (1 << j) = 100 mask & (1 << j) = 1 and neib = 1
+mask = 101 j =1  mask ^ (1 << j) = 103 mask & (1 << j) = 0 and neib = -1
+mask = 101 j =2  mask ^ (1 << j) = 97 mask & (1 << j) = 4 and neib = 3
+mask = 101 j =3  mask ^ (1 << j) = 109 mask & (1 << j) = 0 and neib = -1
+mask = 101 j =4  mask ^ (1 << j) = 117 mask & (1 << j) = 0 and neib = -1
+mask = 101 j =5  mask ^ (1 << j) = 69 mask & (1 << j) = 32 and neib = 4
+mask = 101 j =6  mask ^ (1 << j) = 37 mask & (1 << j) = 64 and neib = 0
+mask & (1 << j) = 64 dp[mask] = 1
+mask = 102 j =0  mask ^ (1 << j) = 103 mask & (1 << j) = 0 and neib = -1
+mask = 102 j =1  mask ^ (1 << j) = 100 mask & (1 << j) = 2 and neib = 1
+mask & (1 << j) = 2 dp[mask] = 0
+mask = 103 j =0  mask ^ (1 << j) = 102 mask & (1 << j) = 1 and neib = 0
+mask & (1 << j) = 1 dp[mask] = 0
+mask = 104 j =0  mask ^ (1 << j) = 105 mask & (1 << j) = 0 and neib = -1
+mask = 104 j =1  mask ^ (1 << j) = 106 mask & (1 << j) = 0 and neib = -1
+mask = 104 j =2  mask ^ (1 << j) = 108 mask & (1 << j) = 0 and neib = -1
+mask = 104 j =3  mask ^ (1 << j) = 96 mask & (1 << j) = 8 and neib = 3
+mask = 104 j =4  mask ^ (1 << j) = 120 mask & (1 << j) = 0 and neib = -1
+mask = 104 j =5  mask ^ (1 << j) = 72 mask & (1 << j) = 32 and neib = 4
+mask = 104 j =6  mask ^ (1 << j) = 40 mask & (1 << j) = 64 and neib = 0
+mask & (1 << j) = 64 dp[mask] = 1
+mask = 105 j =0  mask ^ (1 << j) = 104 mask & (1 << j) = 1 and neib = 1
+mask = 105 j =1  mask ^ (1 << j) = 107 mask & (1 << j) = 0 and neib = -1
+mask = 105 j =2  mask ^ (1 << j) = 109 mask & (1 << j) = 0 and neib = -1
+mask = 105 j =3  mask ^ (1 << j) = 97 mask & (1 << j) = 8 and neib = 3
+mask = 105 j =4  mask ^ (1 << j) = 121 mask & (1 << j) = 0 and neib = -1
+mask = 105 j =5  mask ^ (1 << j) = 73 mask & (1 << j) = 32 and neib = 4
+mask = 105 j =6  mask ^ (1 << j) = 41 mask & (1 << j) = 64 and neib = 0
+mask & (1 << j) = 64 dp[mask] = 1
+mask = 106 j =0  mask ^ (1 << j) = 107 mask & (1 << j) = 0 and neib = -1
+mask = 106 j =1  mask ^ (1 << j) = 104 mask & (1 << j) = 2 and neib = 1
+mask & (1 << j) = 2 dp[mask] = 0
+mask = 107 j =0  mask ^ (1 << j) = 106 mask & (1 << j) = 1 and neib = 0
+mask & (1 << j) = 1 dp[mask] = 0
+mask = 108 j =0  mask ^ (1 << j) = 109 mask & (1 << j) = 0 and neib = -1
+mask = 108 j =1  mask ^ (1 << j) = 110 mask & (1 << j) = 0 and neib = -1
+mask = 108 j =2  mask ^ (1 << j) = 104 mask & (1 << j) = 4 and neib = 1
+mask & (1 << j) = 4 dp[mask] = 4
+mask = 109 j =0  mask ^ (1 << j) = 108 mask & (1 << j) = 1 and neib = 4
+mask = 109 j =1  mask ^ (1 << j) = 111 mask & (1 << j) = 0 and neib = -1
+mask = 109 j =2  mask ^ (1 << j) = 105 mask & (1 << j) = 4 and neib = 1
+mask & (1 << j) = 4 dp[mask] = 4
+mask = 110 j =0  mask ^ (1 << j) = 111 mask & (1 << j) = 0 and neib = -1
+mask = 110 j =1  mask ^ (1 << j) = 108 mask & (1 << j) = 2 and neib = 4
+mask = 110 j =2  mask ^ (1 << j) = 106 mask & (1 << j) = 4 and neib = 0
+mask & (1 << j) = 4 dp[mask] = 3
+mask = 111 j =0  mask ^ (1 << j) = 110 mask & (1 << j) = 1 and neib = 3
+mask = 111 j =1  mask ^ (1 << j) = 109 mask & (1 << j) = 2 and neib = 4
+mask = 111 j =2  mask ^ (1 << j) = 107 mask & (1 << j) = 4 and neib = 0
+mask & (1 << j) = 4 dp[mask] = 3
+mask = 112 j =0  mask ^ (1 << j) = 113 mask & (1 << j) = 0 and neib = -1
+mask = 112 j =1  mask ^ (1 << j) = 114 mask & (1 << j) = 0 and neib = -1
+mask = 112 j =2  mask ^ (1 << j) = 116 mask & (1 << j) = 0 and neib = -1
+mask = 112 j =3  mask ^ (1 << j) = 120 mask & (1 << j) = 0 and neib = -1
+mask = 112 j =4  mask ^ (1 << j) = 96 mask & (1 << j) = 16 and neib = 3
+mask & (1 << j) = 16 dp[mask] = 0
+mask = 113 j =0  mask ^ (1 << j) = 112 mask & (1 << j) = 1 and neib = 0
+mask & (1 << j) = 1 dp[mask] = 0
+mask = 114 j =0  mask ^ (1 << j) = 115 mask & (1 << j) = 0 and neib = -1
+mask = 114 j =1  mask ^ (1 << j) = 112 mask & (1 << j) = 2 and neib = 0
+mask & (1 << j) = 2 dp[mask] = 4
+mask = 115 j =0  mask ^ (1 << j) = 114 mask & (1 << j) = 1 and neib = 4
+mask = 115 j =1  mask ^ (1 << j) = 113 mask & (1 << j) = 2 and neib = 0
+mask & (1 << j) = 2 dp[mask] = 4
+mask = 116 j =0  mask ^ (1 << j) = 117 mask & (1 << j) = 0 and neib = -1
+mask = 116 j =1  mask ^ (1 << j) = 118 mask & (1 << j) = 0 and neib = -1
+mask = 116 j =2  mask ^ (1 << j) = 112 mask & (1 << j) = 4 and neib = 0
+mask & (1 << j) = 4 dp[mask] = 3
+mask = 117 j =0  mask ^ (1 << j) = 116 mask & (1 << j) = 1 and neib = 3
+mask = 117 j =1  mask ^ (1 << j) = 119 mask & (1 << j) = 0 and neib = -1
+mask = 117 j =2  mask ^ (1 << j) = 113 mask & (1 << j) = 4 and neib = 0
+mask & (1 << j) = 4 dp[mask] = 3
+mask = 118 j =0  mask ^ (1 << j) = 119 mask & (1 << j) = 0 and neib = -1
+mask = 118 j =1  mask ^ (1 << j) = 116 mask & (1 << j) = 2 and neib = 3
+mask = 118 j =2  mask ^ (1 << j) = 114 mask & (1 << j) = 4 and neib = 4
+mask = 118 j =3  mask ^ (1 << j) = 126 mask & (1 << j) = 0 and neib = -1
+mask = 118 j =4  mask ^ (1 << j) = 102 mask & (1 << j) = 16 and neib = 0
+mask & (1 << j) = 16 dp[mask] = 2
+mask = 119 j =0  mask ^ (1 << j) = 118 mask & (1 << j) = 1 and neib = 2
+mask = 119 j =1  mask ^ (1 << j) = 117 mask & (1 << j) = 2 and neib = 3
+mask = 119 j =2  mask ^ (1 << j) = 115 mask & (1 << j) = 4 and neib = 4
+mask = 119 j =3  mask ^ (1 << j) = 127 mask & (1 << j) = 0 and neib = -1
+mask = 119 j =4  mask ^ (1 << j) = 103 mask & (1 << j) = 16 and neib = 0
+mask & (1 << j) = 16 dp[mask] = 2
+mask = 120 j =0  mask ^ (1 << j) = 121 mask & (1 << j) = 0 and neib = -1
+mask = 120 j =1  mask ^ (1 << j) = 122 mask & (1 << j) = 0 and neib = -1
+mask = 120 j =2  mask ^ (1 << j) = 124 mask & (1 << j) = 0 and neib = -1
+mask = 120 j =3  mask ^ (1 << j) = 112 mask & (1 << j) = 8 and neib = 0
+mask & (1 << j) = 8 dp[mask] = 3
+mask = 121 j =0  mask ^ (1 << j) = 120 mask & (1 << j) = 1 and neib = 3
+mask = 121 j =1  mask ^ (1 << j) = 123 mask & (1 << j) = 0 and neib = -1
+mask = 121 j =2  mask ^ (1 << j) = 125 mask & (1 << j) = 0 and neib = -1
+mask = 121 j =3  mask ^ (1 << j) = 113 mask & (1 << j) = 8 and neib = 0
+mask & (1 << j) = 8 dp[mask] = 3
+mask = 122 j =0  mask ^ (1 << j) = 123 mask & (1 << j) = 0 and neib = -1
+mask = 122 j =1  mask ^ (1 << j) = 120 mask & (1 << j) = 2 and neib = 3
+mask = 122 j =2  mask ^ (1 << j) = 126 mask & (1 << j) = 0 and neib = -1
+mask = 122 j =3  mask ^ (1 << j) = 114 mask & (1 << j) = 8 and neib = 4
+mask = 122 j =4  mask ^ (1 << j) = 106 mask & (1 << j) = 16 and neib = 0
+mask & (1 << j) = 16 dp[mask] = 2
+mask = 123 j =0  mask ^ (1 << j) = 122 mask & (1 << j) = 1 and neib = 2
+mask = 123 j =1  mask ^ (1 << j) = 121 mask & (1 << j) = 2 and neib = 3
+mask = 123 j =2  mask ^ (1 << j) = 127 mask & (1 << j) = 0 and neib = -1
+mask = 123 j =3  mask ^ (1 << j) = 115 mask & (1 << j) = 8 and neib = 4
+mask = 123 j =4  mask ^ (1 << j) = 107 mask & (1 << j) = 16 and neib = 0
+mask & (1 << j) = 16 dp[mask] = 2
+mask = 124 j =0  mask ^ (1 << j) = 125 mask & (1 << j) = 0 and neib = -1
+mask = 124 j =1  mask ^ (1 << j) = 126 mask & (1 << j) = 0 and neib = -1
+mask = 124 j =2  mask ^ (1 << j) = 120 mask & (1 << j) = 4 and neib = 3
+mask = 124 j =3  mask ^ (1 << j) = 116 mask & (1 << j) = 8 and neib = 3
+mask = 124 j =4  mask ^ (1 << j) = 108 mask & (1 << j) = 16 and neib = 4
+mask = 124 j =5  mask ^ (1 << j) = 92 mask & (1 << j) = 32 and neib = 4
+mask = 124 j =6  mask ^ (1 << j) = 60 mask & (1 << j) = 64 and neib = 0
+mask & (1 << j) = 64 dp[mask] = 1
+mask = 125 j =0  mask ^ (1 << j) = 124 mask & (1 << j) = 1 and neib = 1
+mask = 125 j =1  mask ^ (1 << j) = 127 mask & (1 << j) = 0 and neib = -1
+mask = 125 j =2  mask ^ (1 << j) = 121 mask & (1 << j) = 4 and neib = 3
+mask = 125 j =3  mask ^ (1 << j) = 117 mask & (1 << j) = 8 and neib = 3
+mask = 125 j =4  mask ^ (1 << j) = 109 mask & (1 << j) = 16 and neib = 4
+mask = 125 j =5  mask ^ (1 << j) = 93 mask & (1 << j) = 32 and neib = 4
+mask = 125 j =6  mask ^ (1 << j) = 61 mask & (1 << j) = 64 and neib = 0
+mask & (1 << j) = 64 dp[mask] = 1
+mask = 126 j =0  mask ^ (1 << j) = 127 mask & (1 << j) = 0 and neib = -1
+mask = 126 j =1  mask ^ (1 << j) = 124 mask & (1 << j) = 2 and neib = 1
+mask & (1 << j) = 2 dp[mask] = 0
+mask = 127 j =0  mask ^ (1 << j) = 126 mask & (1 << j) = 1 and neib = 0
+mask & (1 << j) = 1 dp[mask] = 0

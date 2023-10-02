@@ -158,7 +158,7 @@ class RottingOranges:
     return minutes_elapsed if fresh_oranges == 0 else -1  # return elapsed minutes if no fresh orange left
 
   '''
-  modify from this https://leetcode.com/problems/rotting-oranges/
+  modify from this https://leetcode.com/problems/rotting-oranges/solutions/3600345/dfs-solution-explained-in-figures-python/
   '''
   def dfs(self, rotten_after, grid, row, col):
     directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]

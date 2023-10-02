@@ -2,12 +2,26 @@ from DFS import RemoveInvalidParenthesis
 from backtrack import WordPattern
 from linkedList import LinkedList, ListNode
 from dynamic_programming import WordBreakII, StickerToSpellWord
+from search_dp_mutual import FindShortestSuperstring, PartitionKEqualSumSubsets
 from topological_sorting import TopologicalSorting
 from math_related import MathRelated
-sts = StickerToSpellWord()
-stickers = ["with","example","science"]
-target = "thehat"
-sts.minStickers(stickers, target=target)
+from operators import ValidParenthesisString
+s ="(((((()*)(*)*))())())(()())())))((**)))))(()())()"
+vps = ValidParenthesisString()
+print(vps.checkValidStringIter(s))
+# nums = [4,3,2,3,5,2,1]
+# k = 4
+# pkess = PartitionKEqualSumSubsets()
+# print(pkess.canPartitionKSubsets_dp1(nums=nums, k=k))
+# print(pkess.canPartitionKSubsets_dp2(nums=nums, k=k))
+# fss = FindShortestSuperstring()
+# input = ["alex","loves","leetcode"]
+# print(fss.shortestSuperstring_dp_no_permutations(input))
+
+# sts = StickerToSpellWord()
+# stickers = ["with","example","science"]
+# target = "thehat"
+# sts.minStickers(stickers, target=target)
 
 # math_prob = MathRelated()
 # x = 0

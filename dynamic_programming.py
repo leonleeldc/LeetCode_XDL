@@ -150,3 +150,95 @@ class StickerToSpellWord:
     res = dp(0, (1 << m) - 1)
     return res if res < sys.maxsize else -1
 
+class Counting:
+  '''
+  70. Climbing Stairs, similarto fibonacci 509. Fibonacci Number
+  '''
+  def climbStairs(self, n: int) -> int:
+    dp = [0] * (n + 1)
+    dp[0], dp[1] = 1, 1
+    for i in range(2, n + 1):
+      dp[i] = dp[i - 1] + dp[i - 2]
+    return dp[n]
+
+  def climbStairs_rec(self, n:int) -> int:
+    @cache
+    def dp(i, n):
+      if i>n: return 0
+      if i==n: return 1
+      return dp(i+1, n)+dp(i+2, n)
+    return dp(0, n)
+
+  def climbStairs_rec2(self, n:int) ->int:
+    @cache
+    def dp(n):
+      if n<=1: return 1
+      return dp(n-1)+dp(n-2)
+    return dp(n)
+
+  '''
+  62. Unique Paths
+  '''
+  def uniquePaths_rec(self, m: int, n: int)->int:
+    @cache
+    def rec(m, n):
+      if m==0 or n==0: return 1
+      return rec(m-1, n)+rec(m, n-1)
+    return rec(m-1, n-1)
+
+  def uniquePaths_iter(self, m: int, n: int) ->int:
+    dp = [[0] * (m+1) for _ in range(n+1)]
+    dp[1][1] = 1
+    for i in range(1, m+1):
+      for j in range(1, n+1):
+        dp[i][j] = dp[i-1][j] + dp[i][j-1]
+    return dp[m][n]
+
+  '''
+  926. Flip String to Monotone Increasing
+  A binary string is monotone increasing if it consists of some number of 0's (possibly none), followed by some number of 1's (also possibly none).
+You are given a binary string s. You can flip s[i] changing it from 0 to 1 or from 1 to 0.
+Return the minimum number of flips to make s monotone increasing.
+  '''
+  # def minFlipsMonoIncr(self, s: str) -> int:
+
+'''
+134 Gas Station
+There are n gas stations along a circular route, where the amount of gas at the ith station is gas[i].
+You have a car with an unlimited gas tank and it costs cost[i] of gas to travel from the ith station to its next (i + 1)th station. You begin the journey with an empty tank at one of the gas stations.
+Given two integer arrays gas and cost, return the starting gas station's index if you can travel around the circuit once in the clockwise direction, otherwise return -1. If there exists a solution, it is guaranteed to be unique
+'''
+class GasStation:
+  def canCompleteCircuit_oneround(self, gas: List[int], cost: List[int]) -> int:
+    start, tank, total_gas, total_cost = 0, 0, 0, 0
+    for i in range(len(gas)):
+      total_gas += gas[i]
+      total_cost += cost[i]
+      tank += gas[i] - cost[i]
+      if tank < 0:
+        start = i + 1
+        tank = 0
+    if total_gas < total_cost:
+      return -1
+    else:
+      return start
+
+  def canCompleteCircuit_tworound(self, gas: List[int], cost: List[int]) -> int:
+    start, tank, station_visited = 0, 0, 0
+    for i, (g, c) in enumerate(zip(gas+gas, cost+cost)):
+      tank += g-c
+      if tank < 0:
+        tank = 0
+        start = i+1
+        station_visited = 0
+      else:
+        station_visited += 1
+      if station_visited==len(gas):
+        return start
+    else:
+      return -1
+
+
+
+
+

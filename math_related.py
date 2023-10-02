@@ -36,3 +36,50 @@ class MathRelated:
       return 0
     else:
       return y
+  def myPow(self, x: float, n: int) -> float:
+    if n<0:
+      x = 1/x
+      n = n*(-1)
+    i = 0
+    carry = 1
+    while n>1:
+      if n%2 == 0:
+        x = x*x
+        n = n/2
+      else:
+        carry = carry*x
+        n = n-1
+        x = x*x
+        n = n/2
+    res = x*carry
+    return res if n!=0 else 1
+  def myPow_rec(self, x:float, n:int)->float:
+    if x < -2 ** 31 or x > 2 ** 31 - 1:
+      return
+
+    negFlag = False
+    if n < 0:
+      negFlag = True
+      n = -n
+
+    result = self.pow(x, n)
+
+    if negFlag:
+      result = 1 / result
+
+    return result
+
+  def pow(self, x: float, n: int):
+    if n == 0:
+      return 1
+
+    result = x
+    times = 1
+    while times < n:
+      if times * 2 <= n:
+        result = result * result
+        times *= 2
+      else:
+        result = result * pow(x, n - times)
+        break
+    return result
