@@ -1,14 +1,28 @@
-from DFS import RemoveInvalidParenthesis
-from backtrack import WordPattern
-from linkedList import LinkedList, ListNode
-from dynamic_programming import WordBreakII, StickerToSpellWord
-from search_dp_mutual import FindShortestSuperstring, PartitionKEqualSumSubsets
-from topological_sorting import TopologicalSorting
-from math_related import MathRelated
-from operators import ValidParenthesisString
-s ="(((((()*)(*)*))())())(()())())))((**)))))(()())()"
-vps = ValidParenthesisString()
-print(vps.checkValidStringIter(s))
+from array_problems.sub_array_problems import ShortestSubArrMaxsum
+from StringProblems.string_comparisons import StringProblemClass
+s = "ADOBECODEBANC"
+chars = "ABC"
+sp = StringProblemClass()
+# chars = ["a","a","b","b","c","c","c"]
+# print(sp.compress(chars))
+chars = ["a","b","b","b","b","b","b","b","b","b","b","b","b"]
+print(sp.compress(chars))
+ss = 'abcabcbb'
+print(sp.lengthOfLongestSubstring(ss))
+print(sp.shortest_substring(s, chars))  # Output: "BANC"
+
+# Examples
+##the following is not correct yet
+ssam = ShortestSubArrMaxsum()
+print(ssam.shortest_subarray_with_max_sum([1, 2, -3, 4, 5, -10, 9]))  # Output: 1
+print(ssam.shortest_subarray_with_max_sum([1,-1,1,1, 1,-1,1,1,-2,2])) ## Output: 3
+print(ssam.shortest_subarray_with_max_sum([1]))  # Output: 1
+print(ssam.shortest_subarray_with_max_sum([1, 2, 3, 4]))  # Output: 4
+print(ssam.shortest_subarray_with_max_sum([]))  # Output: 0
+print('test')
+# s ="(((((()*)(*)*))())())(()())())))((**)))))(()())()"
+# vps = ValidParenthesisString()
+# print(vps.checkValidStringIter(s))
 # nums = [4,3,2,3,5,2,1]
 # k = 4
 # pkess = PartitionKEqualSumSubsets()

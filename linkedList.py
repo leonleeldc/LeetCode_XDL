@@ -4,6 +4,38 @@ class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+'''
+09. Convert Sorted List to Binary Search Tree
+'''
+class ConvertSorteList2BST:
+    def sortedListToBST(self, head: Optional[ListNode]) -> Optional[TreeNode]:
+        def build(subhead):
+            fast = slow = subhead
+            if not subhead: return None
+            mid = 0
+            while fast and fast.next:
+                slow = slow.next
+                fast = fast.next.next
+                mid += 1
+            leftnode = ListNode(0)
+            tmpnode = leftnode
+            for i in range(mid):
+                tmpnode.next = ListNode(subhead.val)
+                tmpnode = tmpnode.next
+                subhead = subhead.next
+            leftnode = leftnode.next
+            root = TreeNode(slow.val)
+            root.left = build(leftnode)
+            root.right = build(slow.next)
+            return root
+        return build(head)
+
 class LinkedList:
     '''
     206. Reverse Linked List https://leetcode.com/problems/reverse-linked-list/description/
