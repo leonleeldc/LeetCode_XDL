@@ -5,18 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="66b2992a-57f3-4a87-8eed-50d11f00013a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/GraphProblems/graph.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SlideWindows/string_dp.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/StringProblems/string_comparisons.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/StringProblems/string_problems.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/array_problems/sub_array_problems.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/heap_related.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TwoPointers/two_pointers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/binary_tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/Trees/binary_tree.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dynamic_programming.py" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProgramming/dynamic_programming.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/linkedList.py" beforeDir="false" afterPath="$PROJECT_DIR$/linkedList.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backtrack.py" beforeDir="false" afterPath="$PROJECT_DIR$/backtrack.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/string_problems.py" beforeDir="false" afterPath="$PROJECT_DIR$/LinkedList/sorted_linked2bst.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +120,7 @@
       <workItem from="1695494684842" duration="35678000" />
       <workItem from="1695836745559" duration="2539000" />
       <workItem from="1695848854190" duration="46238000" />
-      <workItem from="1696654817927" duration="23037000" />
+      <workItem from="1696654817927" duration="32253000" />
     </task>
     <servers />
   </component>
@@ -140,7 +132,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/backtrack.py</url>
-          <line>31</line>
+          <line>59</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -277,6 +269,11 @@
           <url>file://$PROJECT_DIR$/StringProblems/string_comparisons.py</url>
           <line>31</line>
           <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/backtrack.py</url>
+          <line>22</line>
+          <option name="timeStamp" value="52" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

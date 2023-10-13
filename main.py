@@ -85,8 +85,8 @@ print('test')
 # str = "redblueredblue"
 # print(f"solution = {wp1.backtrack(pattern, str, {})}")
 
-
-# rip = RemoveInvalidParenthesis()
+from DFS import RemoveInvalidParenthesis
+rip = RemoveInvalidParenthesis()
 # '''
 # Example 1:
 #
@@ -101,6 +101,6 @@ print('test')
 # Input: s = ")("
 # Output: [""]
 # '''
-# s = "()())()"
-# print(rip.remove_invalid_parentheses(s))
+s = "()())()"
+print(rip.remove_invalid_parentheses(s))
 
