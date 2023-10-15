@@ -1,3 +1,11 @@
+from random_related import CopyListRandomPointer, Node
+#head = [[7,null],[13,0],[11,4],[10,2],
+rand_node = Node(17)
+rand_node.next = Node(13, random=Node(0))
+rand_node.next.next = Node(11, random=Node(4))
+rand_node.next.next.next = Node(10, random=Node(2))
+crp = CopyListRandomPointer()
+crp.copyRandomList(rand_node)
 from StringProblems.string_problems import StringProblemsClass
 spc = StringProblemsClass()
 s = "the sky is blue"
