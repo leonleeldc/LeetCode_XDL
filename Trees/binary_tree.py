@@ -74,6 +74,59 @@ print_tree(tree)
 for word in src:
   print('search {0}, result: {1}'.format(word, search(tree, word)))
 
+'''
+124. Binary Tree Maximum Path Sum
+A path in a binary tree is a sequence of nodes where each pair of adjacent nodes in the sequence has an edge connecting them. A node can only appear in the sequence at most once. Note that the path does not need to pass through the root.
+The path sum of a path is the sum of the node's values in the path.
+Given the root of a binary tree, return the maximum path sum of any non-empty path.
+'''
+class BinaryTreeComputation:
+  def find_max_depth(self, root):
+    if root is None: return 0
+    lh = self.find_max_depth(root.left)
+    rh = self.find_max_depth(root.right)
+    result = rh+1 if rh>lh else lh+1
+    return result
+
+  def maxDepth(self, root: Optional[TreeNode]) -> int:
+    if not root: return 0
+    if root.left is None and root.right is None: return 1
+    return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
+  def maxPathSum_rec(self, root: Optional[TreeNode]) -> int:
+    max_sum = float('-inf')
+    def dfs(node):
+      nonlocal max_sum
+      if not node: return 0
+      max_l, max_r = max(0, dfs(node.left)), max(0, dfs(node.right))
+      max_sum = max(max_sum, max_l+max_r+node.val)
+      return max(max_l, max_r)+node.val
+    dfs(root)
+    return max_sum
+  def maxPathSum_iter(self, root: Optional[TreeNode]) -> int:
+    if not root: return 0
+    max_sum = float('-inf')
+    stack1 = [root]
+    stack2 = []
+    # Iterative post-order traversal using two stacks
+    while stack1:
+      node = stack1.pop()
+      stack2.append(node)
+      if node.left:
+        stack1.append(node.left)
+      if node.right:
+        stack1.append(node.right)
+    # Track the best path through each node
+    best_path_to_node = {None: 0}
+    # Second stack for actual dfs computation
+    while stack2:
+      node = stack2.pop()
+      # Logic from your original dfs function
+      left_gain = max(0, best_path_to_node.get(node.left, 0))
+      right_gain = max(0, best_path_to_node.get(node.right, 0))
+      max_sum = max(max_sum, left_gain + right_gain + node.val)
+      best_path_to_node[node] = max(left_gain, right_gain) + node.val
+    return max_sum
+
 
 # Output
 # value: bar, count: 2

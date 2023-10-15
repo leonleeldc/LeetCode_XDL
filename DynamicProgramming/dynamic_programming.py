@@ -374,6 +374,25 @@ class Counting:
         dp[i][j] = dp[i-1][j] + dp[i][j-1]
     return dp[m][n]
 
+  def findPaths(self, n):
+    def dfs(x, y, path):
+      # If the position is out of the bounds or already visited, return
+      if x >= n or y >= n: return
+      # If the position is the bottom-right corner, add the path and return
+      if x == n - 1 and y == n - 1:
+        paths.append(path)
+        return
+      # Move right and down recursively, appending to path
+      dfs(x + 1, y, path + [(x + 1, y)])  # Move right
+      dfs(x, y + 1, path + [(x, y + 1)])  # Move down
+    paths = []
+    dfs(0, 0, [(0, 0)])
+    return paths
+
+  # Example
+  n = 3
+  print(findPaths(n))
+
   '''
   926. Flip String to Monotone Increasing
   A binary string is monotone increasing if it consists of some number of 0's (possibly none), followed by some number of 1's (also possibly none).

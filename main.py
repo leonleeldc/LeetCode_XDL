@@ -1,25 +1,43 @@
+from StringProblems.string_problems import StringProblemsClass
+spc = StringProblemsClass()
+s = "the sky is blue"
+print(spc.reverseWords(s))
+from Trees.binary_tree import TreeNode
+tree_node = TreeNode(-10)
+tree_node.left = TreeNode(9)
+tree_node.right = TreeNode(20)
+tree_node.right.left = TreeNode(15)
+tree_node.right.right = TreeNode(7)
+from Trees.binary_tree import BinaryTreeComputation
+btc = BinaryTreeComputation()
+print(btc.maxPathSum_iter(tree_node))
+# for A in range(1, 10):
+#     for B in range(1, 10):
+#         if 100*A*B + 10*A**2 + 49*B + 6*A == 2900:
+#             print(f"A = {A}, B = {B}")
+#             break
 from array_problems.sub_array_problems import ShortestSubArrMaxsum
 from StringProblems.string_comparisons import StringProblemClass
-s = "ADOBECODEBANC"
-chars = "ABC"
-sp = StringProblemClass()
-# chars = ["a","a","b","b","c","c","c"]
+# s = "ADOBECODEBANC"
+# chars = "ABC"
+# sp = StringProblemClass()
+# # chars = ["a","a","b","b","c","c","c"]
+# # print(sp.compress(chars))
+# chars = ["a","b","b","b","b","b","b","b","b","b","b","b","b"]
 # print(sp.compress(chars))
-chars = ["a","b","b","b","b","b","b","b","b","b","b","b","b"]
-print(sp.compress(chars))
-ss = 'abcabcbb'
-print(sp.lengthOfLongestSubstring(ss))
-print(sp.shortest_substring(s, chars))  # Output: "BANC"
+# ss = 'abcabcbb'
+# print(sp.lengthOfLongestSubstring(ss))
+# print(sp.shortest_substring(s, chars))  # Output: "BANC"
 
 # Examples
 ##the following is not correct yet
-ssam = ShortestSubArrMaxsum()
-print(ssam.shortest_subarray_with_max_sum([1, 2, -3, 4, 5, -10, 9]))  # Output: 1
-print(ssam.shortest_subarray_with_max_sum([1,-1,1,1, 1,-1,1,1,-2,2])) ## Output: 3
-print(ssam.shortest_subarray_with_max_sum([1]))  # Output: 1
-print(ssam.shortest_subarray_with_max_sum([1, 2, 3, 4]))  # Output: 4
-print(ssam.shortest_subarray_with_max_sum([]))  # Output: 0
-print('test')
+# ssam = ShortestSubArrMaxsum()
+# print(ssam.shortest_subarray_with_max_sum([1, 2, -3, 4, 5, -10, 9]))  # Output: 1
+# print(ssam.shortest_subarray_with_max_sum([1,-1,1,1, 1,-1,1,1,-2,2])) ## Output: 3
+# print(ssam.shortest_subarray_with_max_sum([1]))  # Output: 1
+# print(ssam.shortest_subarray_with_max_sum([1, 2, 3, 4]))  # Output: 4
+# print(ssam.shortest_subarray_with_max_sum([]))  # Output: 0
+# print('test')
 # s ="(((((()*)(*)*))())())(()())())))((**)))))(()())()"
 # vps = ValidParenthesisString()
 # print(vps.checkValidStringIter(s))
@@ -85,8 +103,8 @@ print('test')
 # str = "redblueredblue"
 # print(f"solution = {wp1.backtrack(pattern, str, {})}")
 
-from DFS import RemoveInvalidParenthesis
-rip = RemoveInvalidParenthesis()
+# from DFS import RemoveInvalidParenthesis
+# rip = RemoveInvalidParenthesis()
 # '''
 # Example 1:
 #
@@ -101,6 +119,6 @@ rip = RemoveInvalidParenthesis()
 # Input: s = ")("
 # Output: [""]
 # '''
-s = "()())()"
-print(rip.remove_invalid_parentheses(s))
+# s = "()())()"
+# print(rip.remove_invalid_parentheses(s))
 

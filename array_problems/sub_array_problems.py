@@ -7,6 +7,7 @@ If x is a negative integer, then abs(x) = -x.
 If x is a non-negative integer, then abs(x) = x.
 '''
 from typing import List
+
 class MaxAbsSumSubArr:
   def maxAbsoluteSumIter(self, nums: List[int]) -> int:
     min_sum, max_sum, max_curr, min_curr = 0, 0, 0, 0
