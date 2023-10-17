@@ -66,3 +66,18 @@ class StringProblemsClass:
       leng = curr
       start = i - (curr - 1) // 2
     return s[start:start + leng]
+
+  def customSort(self, input_str, order):
+    # 创建一个哈希表存储 order 中字符的索引
+    order_index = {char: idx for idx, char in enumerate(order)}
+    # 对 input_str 中的字符进行排序
+    sorted_str = sorted(input_str, key=lambda x: order_index.get(x, len(order)))
+    # 返回排序后的字符串
+    return ''.join(sorted_str)
+
+  def customSort_followup(self, input_str, order):
+    order_index = {char: idx for idx, char in enumerate(order)}
+    # 使用 order 中的索引排序，如果字符不在 order 中，则赋予一个较大的索引值来将其放在末尾
+    sorted_str = sorted(input_str, key=lambda x: order_index.get(x, len(order) + 1))
+    return ''.join(sorted_str)
+

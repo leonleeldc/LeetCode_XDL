@@ -198,6 +198,39 @@ class WordBreak:
     return dp(s)
 
 '''
+
+You are given an integer array nums and an integer k. You can partition the array into at most k non-empty adjacent subarrays. The score of a partition is the sum of the averages of each subarray.
+Note that the partition must use every integer in nums, and that the score is not necessarily an integer.
+Return the maximum score you can achieve of all the possible partitions. Answers within 10-6 of the actual answer will be accepted.
+'''
+class LargSumAve:
+  def largestSumOfAverages_iter(self, nums: List[int], k: int) -> float:
+    n = len(nums)
+    dp = [[0] * (k + 1) for _ in range(n + 1)]  # Initialize the dp array
+    prefix_sum = [0] * (n + 1)
+    for i in range(n):
+      prefix_sum[i + 1] = prefix_sum[i] + nums[i]
+      dp[i + 1][1] = prefix_sum[i + 1] / (i + 1)
+    for i in range(1, n + 1):
+      for kk in range(2, k + 1):
+        for j in range(1, i):
+          dp[i][kk] = max(dp[i][kk], dp[j][kk - 1] + (prefix_sum[j] - prefix_sum[i]) / (j - i))
+    return dp[n][k]
+  def largestSumOfAverages_rec(self, nums: List[int], k: int) -> float:
+    n = len(nums)
+    prefix_sum = [0] * (n + 1)
+    for i in range(n):
+      prefix_sum[i + 1] = prefix_sum[i] + nums[i]
+    @cache
+    def dp(n, k):
+      if k==1: return prefix_sum[n]/n
+      max_sum = 0
+      for i in range(k-1, n):
+         max_sum = max(max_sum, dp(i, k-1)+(prefix_sum[n]-prefix_sum[i])/(n-i))
+      return max_sum
+    return dp(n, k)
+
+'''
 140. Word Break II https://leetcode.com/problems/word-break-ii/description/
 Given a string s and a dictionary of strings wordDict, add spaces in s to construct a sentence where each word is a valid dictionary word. Return all such possible sentences in any order.
 Note that the same word in the dictionary may be reused multiple times in the segmentation.

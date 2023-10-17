@@ -15,7 +15,8 @@ x != y
 x and y are exist in the tree.
 '''
 # Definition for a binary tree node.
-from collections import deque
+from collections import deque, defaultdict
+import heapq
 from typing import Optional, List
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -102,6 +103,38 @@ class BinaryTreeComputation:
       return max(max_l, max_r)+node.val
     dfs(root)
     return max_sum
+  '''
+  938. Range Sum of BST
+  Given the root node of a binary search tree and two integers low and high, return the sum of values of all nodes with a value in the inclusive range [low, high].
+  '''
+  def rangeSumBST_rec(self, root: Optional[TreeNode], low: int, high: int) -> int:
+    res = 0
+    def dfs(node):
+      nonlocal res
+      if not node: return res
+      if low<node.val<high:
+        res+=node.val
+      dfs(node.left)
+      dfs(node.right)
+    return dfs(root)
+  def rangeSumBST_iter(self, root: TreeNode, low: int, high: int) -> int:
+    sum_range = 0
+    stack = []
+    while stack or root:
+      if root:
+        stack.append(root)
+        root = root.left
+      else:
+        root = stack.pop()
+        if low <= root.val <= high:
+          sum_range += root.val
+        elif root.val > high:
+          break
+        root = root.right
+    return sum_range
+  '''
+  124. Binary Tree Maximum Path Sum
+  '''
   def maxPathSum_iter(self, root: Optional[TreeNode]) -> int:
     if not root: return 0
     max_sum = float('-inf')
@@ -348,6 +381,57 @@ class PseudoPalinPathBT:
         # Add the right child to the queue with the updated state.
         if node.right: queue.append((node.right, s))
     return ans
+  def verticalTraversal(self, root: Optional[TreeNode]) -> List[List[int]]:
+      '''
+      987. Vertical Order Traversal of a Binary Tree
+      Given the root of a binary tree, calculate the vertical order traversal of the binary tree.
+      For each node at position (row, col), its left and right children will be at positions (row + 1, col - 1) and (row + 1, col + 1) respectively. The root of the tree is at (0, 0).
+      The vertical order traversal of a binary tree is a list of top-to-bottom orderings for each column index starting from the leftmost column and ending on the rightmost column. There may be multiple nodes in the same row and same column. In such a case, sort these nodes by their values.
+      Return the vertical order traversal of the binary tree.
+      '''
+      queue = deque([(root, 0, 0)])
+      col_dict = defaultdict(list)
+      heapq.heappush(col_dict[0], (0, root.val))
+      while queue:
+          size = len(queue)
+          for _ in range(size):
+              node, col, row = queue.popleft()
+              if node.left:
+                  heapq.heappush(col_dict[col-1], (row+1, node.left.val))
+                  queue.append((node.left, col-1, row+1))
+              if node.right:
+                  heapq.heappush(col_dict[col+1], (row+1, node.right.val))
+                  queue.append((node.right, col+1, row+1))
+      res = []
+      min_c, max_c = min(col_dict), max(col_dict)
+      for i in range(min_c, max_c+1):
+          col_res = []
+          while col_dict[i]: col_res.append(heapq.heappop(col_dict[i])[1])
+          res.append(col_res)
+      return res
+
+  def verticalTraversal_dfs(self, root: TreeNode) -> List[List[int]]:
+    from heapq import heappush, heappop
+    col_dict = defaultdict(list)
+    heappush(col_dict[0], (0, root.val))
+
+    def traverse(node, row, col):
+      if node.left:
+        heappush(col_dict[col - 1], (row + 1, node.left.val))
+        traverse(node.left, row + 1, col - 1)
+      if node.right:
+        heappush(col_dict[col + 1], (row + 1, node.right.val))
+        traverse(node.right, row + 1, col + 1)
+
+    traverse(root, 0, 0)
+
+    res = []
+    min_c, max_c = min(col_dict), max(col_dict)
+    for i in range(min_c, max_c + 1):
+      col_res = []
+      while col_dict[i]: col_res.append(heappop(col_dict[i])[1])
+      res.append(col_res)
+    return res
 
 
 

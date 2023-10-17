@@ -1,24 +1,47 @@
-from random_related import CopyListRandomPointer, Node
-#head = [[7,null],[13,0],[11,4],[10,2],
-rand_node = Node(17)
-rand_node.next = Node(13, random=Node(0))
-rand_node.next.next = Node(11, random=Node(4))
-rand_node.next.next.next = Node(10, random=Node(2))
-crp = CopyListRandomPointer()
-crp.copyRandomList(rand_node)
-from StringProblems.string_problems import StringProblemsClass
-spc = StringProblemsClass()
-s = "the sky is blue"
-print(spc.reverseWords(s))
-from Trees.binary_tree import TreeNode
-tree_node = TreeNode(-10)
-tree_node.left = TreeNode(9)
-tree_node.right = TreeNode(20)
-tree_node.right.left = TreeNode(15)
-tree_node.right.right = TreeNode(7)
-from Trees.binary_tree import BinaryTreeComputation
-btc = BinaryTreeComputation()
-print(btc.maxPathSum_iter(tree_node))
+from backtrack import DiverseBackTrack, ProductOfPrimes
+dbt = DiverseBackTrack()
+primes = [2, 3, 11]
+dbt.print_products(primes)
+# Test
+primes = [2, 3, 11]
+obj = ProductOfPrimes()
+print(obj.get_product(primes))
+# from HashMap.hash_map_related import HashMapRelated
+# hmr = HashMapRelated()
+# nums = [1,-1,0]
+# k = 0
+# hmr.subarraySum(nums, k)
+# from random_related import CopyListRandomPointer, Node
+# #head = [[7,null],[13,0],[11,4],[10,2],
+# rand_node = Node(17)
+# rand_node.next = Node(13, random=Node(0))
+# rand_node.next.next = Node(11, random=Node(4))
+# rand_node.next.next.next = Node(10, random=Node(2))
+# crp = CopyListRandomPointer()
+# crp.copyRandomList(rand_node)
+# from StringProblems.string_problems import StringProblemsClass
+#
+# spc = StringProblemsClass()
+# # 示例
+# input_str = "helluoworldz"
+# order = "eholwrd"
+# print(spc.customSort(input_str, order))  # 输出 "ehollowrdz"
+#
+# # 示例
+# input_str = "helloworld"
+# order = "eholwrd"
+# print(spc.customSort(input_str, order))  # 输出 "ehollowrd"
+# s = "the sky is blue"
+# print(spc.reverseWords(s))
+# from Trees.binary_tree import TreeNode
+# tree_node = TreeNode(-10)
+# tree_node.left = TreeNode(9)
+# tree_node.right = TreeNode(20)
+# tree_node.right.left = TreeNode(15)
+# tree_node.right.right = TreeNode(7)
+# from Trees.binary_tree import BinaryTreeComputation
+# btc = BinaryTreeComputation()
+# print(btc.maxPathSum_iter(tree_node))
 # for A in range(1, 10):
 #     for B in range(1, 10):
 #         if 100*A*B + 10*A**2 + 49*B + 6*A == 2900:
