@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="66b2992a-57f3-4a87-8eed-50d11f00013a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/HashMap/hash_map_related.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DynamicProgramming/dynamic_programming.py" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProgramming/dynamic_programming.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StringProblems/string_problems.py" beforeDir="false" afterPath="$PROJECT_DIR$/StringProblems/string_problems.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trees/binary_tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/Trees/binary_tree.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backtrack.py" beforeDir="false" afterPath="$PROJECT_DIR$/backtrack.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/math_related.py" beforeDir="false" afterPath="$PROJECT_DIR$/math_related.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -124,7 +118,7 @@
       <workItem from="1695494684842" duration="35678000" />
       <workItem from="1695836745559" duration="2539000" />
       <workItem from="1695848854190" duration="46238000" />
-      <workItem from="1696654817927" duration="69294000" />
+      <workItem from="1696654817927" duration="69451000" />
     </task>
     <servers />
   </component>
@@ -191,7 +185,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/math_related.py</url>
-          <line>65</line>
+          <line>66</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">

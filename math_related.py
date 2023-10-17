@@ -13,6 +13,7 @@ Output: "22:22"
 Explanation: The next closest time choosing from digits 2, 3, 5, 9, is 22:22.
 It may be assumed that the returned time is next day's time since it is smaller than the input time numerically.
 '''
+import heapq
 class NextClosestTime:
   def nextClosestTime(self, time):
     hours, minutes = time.split(":")
@@ -124,6 +125,33 @@ class MathRelated:
         result = result * pow(x, n - times)
         break
     return result
+
+  import heapq
+
+  def merge_iterators(self, *iterators):
+    # Convert iterators to lists for convenience
+    iterators = [list(it) for it in iterators]
+
+    # Create a min heap and push the first element of each iterator
+    min_heap = [(lst[0], i, 0) for i, lst in enumerate(iterators) if lst]
+    heapq.heapify(min_heap)
+
+    while min_heap:
+      val, list_idx, element_idx = heapq.heappop(min_heap)
+      yield val  # Produce merged output one by one
+
+      if element_idx + 1 < len(iterators[list_idx]):
+        next_val = iterators[list_idx][element_idx + 1]
+        heapq.heappush(min_heap, (next_val, list_idx, element_idx + 1))
+
+  # Test the function
+  it1 = iter([1, 4, 7])
+  it2 = iter([2, 5, 8])
+  it3 = iter([3, 6, 9])
+
+  merged = list(merge_iterators(it1, it2, it3))
+  print(merged)  # [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
   '''
   973. K Closest Points to Origin
   Given an array of points where points[i] = [xi, yi] represents a point on the X-Y plane and an integer k, return the k closest points to the origin (0, 0).
