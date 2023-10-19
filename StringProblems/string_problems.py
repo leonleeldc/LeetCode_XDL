@@ -15,6 +15,9 @@ Input: s = "a good   example"
 Output: "example good a"
 Explanation: You need to reduce multiple spaces between two words to a single space in the reversed string.
 '''
+# import nltk
+# from nltk.corpus import stopwords
+# nltk.download('stopwords')
 class StringProblemsClass:
   def reverseWords(self, s: str) -> str:
     ss = list(s)
@@ -80,4 +83,38 @@ class StringProblemsClass:
     # 使用 order 中的索引排序，如果字符不在 order 中，则赋予一个较大的索引值来将其放在末尾
     sorted_str = sorted(input_str, key=lambda x: order_index.get(x, len(order) + 1))
     return ''.join(sorted_str)
-
+  #method to generate n-grams:
+  #params:
+  #text-the text for which we have to generate n-grams
+  #ngram-number of grams to be generated from the text(1,2,3,4 etc., default value=1)
+  def generate_N_grams(self, text,ngram=1):
+    words=[word for word in text.split(" ") if word not in set(stopwords.words('english'))]
+    print("Sentence after removing stopwords:",words)
+    temp=zip(*[words[i:] for i in range(0,ngram)])
+    ans=[' '.join(ngram) for ngram in temp]
+    return ans
+  '''
+  43. Multiply Strings
+  Given two non-negative integers num1 and num2 represented as strings, return the product of num1 and num2, also represented as a string.
+Note: You must not use any built-in BigInteger library or convert the inputs to integer directly.
+Example 1:
+Input: num1 = "2", num2 = "3"
+Output: "6"
+Example 2:
+Input: num1 = "123", num2 = "456"
+Output: "56088
+  '''
+  def multiply(self, num1: str, num2: str) -> str:
+    if '0' in [num1, num2]: return '0'
+    num1, num2 = num1[::-1], num2[::-1]
+    m, n = len(num1), len(num2)
+    res = [0] * (m + n)
+    for i in range(m):
+      for j in range(n):
+        res[i + j] += int(num1[i]) * int(num2[j])
+        res[i + j + 1] += res[i + j] // 10
+        res[i + j] = res[i + j] % 10
+    res, beg = res[::-1], 0
+    while beg < len(res) and res[beg] == 0: #aims at removing beginning zeros
+      beg += 1
+    return ''.join(map(str, res[beg:]))

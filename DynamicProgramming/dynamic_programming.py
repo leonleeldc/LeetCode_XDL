@@ -1,3 +1,153 @@
+from typing import List
+'''
+A message containing letters from A-Z can be encoded into numbers using the following mapping:
+
+'A' -> "1"
+'B' -> "2"
+...
+'Z' -> "26"
+To decode an encoded message, all the digits must be grouped then mapped back into letters using the reverse of the mapping above (there may be multiple ways). For example, "11106" can be mapped into:
+
+"AAJF" with the grouping (1 1 10 6)
+"KJF" with the grouping (11 10 6)
+Note that the grouping (1 11 06) is invalid because "06" cannot be mapped into 'F' since "6" is different from "06".
+
+Given a string s containing only digits, return the number of ways to decode it.
+
+The test cases are generated so that the answer fits in a 32-bit integer.
+
+
+
+Example 1:
+
+Input: s = "12"
+Output: 2
+Explanation: "12" could be decoded as "AB" (1 2) or "L" (12).
+Example 2:
+
+Input: s = "226"
+Output: 3
+Explanation: "226" could be decoded as "BZ" (2 26), "VF" (22 6), or "BBF" (2 2 6).
+Example 3:
+
+Input: s = "06"
+Output: 0
+Explanation: "06" cannot be mapped to "F" because of the leading zero ("6" is different from "06").
+'''
+
+
+class TreeNode:
+  def __init__(self, val=0, left=None, right=None):
+    self.val = val
+    self.left = left
+    self.right = right
+
+class DecodingWays:
+  def numDecodings_iter(self, s: str) -> int:
+    dp = [0] * (len(s) + 1)
+    dp[0] = 1
+    dp[1] = 0 if s[0] == '0' else 1
+    for i in range(2, len(s) + 1):
+      if s[i - 1] != '0': dp[i] += dp[i - 1]
+      two_digit = int(s[i - 2:i])
+      if 10 <= two_digit <= 26:
+        dp[i] += dp[i - 2]
+    return dp[-1]
+
+  def numDecodings_rec1(self, s: str) -> int:
+    @cache
+    def dp(i: int) -> int:
+      if i > len(s): return 0  # out of bounds, no decoding
+      if i == len(s):  return 1  # base case, when length is exhausted
+      ans = 0
+      # If the current character is not '0', we can move one character ahead
+      if s[i] != '0': ans += dp(i + 1)
+      # If current and next character form a valid decoding number between 10 and 26
+      if i < len(s) - 1 and 10 <= int(s[i:i + 2]) <= 26:
+        ans += dp(i + 2)
+      return ans
+    return dp(0)
+
+  def numDecodings_rec2(self, s: str) -> int:
+    @cache
+    def dp(i: int) -> int:
+      if i == -1: return 1
+      ans = 0
+      if s[i] != '0': ans += dp(i - 1)
+      if i > 0 and 10 <= int(s[i - 1:i + 1]) <= 26:
+        ans += dp(i - 2)
+      return ans
+    return dp(len(s) - 1)
+
+'''
+45. Jump Game II
+You are given a 0-indexed array of integers nums of length n. You are initially positioned at nums[0].
+
+Each element nums[i] represents the maximum length of a forward jump from index i. In other words, if you are at nums[i], you can jump to any nums[i + j] where:
+
+0 <= j <= nums[i] and
+i + j < n
+Return the minimum number of jumps to reach nums[n - 1]. The test cases are generated such that you can reach nums[n - 1].
+Example 1:
+
+Input: nums = [2,3,1,1,4]
+Output: 2
+Explanation: The minimum number of jumps to reach the last index is 2. Jump 1 step from index 0 to 1, then 3 steps to the last index.
+Example 2:
+
+Input: nums = [2,3,0,1,4]
+Output: 2
+'''
+class JumpGame:
+  def jump_rec(self, nums: List[int]) -> int:
+    @cache
+    def dp(i):
+      if i >= len(nums) - 1: return 0
+      if i + nums[i] >= len(nums) - 1: return 1
+      ans = len(nums)
+      for j in range(1, nums[i] + 1):
+        ans = min(ans, dp(i + j) + 1)
+      return ans
+    return dp(0)
+  def jump(self, nums: List[int]) -> int:
+    jumps, cur_jump_end, farthest = 0, 0, 0
+    for i, num in enumerate(nums[:-1]):
+      # we continuously find how far we can reach in the current jump
+      farthest = max(farthest, i + num)
+      # if we have come to the end of the current jump,
+      # we need to make another jump
+      if i == cur_jump_end:
+        jumps += 1
+        cur_jump_end = farthest
+    return jumps
+  '''
+  55. Jump Game
+  You are given an integer array nums. You are initially positioned at the array's first index, and each element in the array represents your maximum jump length at that position.
+
+Return true if you can reach the last index, or false otherwise.
+
+ 
+
+Example 1:
+
+Input: nums = [2,3,1,1,4]
+Output: true
+Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
+Example 2:
+
+Input: nums = [3,2,1,0,4]
+Output: false
+Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0, which makes it impossible to reach the last index.
+  '''
+  def canJump(self, nums: List[int]) -> bool:
+    last_pos = len(nums) - 1
+    for i in range(len(nums) - 2, -1, -1):
+      if last_pos <= i + nums[i]:
+        last_pos = i
+    return last_pos == 0
+
+
+
 '''
 139. Word Break
 Example 1:
@@ -469,6 +619,113 @@ class GasStation:
         return start
     else:
       return -1
+'''
+198. House Robber
+You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security systems connected and it will automatically contact the police if two adjacent houses were broken into on the same night.
+
+Given an integer array nums representing the amount of money of each house, return the maximum amount of money you can rob tonight without alerting the police.
+'''
+class HouseRobber:
+  def rob_iter(self, nums: List[int]) -> int:
+    dp = [0] * len(nums)
+    dp[0] = nums[0]
+    for i, num in enumerate(nums[1:]):
+      dp[i + 1] = max(nums[i + 1] + dp[i - 1], dp[i])
+    return dp[-1]
+  def rob_rec(self, nums: List[int]) -> int:
+    @cache
+    def dp(i):
+      if i < 0: return 0
+      return max(nums[i] + dp(i - 2), dp(i - 1))
+    return dp(len(nums) - 1)
+
+  '''
+  213. House Robber II
+  You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed. All houses at this place are arranged in a circle. That means the first house is the neighbor of the last one. Meanwhile, adjacent houses have a security system connected, and it will automatically contact the police if two adjacent houses were broken into on the same night.
+  
+  Given an integer array nums representing the amount of money of each house, return the maximum amount of money you can rob tonight without alerting the police.
+  Example 1:
+  
+  Input: nums = [2,3,2]
+  Output: 3
+  Explanation: You cannot rob house 1 (money = 2) and then rob house 3 (money = 2), because they are adjacent houses.
+  Example 2:
+  
+  Input: nums = [1,2,3,1]
+  Output: 4
+  Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).
+  Total amount you can rob = 1 + 3 = 4.
+  Example 3:
+  
+  Input: nums = [1,2,3]
+  Output: 3
+  '''
+  def rob2_iter(self, nums: List[int]) -> int:
+    if len(nums) == 1: return nums[0]
+    def dp(nums):
+      dp = [0] * len(nums)
+      dp[0] = nums[0]
+      for i, num in enumerate(nums[1:]):
+        dp[i + 1] = max(nums[i + 1] + dp[i - 1], dp[i])
+      return dp[-1]
+    first = dp(nums[:-1])
+    second = dp(nums[1:])
+    return max(first, second)
+  def rob2_rec(self, nums: List[int]) -> int:
+      if len(nums)==1: return nums[0]
+      @cache
+      def dp(i, s):
+          if i<s: return 0
+          return max(dp(i-1, s), nums[i-1]+dp(i-2, s))
+      first = dp(len(nums)-1, 1)
+      second = dp(len(nums)-2,0)
+      return max(first, second)
+  '''
+  337. House Robber III
+  The thief has found himself a new place for his thievery again. There is only one entrance to this area, called root.
+  Besides the root, each house has one and only one parent house. After a tour, the smart thief realized that all houses in this place form a binary tree. It will automatically contact the police if two directly-linked houses were broken into on the same night.
+  Given the root of the binary tree, return the maximum amount of money the thief can rob without alerting the police.
+  '''
+
+  def rob_binary_tree_rec(self, root: TreeNode) -> int:
+    # Define a helper function that uses memoization
+    @cache
+    def rec(node):
+      if not node: return 0
+      val = 0
+      if node.left:
+        val += rec(node.left.left) + rec(node.left.right)
+      if node.right:
+        val += rec(node.right.left) + rec(node.right.right)
+      # Max value is either robbing current house (node's value + value from grandchildren)
+      # OR not robbing current house and just taking the values from children.
+      val = max(val + node.val, rec(node.left) + rec(node.right))
+      return val
+
+    return rec(root)
+
+  def rob_binarytree_iter(self, root: TreeNode) -> int:
+    if not root: return 0
+    # Dictionary to store the results of subproblems
+    memo = {None: 0}
+    # Stack for modified post-order traversal
+    stack = [(root, False)]
+    while stack:
+      node, visited = stack.pop()
+      if node and not visited:
+        # Push the node back with visited set to True so that we process it after its children
+        stack.append((node, True))
+        stack.append((node.right, False))
+        stack.append((node.left, False))
+      elif node:
+        # Compute the result for this node
+        rob_now = node.val + memo[node.left and node.left.left] + memo[node.left and node.left.right] + \
+                  memo[node.right and node.right.left] + memo[node.right and node.right.right]
+        rob_later = memo[node.left] + memo[node.right]
+        # The max value between robbing the current house and not robbing the current house
+        memo[node] = max(rob_now, rob_later)
+    return memo[root]
+
 
 
 

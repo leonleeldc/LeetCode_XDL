@@ -1,11 +1,33 @@
-from backtrack import DiverseBackTrack, ProductOfPrimes
-dbt = DiverseBackTrack()
-primes = [2, 3, 11]
-dbt.print_products(primes)
+from SlideWindows.string_dp import LongestSubstrNoRepchar
+from SlideWindows.string_dp import SuperArraySubArray
+sasa = SuperArraySubArray()
 # Test
-primes = [2, 3, 11]
-obj = ProductOfPrimes()
-print(obj.get_product(primes))
+k = 3
+arr = [1, 2, 2, 2, 1, 1, 1, 1]
+print(sasa.super_array_subarray(k, arr))
+from array_problems.sub_array_problems import SparseVector, SparseVectorBinarySearch
+nums1 = [0,1,0,0,2,0,0]
+nums2 = [1,0,0,0,3,0,4]
+sv1 = SparseVectorBinarySearch(nums=nums1)
+sv2 = SparseVectorBinarySearch(nums=nums2)
+sv1.dotProduct(sv2)
+# sv1 = SparseVector(nums=nums1)
+# sv2 = SparseVector(nums=nums2)
+# sv1.dotProduct_binarysearch(sv2)
+
+# from StringProblems.string_problems import StringProblemsClass
+# spc = StringProblemsClass()
+# num1 = "123"
+# num2 = "456"
+# spc.multiply(num1, num2)
+# from backtrack import DiverseBackTrack, ProductOfPrimes
+# dbt = DiverseBackTrack()
+# primes = [2, 3, 11]
+# dbt.print_products(primes)
+# # Test
+# primes = [2, 3, 11]
+# obj = ProductOfPrimes()
+# print(obj.get_product(primes))
 # from HashMap.hash_map_related import HashMapRelated
 # hmr = HashMapRelated()
 # nums = [1,-1,0]

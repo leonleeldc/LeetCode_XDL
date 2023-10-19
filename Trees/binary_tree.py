@@ -159,6 +159,107 @@ class BinaryTreeComputation:
       max_sum = max(max_sum, left_gain + right_gain + node.val)
       best_path_to_node[node] = max(left_gain, right_gain) + node.val
     return max_sum
+  '''
+  671. Second Minimum Node In a Binary Tree
+  '''
+  def findSecondMinimumValue(self, root: Optional[TreeNode]) -> int:
+    first, second = root.val, float('inf')
+    def dfs(node):
+      nonlocal first, second
+      if node:
+        if first<node.val<second:
+          second = node.val
+        elif node.val==first:
+          dfs(node.left)
+          dfs(node.right)
+    dfs(root)
+    return second if second < float('inf') else -1
+  '''
+  270. Closest Binary Search Tree Value
+  '''
+
+  def closestValue_rec(self, root: Optional[TreeNode], target: float) -> int:
+    def inorder(r: TreeNode):
+      return inorder(r.left)+r.val+inorder(r.right) if r.right else []
+    return min(inorder(root), key=lambda x: abs(target-x))
+
+  def closestValue_iter(self, root: Optional[TreeNode], target: float) -> int:
+    if not root: return float('inf')
+    stack = []
+    smaller, larger = float('-inf'), float('inf')
+    while stack or root:
+      if root:
+        stack.append(root)
+        root = root.left
+      else:
+        root = stack.pop()
+        if root.val >= target:
+          larger = min(larger, root.val)
+        elif root.val < target:
+          smaller = max(smaller, root.val)
+        root = root.right
+    if larger - target < target - smaller:
+      return larger
+    else:
+      return smaller
+
+  '''
+  958. Check Completeness of a Binary Tree
+  Given the root of a binary tree, determine if it is a complete binary tree.
+  In a complete binary tree, every level, except possibly the last, is completely filled, and all nodes in the last level are as far left as possible. It can have between 1 and 2h nodes inclusive at the last level h.
+  '''
+  def isCompleteTree_rec(self, root: Optional[TreeNode]) -> bool:
+      indices = []  # To store index for each node
+      def dfs(node, index):
+          if not node: return
+          indices.append(index)
+          dfs(node.left, 2 * index)
+          dfs(node.right, 2 * index + 1)
+      dfs(root, 1)
+      # Find the maximum index
+      max_index = max(indices)
+      # Check if we have all indices from 1 to max_index
+      for i in range(1, max_index + 1):
+          if i not in indices:
+              return False
+      return True
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+  def isCompleteTree_bfs(self, root: Optional[TreeNode]) -> bool:
+    q = deque([(root, 1)])
+    e_id = 1
+    while q:
+      size = len(q)
+      for _ in range(size):
+        node, id = q.popleft()
+        if id == e_id:
+          e_id += 1
+        else:
+          return False
+        if node.left:
+          q.append((node.left, id * 2))
+        if node.right:
+          q.append((node.right, id * 2 + 1))
+    return True
+  def isCompleteTree_dfs(self, root: Optional[TreeNode]) -> bool:
+      self.total_nodes = 0  # Count of total nodes
+      self.max_index = 0  # Maximum index observed
+      def dfs(node, index):
+          if not node: return True
+          self.total_nodes += 1
+          self.max_index = max(self.max_index, index)
+          left_complete = dfs(node.left, 2 * index)
+          right_complete = dfs(node.right, 2 * index + 1)
+          return left_complete and right_complete
+      dfs(root, 1)
+      # After DFS, check if max_index is equal to total_nodes
+      return self.max_index == self.total_nodes
 
 
 # Output
@@ -433,7 +534,38 @@ class PseudoPalinPathBT:
       res.append(col_res)
     return res
 
-
+  '''
+  662. Maximum Width of Binary Tree
+  Given the root of a binary tree, return the maximum width of the given tree.
+  The maximum width of a tree is the maximum width among all levels.
+  The width of one level is defined as the length between the end-nodes (the leftmost and rightmost non-null nodes), where the null nodes between the end-nodes that would be present in a complete binary tree extending down to that level are also counted into the length calculation.
+  It is guaranteed that the answer will in the range of a 32-bit signed integer.
+  '''
+  def widthOfBinaryTree_rec(self, root: Optional[TreeNode]) -> int:
+    max_width = 0
+    depth_dict = {}
+    def dfs(node, depth, col_ind):
+      nonlocal max_width
+      if not node: return
+      if depth not in depth_dict:
+        depth_dict[depth] = col_ind
+      max_width = max(max_width, col_ind - depth_dict[depth] + 1)
+      dfs(node.left, depth + 1, col_ind * 2)
+      dfs(node.right, depth + 1, col_ind * 2 + 1)
+    dfs(root, 0, 0)
+    return max_width
+  def widthOfBinaryTree_iter(self, root: Optional[TreeNode]) -> int:
+    queue = deque([(root, 0)])
+    max_width = 0
+    while queue:
+      _, left_ind = queue[0]
+      size = len(queue)
+      for _ in range(size):
+        node, col_ind = queue.popleft()
+        if node.left: queue.append((node.left, col_ind * 2))
+        if node.right: queue.append((node.right, col_ind * 2 + 1))
+      max_width = max(max_width, col_ind - left_ind + 1)
+    return max_width
 
 
 

@@ -24,3 +24,33 @@ class LongestSubstrNoRepchar:
       res = max(res, right - left + 1)
       mp[s[right]] = right + 1
     return res
+'''
+To find a 'SuperArray' subarray that satisfies the conditions, you can use the sliding window approach.
+'''
+class SuperArraySubArray:
+  def super_array_subarray(self, k, arr):
+    n = len(arr)
+    # Check if the array length is a power of 2
+    if n & (n - 1) != 0:
+      return []
+    # Compute the prefix sum array
+    prefix_sum = [0] * (n + 1)
+    for i in range(n):
+      prefix_sum[i + 1] = prefix_sum[i] + arr[i]
+    left, right = 0, 0
+    while right <= n:
+      current_sum = prefix_sum[right] - prefix_sum[left]
+      # If the current sum lies in the interval [k, 2k)
+      if k <= current_sum < 2 * k:
+        # Check if the subarray length is a power of 2
+        if (right - left) & (right - left - 1) == 0:
+          return arr[left:right]
+        # If not a 'SuperArray', expand the window to the right
+        right += 1
+      # If the current sum is below k, expand the window to the right
+      elif current_sum < k:
+        right += 1
+      # If the current sum is >= 2k, shrink the window from the left
+      else:
+        left += 1
+    return []
