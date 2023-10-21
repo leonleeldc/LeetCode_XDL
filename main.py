@@ -1,16 +1,36 @@
-from SlideWindows.string_dp import LongestSubstrNoRepchar
-from SlideWindows.string_dp import SuperArraySubArray
-sasa = SuperArraySubArray()
-# Test
-k = 3
-arr = [1, 2, 2, 2, 1, 1, 1, 1]
-print(sasa.super_array_subarray(k, arr))
-from array_problems.sub_array_problems import SparseVector, SparseVectorBinarySearch
-nums1 = [0,1,0,0,2,0,0]
-nums2 = [1,0,0,0,3,0,4]
-sv1 = SparseVectorBinarySearch(nums=nums1)
-sv2 = SparseVectorBinarySearch(nums=nums2)
-sv1.dotProduct(sv2)
+from SortingProblems.sorting_related import MinMoves
+mm = MinMoves()
+grid = [[1,0,0,0,1],[0,0,0,0,0],[0,0,1,0,0]]
+print(mm.minTotalDistance_v2(grid))
+# from GraphProblems.graph import GraphRelatedProblems
+# # Test
+# matrix = [
+#   [0, 0, 1, 0],
+#   [1, 0, 1, 0],
+#   [1, 0, 0, 0],
+#   [0, 1, 1, 0]
+# ]
+# grp = GraphRelatedProblems()
+# print(grp.find_path(matrix))
+# matrix = [
+#     [1, 3, 1],
+#     [1, 5, 1],
+#     [4, 2, 1]
+# ]
+# print(grp.minMaxPath(matrix)) ## Dijkstra
+# from SlideWindows.string_dp import LongestSubstrNoRepchar
+# from SlideWindows.string_dp import SuperArraySubArray
+# sasa = SuperArraySubArray()
+# # Test
+# k = 3
+# arr = [1, 2, 2, 2, 1, 1, 1, 1]
+# print(sasa.super_array_subarray(k, arr))
+# from array_problems.sub_array_problems import SparseVector, SparseVectorBinarySearch
+# nums1 = [0,1,0,0,2,0,0]
+# nums2 = [1,0,0,0,3,0,4]
+# sv1 = SparseVectorBinarySearch(nums=nums1)
+# sv2 = SparseVectorBinarySearch(nums=nums2)
+# sv1.dotProduct(sv2)
 # sv1 = SparseVector(nums=nums1)
 # sv2 = SparseVector(nums=nums2)
 # sv1.dotProduct_binarysearch(sv2)

@@ -14,7 +14,6 @@ When considering moving from one node to another, update the value of the target
 Once we reach the bottom-right corner, we have found a potential optimal path.
 Throughout the process, we use the priority queue to always expand the node with the smallest maximum value.
 This approach has a time complexity of O(mn*log(mn)), where m and n are the number of rows and columns in the 2D array respectively.
-
 Below is the Python code using the Dijkstra algorithm for this solution: [followed by the provided code]
 '''
 class GraphRelatedProblems:
@@ -44,6 +43,25 @@ class GraphRelatedProblems:
       result_path.append((r, c))
       r, c = path[(r, c)]
     return result_path[::-1]
+  '''
+  "Given a matrix of 0s and 1s, where 1 represents an obstacle and 0 represents a passable path, find any path from the top-left corner to the bottom-right corner and return this path. There was a minor oversight, during backtracking the 'visited' set should not be reverted along with the 'path', which can significantly optimize the time complexity."
+  Here's a Python implementation using Depth-First Search:
+  '''
+  def find_path(self, matrix):
+    if not matrix or not matrix[0]: return []
+    m, n = len(matrix), len(matrix[0])
+    if matrix[0][0] == 1 or matrix[m - 1][n - 1] == 1: return []
+    def dfs(i, j, path, visited):
+      if i == m - 1 and j == n - 1:
+        return path + [(i, j)]
+      visited.add((i, j))
+      for x, y in [(i + 1, j), (i - 1, j), (i, j + 1), (i, j - 1)]:
+        if 0 <= x < m and 0 <= y < n and matrix[x][y] == 0 and (x, y) not in visited:
+          new_path = dfs(x, y, path + [(i, j)], visited)
+          if new_path:
+            return new_path
+      return []
+    return dfs(0, 0, [], set())
 
 '''
 135. Candy
