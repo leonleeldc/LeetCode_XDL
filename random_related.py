@@ -8,7 +8,59 @@ For example, if w = [1, 3], the probability of picking index 0 is 1 / (1 + 3) = 
 
 '''
 from typing import List
+from collections import defaultdict
 import random
+'''
+398. Random Pick Index
+Given an integer array nums with possible duplicates, randomly output the index of a given target number. You can assume that the given target number must exist in the array.
+
+Implement the Solution class:
+
+Solution(int[] nums) Initializes the object with the array nums.
+int pick(int target) Picks a random index i from nums where nums[i] == target. If there are multiple valid i's, then each index should have an equal probability of returning.
+Input
+["Solution", "pick", "pick", "pick"]
+[[[1, 2, 3, 3, 3]], [3], [1], [3]]
+Output
+[null, 4, 0, 2]
+
+Explanation
+Solution solution = new Solution([1, 2, 3, 3, 3]);
+solution.pick(3); // It should return either index 2, 3, or 4 randomly. Each index should have equal probability of returning.
+solution.pick(1); // It should return 0. Since in the array only nums[0] is equal to 1.
+solution.pick(3); // It should return either index 2, 3, or 4 randomly. Each index should have equal probability of returning.
+'''
+class RandomPickIndex:
+  def __init__(self, nums: List[int]):
+    self.nums = nums
+    self.cached = defaultdict(list)
+
+  def pick(self, target: int) -> int:
+    if target not in self.cached:
+      for i in range(len(self.nums)):
+        if self.nums[i] == target:
+          self.cached[target].append(i)
+    return random.choice(self.cached[target])
+  # Your Solution object will be instantiated and called as such:
+  # obj = Solution(nums)
+  # param_1 = obj.pick(target)
+  '''
+  basic idea is from the Reservoir sampling
+  1
+  1*1/2, 1/2
+  1/2*2/3 = 1/3, 1/2*2/3 = 1/3, 1/3
+  for Reservoir sampling, suppose we have 10 balls already in a bag, then the 11th ball comes, 
+  It has 10/11 prob to enter into the bag, but we need to remove one from the bag. 
+  The removed one has 10/11 * 1/10 = 1/11 to be selected. After that, the 11th one has 10/11 prob into the bag.
+  similarly, 12th ball comes, the removed one has 10/12 * 1/10 = 1/12 to be sected, the 12th ball has 11/12 prob into the bag, 
+  .., N-1/N.
+  product them together, 
+  we have 1 * 10/11 * 11/12 * N-1/N = 10/N
+  So, we can equal prob to be selected to enter into the bag.
+  '''
+
+
+
 class RandomPickwithWeight:
   def __init__(self, w: List[int]):
     self.prefix_sums = []
