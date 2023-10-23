@@ -1,7 +1,12 @@
-from SortingProblems.sorting_related import MinMoves
-mm = MinMoves()
-grid = [[1,0,0,0,1],[0,0,0,0,0],[0,0,1,0,0]]
-print(mm.minTotalDistance_v2(grid))
+from array_problems.sum_series import Continuous_Subarray_Sum
+css = Continuous_Subarray_Sum()
+nums = [23,2,6,4,7]
+k = 6
+print(css.checkSubarraySum(nums, 6))
+# from SortingProblems.sorting_related import MinMoves
+# mm = MinMoves()
+# grid = [[1,0,0,0,1],[0,0,0,0,0],[0,0,1,0,0]]
+# print(mm.minTotalDistance_v2(grid))
 # from GraphProblems.graph import GraphRelatedProblems
 # # Test
 # matrix = [

@@ -4,7 +4,11 @@ from itertools import product
 import heapq
 '''
 Problem Description:
-Given a 2D array, we start from the top-left corner and move towards the bottom-right corner. We can move up, down, left, or right. The ID of a path is defined as the maximum value within that path. The goal is to find and print the path with the smallest ID among all possible paths. One approach that comes to mind is using DFS to traverse all paths and then selecting the result. During the interview, the interviewer kept asking if there is a better solution. After some thought and with time constraints, I ended up writing the DFS solution. I wonder if anyone has a better solution?
+Given a 2D array, we start from the top-left corner and move towards the bottom-right corner. We can move up, down, left, or right. 
+The ID of a path is defined as the maximum value within that path. The goal is to find and print the path with the smallest ID among all possible paths. 
+One approach that comes to mind is using DFS to traverse all paths and then selecting the result. 
+During the interview, the interviewer kept asking if there is a better solution. After some thought and with time constraints, 
+I ended up writing the DFS solution. I wonder if anyone has a better solution?
 Suggested Solution:
 For this problem, a more efficient approach than DFS is to use the Dijkstra algorithm to find a path such that the maximum value within the path is minimized.
 Basic Idea:
@@ -62,6 +66,72 @@ class GraphRelatedProblems:
             return new_path
       return []
     return dfs(0, 0, [], set())
+  '''
+  1091. Shortest Path in Binary Matrix
+  Given an n x n binary matrix grid, return the length of the shortest clear path in the matrix. If there is no clear path, return -1.
+A clear path in a binary matrix is a path from the top-left cell (i.e., (0, 0)) to the bottom-right cell (i.e., (n - 1, n - 1)) such that:
+All the visited cells of the path are 0.
+All the adjacent cells of the path are 8-directionally connected (i.e., they are different and they share an edge or a corner).
+The length of a clear path is the number of visited cells of this path.
+  '''
+  def shortestPathBinaryMatrix_bfs(self, grid: List[List[int]]) -> int:
+    INF = 10 ** 20
+    R, C = len(grid), len(grid[0])
+    # Check if the start or end cell is blocked
+    if grid[0][0] == 1 or grid[R - 1][C - 1] == 1:
+      return -1
+    q = deque([(0, 0)])  # Initialize the queue with the starting cell
+    dist = [[INF] * C for _ in range(R)]
+    directions = [(1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1)]
+    # Initialize distance for the starting cell
+    dist[0][0] = 1
+    while q:
+      x, y = q.popleft()
+      d = dist[x][y]
+      if x == R - 1 and y == C - 1:
+        return d
+      for dx, dy in directions:
+        nx, ny = x + dx, y + dy
+        if 0 <= nx < R and 0 <= ny < C and grid[nx][ny] == 0 and dist[nx][ny] == INF:
+          q.append((nx, ny))
+          dist[nx][ny] = d + 1
+    return -1
+  '''
+    A star search
+    Time: O(NlogN)
+    Space: O(N)
+    using priority queue and introducing best_case_estimate (A*), this approach enables the performance beats 99% other python submissions
+  '''
+  def shortestPathBinaryMatrix_Astar(self, grid: List[List[int]]) -> int:
+    max_row = len(grid) - 1
+    max_col = len(grid[0]) - 1
+    directions = [
+      (-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
+    def get_neighbours(row, col):  # Helper function to find the neighbors of a given cell.
+      for row_difference, col_difference in directions:
+        new_row = row + row_difference
+        new_col = col + col_difference
+        if not (0 <= new_row <= max_row and 0 <= new_col <= max_col): continue
+        if grid[new_row][new_col] != 0: continue
+        yield (new_row, new_col)
+    def best_case_estimate(row, col):  # Helper function for the A* heuristic.
+      return max(max_row - row, max_col - col)
+
+    if grid[0][0] or grid[max_row][max_col]: return -1  # Check that the first and last cells are open.
+    visited = set()  # Set up the A* search.
+    # Entries on the priority queue are of the form (total distance estimate, distance so far, (cell row, cell col))
+    priority_queue = [(1 + best_case_estimate(0, 0), 1, (0, 0))]
+    while priority_queue:
+      estimate, distance, cell = heapq.heappop(priority_queue)
+      if cell in visited: continue
+      if cell == (max_row, max_col): return distance
+      visited.add(cell)
+      for neighbour in get_neighbours(*cell):
+        if neighbour in visited: continue  # The check here isn't necessary for correctness, but it leads to a substantial performance gain.
+        estimate = best_case_estimate(*neighbour) + distance + 1
+        entry = (estimate, distance + 1, neighbour)
+        heapq.heappush(priority_queue, entry)
+    return -1  # There was no path.
 
 '''
 135. Candy
