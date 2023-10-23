@@ -1,4 +1,65 @@
 '''
+979. Distribute Coins in Binary Tree
+You are given the root of a binary tree with n nodes where each node in the tree has node.val coins. There are n coins in total throughout the whole tree.
+In one move, we may choose two adjacent nodes and move one coin from one node to another. A move may be from parent to child, or from child to parent.
+Return the minimum number of moves required to make every node have exactly one coin.
+Input: root = [3,0,0]
+Output: 2
+Explanation: From the root of the tree, we move one coin to its left child, and one coin to its right child.
+Input: root = [0,3,0]
+Output: 3
+Explanation: From the left child of the root, we move two coins to the root [taking two moves]. Then, we move one coin from the root of the tree to the right child.
+'''
+
+from typing import Optional
+
+
+class TreeNode:
+  def __init__(self, val=0, left=None, right=None):
+    self.val = val
+    self.left = left
+    self.right = right
+
+
+class DistributeCoinsInBT:
+  def distributeCoins_iter(self, root: Optional[TreeNode]) -> int:
+    if not root: return 0
+    # Stack for modified post-order traversal
+    stack = [(root, False)]
+    ans = 0
+    balance = {}
+    while stack:
+      node, visited = stack.pop()
+      # If the node has been visited once already, compute its balance
+      if visited:
+        l = balance.get(node.left, 0)
+        r = balance.get(node.right, 0)
+        subtree_balance = l + r + node.val - 1
+        ans += abs(subtree_balance)
+        balance[node] = subtree_balance
+      # Otherwise, perform post-order traversal
+      else:
+        stack.append((node, True))
+        if node.right: stack.append((node.right, False))
+        if node.left: stack.append((node.left, False))
+    return ans
+
+  def distributeCoins_rec(self, root: Optional[TreeNode]) -> int:
+    ans = 0
+    def balance(node):
+      nonlocal ans
+      if not node: return 0
+      # Calculate the balance in the left and right subtrees
+      l, r = balance(node.left), balance(node.right)
+      # Calculate the total balance for the current subtree
+      subtree_balance = l + r + node.val - 1
+      # Accumulate the absolute value of the balance as the number of moves
+      ans += abs(subtree_balance)
+      return subtree_balance
+    balance(root)
+    return ans
+
+'''
 993. Cousins in Binary Tree
 Given the root of a binary tree with unique values and the values of two different nodes of the tree x and y, return true if the nodes corresponding to the values x and y in the tree are cousins, or false otherwise.
 Two nodes of a binary tree are cousins if they have the same depth with different parents.
@@ -18,11 +79,6 @@ x and y are exist in the tree.
 from collections import deque, defaultdict
 import heapq
 from typing import Optional, List
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
 
 class Node(object):
   def __init__(self, value):
