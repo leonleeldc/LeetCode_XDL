@@ -12,6 +12,7 @@ Explanation: From the left child of the root, we move two coins to the root [tak
 '''
 
 from typing import Optional
+import math
 
 
 class TreeNode:
@@ -19,7 +20,86 @@ class TreeNode:
     self.val = val
     self.left = left
     self.right = right
+'''
+108. Convert Sorted Array to Binary Search Tree
+'''
+class TreeConversion:
+  def sortedArrayToBST(self, nums):
+    if not nums: return None
+    mid = len(nums) // 2
+    # The root's value is the middle element of the array
+    root = TreeNode(nums[mid])
+    # Left subtree is built from elements before mid
+    root.left = self.sortedArrayToBST(nums[:mid])
+    # Right subtree is built from elements after mid
+    root.right = self.sortedArrayToBST(nums[mid + 1:])
+    return root
+  '''
+  1382. Balance a Binary Search Tree
+  Given the root of a binary search tree, return a balanced binary search tree with the same node values. If there is more than one answer, return any of them.
+  A binary search tree is balanced if the depth of the two subtrees of every node never differs by more than 1.
+  '''
+  def balanceBST(self, root: TreeNode) -> TreeNode:
+    def inorder(root, sorted_list):
+      if not root: return
+      inorder(root.left, sorted_list)
+      sorted_list.append(root)
+      inorder(root.right, sorted_list)
+      return sorted_list
 
+    sorted_list = inorder(root, [])
+
+    def rBuildTree(inorder, il, ir):
+      if il > ir: return None
+      mid = il + (ir - il) // 2
+      cur_root = inorder[mid]
+      cur_root.left = rBuildTree(inorder, il, mid - 1)
+      cur_root.right = rBuildTree(inorder, mid + 1, ir)
+      return cur_root
+
+    cur_root = rBuildTree(sorted_list, 0, len(sorted_list) - 1)
+    return cur_root
+
+  class Solution:
+
+    def makeVine(self, grand, count=0):
+      node = grand.right
+      while node:
+        if node.left:
+          old_node = node
+          node = node.left
+          old_node.left = node.right
+          node.right = old_node
+          grand.right = node
+        else:
+          count += 1
+          grand = node
+          node = node.right
+      return count
+
+    def compress(self, grand, m):
+      node = grand.right
+      while m > 1:
+        m -= 1
+        old_node = node
+        node = node.right
+        grand.right = node
+        old_node.right = node.left
+        node.left = old_node
+        grand = node
+        node = node.right
+
+    def balanceBST(self, root: TreeNode) -> TreeNode:
+      grand = TreeNode()
+      grand.right = root
+      count = self.makeVine(grand)
+      height = int(math.log2(count + 1))
+      remaining_nodes = pow(2, height) - 1
+      self.compress(grand, count - remaining_nodes)
+      while remaining_nodes > 0:
+        remaining_nodes /= 2
+        self.compress(grand, remaining_nodes)
+      return grand.right
 
 class DistributeCoinsInBT:
   def distributeCoins_iter(self, root: Optional[TreeNode]) -> int:
@@ -465,8 +545,6 @@ class BinaryTreeRsv:
 Given a binary tree where node values are digits from 1 to 9. A path in the binary tree is said to be pseudo-palindromic if at least one permutation of the node values in the path is a palindrome.
 Return the number of pseudo-palindromic paths going from the root node to leaf nodes.
 '''
-
-
 class PseudoPalinPathBT:
   def pseudoPalindromicPaths_rec1(self, root: Optional[TreeNode]) -> int:
     counts = [0] * 10

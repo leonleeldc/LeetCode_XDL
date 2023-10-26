@@ -45,6 +45,44 @@ Follow-up: for non-sparse array how to optimize solution, use binary search as t
 '''
 
 import bisect
+
+from datetime import datetime
+
+def areConsecutiveDays(date1, date2):
+    delta = datetime.strptime(date2, "%Y/%m/%d") - datetime.strptime(date1, "%Y/%m/%d")
+    return delta.days == 1
+
+def consecutiveUsers(logs, N):
+    # Group by user Id
+    user_dates = {}
+    for user, date in logs:
+        if user not in user_dates:
+            user_dates[user] = []
+        user_dates[user].append(date)
+
+    result = set()
+
+    for user, dates in user_dates.items():
+        dates.sort()
+        consecutive_count = 1
+        for i in range(1, len(dates)):
+            if areConsecutiveDays(dates[i-1], dates[i]):
+                consecutive_count += 1
+            else:
+                consecutive_count = 1
+
+            if consecutive_count == N:
+                result.add(user)
+                break
+
+    return result
+
+# Test
+logs = [('u1','2021/08/01'),('u3','2021/08/01'),('u2','2021/08/01'),('u1','2021/08/02'),('u1','2021/08/03')]
+N = 3
+print(consecutiveUsers(logs, N))  # Expected output: {'u1'}
+
+
 class SparseVector:
   def __init__(self, nums):
     self.nums = [(i, v) for i, v in enumerate(nums) if v != 0]
