@@ -1,8 +1,44 @@
-from array_problems.array_operations import DiagonalTravasal
-dt = DiagonalTravasal()
-mat = [[1,2,3],[4,5,6],[7,8,9]]
-Output: [1,2,4,7,5,3,6,8,9]
-print(dt.findDiagonalOrder(mat))
+from DynamicProgramming.dynamic_programming import CoinChange
+cc = CoinChange()
+coins = [1,2,5]
+amount = 11
+print(cc.coinChange(coins, amount))
+# from GraphProblems.valid_graph import UnionFind, GraphValidTree
+# n = 5
+# edges = [[0,1],[1,2],[2,3],[1,3],[1,4]]
+# gvt = GraphValidTree()
+# gvt.validTree(n, edges)
+# n = 5
+# edges = [[0,1],[0,2],[0,3],[1,4]]
+# gvt.validTree(n, edges)
+
+# from StringProblems.string_problems import StringProblemsClass
+# spc = StringProblemsClass()
+# #s = "AABABBA"
+# #s = 'AAAA'
+# s = "ABCDE"
+# print(spc.characterReplacement(s, 1))
+
+# from math_related import ValidNumber
+# vn = ValidNumber()
+# s="2e0"
+#print(vn.isNumber(s))
+# from DynamicProgramming.dynamic_programming import TargetSum
+# nums = [1,1,1,1,1]
+# target = 3
+# ts = TargetSum()
+# ts.findTargetSumWays_dp(nums, target)
+
+# from binary_search_related import SplitArrayLargestSum
+# nums = [7,2,5,10,8,11,4,9]
+# k = 3
+# sls = SplitArrayLargestSum()
+# sls.splitArray(nums, k)
+# from array_problems.array_operations import DiagonalTravasal
+# dt = DiagonalTravasal()
+# mat = [[1,2,3],[4,5,6],[7,8,9]]
+# Output: [1,2,4,7,5,3,6,8,9]
+# print(dt.findDiagonalOrder(mat))
 
 # from array_problems.sum_series import Continuous_Subarray_Sum
 # css = Continuous_Subarray_Sum()

@@ -21,6 +21,40 @@ class TreeNode:
     self.left = left
     self.right = right
 '''
+236. Lowest Common Ancestor of a Binary Tree
+'''
+class Solution:
+  def lowestCommonAncestor_iter1(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+    ###inorder method
+    stack = []
+    current, curAncester = root, root
+    counter, foundFirst = 0, False
+    while len(stack) > 0 or current:
+      if current:
+        stack.append(current)
+        current = current.left
+      else:
+        current = stack.pop()
+        if foundFirst and len(stack) < counter:
+          curAncester = current
+          counter = len(stack)
+        if current.val == p.val or current.val == q.val:
+          if not foundFirst:
+            foundFirst = True
+            curAncester = current
+            counter = len(stack)
+          else:
+            return curAncester
+        current = current.right
+    def lowestCommonAncestor_rec(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        def dfs(node):
+            if not node: return None
+            if node == p or node == q: return node
+            lanc, ranc = dfs(node.left), dfs(node.right)
+            if lanc and ranc: return node
+            return lanc if lanc else ranc
+        return dfs(root)
+'''
 108. Convert Sorted Array to Binary Search Tree
 '''
 class TreeConversion:

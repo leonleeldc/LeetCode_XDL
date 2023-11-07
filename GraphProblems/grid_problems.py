@@ -82,3 +82,47 @@ class Solution:
         if grid[x][y] == 1:
           if not BFS(x, y): return -1
     return min([distSum[i][j] for i in range(M) for j in range(N) if not grid[i][j] and hit[i][j] == buildings] or [-1])
+  '''
+  490. The Maze
+  There is a ball in a maze with empty spaces (represented as 0) and walls (represented as 1). The ball can go through the empty spaces by rolling up, down, left or right, but it won't stop rolling until hitting a wall. When the ball stops, it could choose the next direction.
+  Given the m x n maze, the ball's start position and the destination, where start = [startrow, startcol] and destination = [destinationrow, destinationcol], return true if the ball can stop at the destination, otherwise return false.
+  You may assume that the borders of the maze are all walls (see examples).
+  '''
+  def hasPath_dfs(self, maze: List[List[int]], start: List[int], destination: List[int]) -> bool:
+    m, n = len(maze), len(maze[0])
+    visited = [[False] * n for _ in range(m)]
+    directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+    def dfs(x, y):
+      if [x, y] == destination: return True
+      if visited[x][y]: return False
+      visited[x][y] = True
+      for dx, dy in directions:
+        xx, yy = x, y
+        while 0 <= xx + dx < m and 0 <= yy + dy < n and maze[xx + dx][yy + dy] == 0:
+          xx += dx
+          yy += dy
+        if dfs(xx, yy): return True
+      return False
+    return dfs(start[0], start[1])
+  def hasPath_bfs(self, maze: List[List[int]], start: List[int], destination: List[int]) -> bool:
+    queue = deque([start])
+    # There is a trick not to use a set.
+    # You can find it in
+    # https://leetcode.com/problems/the-maze/discuss/97074/Python-BFS-solution
+    visited = set()
+    m, n = len(maze), len(maze[0])
+    while queue:
+      x, y = queue.popleft()
+      visited.add((x, y))
+      if [x, y] == destination: return True
+      x0, y0 = x, y
+      for delta_x, delta_y in [[0, 1], [0, -1], [1, 0], [-1, 0]]:
+        while 0 <= x + delta_x < m and 0 <= y + delta_y < n and not maze[x + delta_x][y + delta_y]:
+          x += delta_x
+          y += delta_y
+        else:
+          if not (x, y) in visited: queue.append([x, y])
+        x = x0
+        y = y0
+    return False
+

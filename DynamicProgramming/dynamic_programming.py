@@ -1,4 +1,226 @@
 from typing import List
+from bisect import bisect_left
+'''
+322. Coin Change
+You are given an integer array coins representing coins of different denominations and an integer amount representing a total amount of money.
+Return the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1.
+You may assume that you have an infinite number of each kind of coin.
+Example 1:
+
+Input: coins = [1,2,5], amount = 11
+Output: 3
+Explanation: 11 = 5 + 5 + 1
+Example 2:
+
+Input: coins = [2], amount = 3
+Output: -1
+Example 3:
+
+Input: coins = [1], amount = 0
+Output: 0
+'''
+class CoinChange:
+  def coinChange_optimized(self, coins: List[int], amount: int) -> int:
+    if not coins: return -1
+    if amount == 0: return 0
+    coins = list(filter(lambda c: c <= amount, coins))
+    if len(coins) == 1:
+      if amount % coins[0] != 0: return -1
+      return amount // coins[0]
+    if amount % 2 != 0 and all(c % 2 == 0 for c in coins): return -1
+    step, seen = 0, 1 << amount
+    while (seen & 1) != 1:
+      cur = seen
+      for coin in coins:
+        cur |= seen >> coin
+      if cur == seen: return -1
+      step, seen = step + 1, cur
+    return step
+  def coinChange_rec(self, coins: List[int], amount: int) -> int:
+      if amount == 0: return 0
+      coins = sorted(coins)
+      coins_set = set(coins)
+      @cache
+      def change(amount):
+          if amount in coins_set: return 1
+          min_coint = -1
+          for coin in coins:
+              if amount - coin > 0:
+                  candidate = change(amount - coin)
+                  if (candidate < min_coint or min_coint == -1) and candidate != -1:
+                      min_coint = candidate + 1
+              else:
+                  break
+          return min_coint
+      return change(amount)
+  def coinChange_dp(self, coins: List[int], amount: int) -> int:
+      dp = [sys.maxsize] * (amount + 1)
+      dp[0] = 0
+      for i in range(1, len(coins) + 1):
+          for j in range(1, amount + 1):
+              if coins[i - 1]<=j:
+                  dp[j] = min(dp[j - coins[i-1]] + 1, dp[j])
+      return dp[-1] if dp[-1] != sys.maxsize else -1
+
+
+
+'''
+300. Longest Increasing Subsequence
+Given an integer array nums, return the length of the longest strictly increasing subsequence
+Example 1:
+Input: nums = [10,9,2,5,3,7,101,18]
+Output: 4
+Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.
+Example 2:
+Input: nums = [0,1,0,3,2,3]
+Output: 4
+Example 3:
+Input: nums = [7,7,7,7,7,7,7]
+Output: 1
+'''
+
+
+class LongestIncreasingSubsequence:
+  def lengthOfLIS_rec(self, nums: List[int]) -> int:
+    @cache
+    def dp(i):
+      if i == 0: return 1
+      res = 1
+      for j in range(i):
+        if nums[i] > nums[j]:
+          res = max(res, dp(j) + 1)
+      return res
+    return max([dp(i) for i in range(len(nums))])
+  def lengthOfLIS_iter(self, nums: List[int]) -> int:
+    dp = [1] * len(nums)
+    for i in range(1, len(nums)):
+        for j in range(i):
+            if nums[i]>nums[j]:
+                dp[i] = max(dp[i], dp[j]+1)
+    return max(dp)
+  def lengthOfLIS_binary_search(self, nums: List[int]) -> int:
+    sub = []
+    for num in nums:
+        i = bisect_left(sub, num)
+        if i==len(sub):
+            sub.append(num)
+        else:
+            sub[i] = num
+    return len(sub)
+
+
+'''
+121. Best Time to Buy and Sell Stock
+'''
+class StackRelated:
+  '''
+  You are given an array prices where prices[i] is the price of a given stock on the ith day.
+
+You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+
+Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+
+
+Example 1:
+
+Input: prices = [7,1,5,3,6,4]
+Output: 5
+Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
+Example 2:
+
+Input: prices = [7,6,4,3,1]
+Output: 0
+Explanation: In this case, no transactions are done and the max profit = 0.
+  '''
+  def maxProfit_iter(self, prices: List[int]) -> int:
+    buy, profit = float('inf'), 0  # Set initial buy to infinity
+    for price in prices:
+      buy = min(price, buy)  # Update buy to the lowest price so far
+      profit = max(profit, price - buy)  # Update profit if the current price - buy is greater than the current profit
+    return profit
+  def maxProfit_rec(self, prices: List[int]) -> int:
+    @cache
+    def dp(i: int)->tuple[int, int]:
+      if i<0: return 0, 10**9
+      profit, buy = dp(i-1)
+      return max(profit, prices[i]-buy), min(prices[i], buy)
+    return dp(len(prices)-1)[0]
+'''
+1155. Number of Dice Rolls With Target Sum
+You have n dice, and each die has k faces numbered from 1 to k.
+
+Given three integers n, k, and target, return the number of possible ways (out of the kn total ways) to roll the dice, so the sum of the face-up numbers equals target. Since the answer may be too large, return it modulo 109 + 7.
+
+ 
+
+Example 1:
+
+Input: n = 1, k = 6, target = 3
+Output: 1
+Explanation: You throw one die with 6 faces.
+There is only one way to get a sum of 3.
+Example 2:
+
+Input: n = 2, k = 6, target = 7
+Output: 6
+Explanation: You throw two dice, each with 6 faces.
+There are 6 ways to get a sum of 7: 1+6, 2+5, 3+4, 4+3, 5+2, 6+1.
+Example 3:
+
+Input: n = 30, k = 30, target = 500
+Output: 222616187
+Explanation: The answer must be returned modulo 109 + 7.
+    #Time complexity: O(nt)
+'''
+class NumberDiceRollsTargetSum:
+  def numRollsToTarget(self, n: int, k: int, target: int) -> int:
+    mod = 1000000007
+    m = [[0] * (target + 1) for i in range(n + 1)]
+    for i in range(1, k + 1):
+      if i > target:
+        break
+      m[1][i] = 1
+    for row in range(2, n + 1):
+      # use curS like a sliding window
+      curS = 0
+      for col in range(row, row * k + 1):
+        if col >= len(m[0]):  # col out of range
+          break
+        elif col <= k:  # window is not full in these range (0~k-1)
+          curS += m[row - 1][col - 1]
+          m[row][col] = curS % mod
+        else:  # when index > k and the sliding window is full, then do the sliding window process
+          curS = curS + m[row - 1][col - 1] - m[row - 1][col - 1 - k]
+          m[row][col] = curS % mod
+        if m[row][col] == 0:
+          break
+    return m[n][target]
+  def numRollsToTarget_dp_space_efficient(self, n: int, k: int, target: int) -> int:
+    kMod = int(1e9 + 7)  # Make sure to cast to int because 1e9 + 7 is a float
+    dp = [0] * (target + 1)
+    dp[0] = 1
+    for i in range(1, n + 1):
+      new_dp = [0] * (target + 1)  # Temporary array to store new state
+      for j in range(1, target + 1):
+        for jj in range(1, min(j, k) + 1):
+          new_dp[j] = (new_dp[j] + dp[j - jj]) % kMod
+      dp = new_dp  # Update the dp array with the new state
+    return dp[target]
+  def numRollsToTarget_rec(self, n: int, k: int, target: int) -> int:
+      mod = 10**9+7
+      @cache
+      def dp(i, t):
+          if i==0: return 1 if t==0 else 0
+          if t>k*i or t<i: return 0 # aiming at speeding
+          ans = 0
+          for j in range(1, k+1):
+              ans = (ans + dp(i-1, t-j)) % mod
+          return ans
+      return dp(n, target)
+
+
 '''
 A message containing letters from A-Z can be encoded into numbers using the following mapping:
 
@@ -35,6 +257,74 @@ Output: 0
 Explanation: "06" cannot be mapped to "F" because of the leading zero ("6" is different from "06").
 '''
 
+'''
+494. Target Sum
+You are given an integer array nums and an integer target.
+You want to build an expression out of nums by adding one of the symbols '+' and '-' before each integer in nums and then concatenate all the integers.
+For example, if nums = [2, 1], you can add a '+' before 2 and a '-' before 1 and concatenate them to build the expression "+2-1".
+Return the number of different expressions that you can build, which evaluates to target.
+Example 1:
+
+Input: nums = [1,1,1,1,1], target = 3
+Output: 5
+Explanation: There are 5 ways to assign symbols to make the sum of nums be target 3.
+-1 + 1 + 1 + 1 + 1 = 3
++1 - 1 + 1 + 1 + 1 = 3
++1 + 1 - 1 + 1 + 1 = 3
++1 + 1 + 1 - 1 + 1 = 3
++1 + 1 + 1 + 1 - 1 = 3
+Example 2:
+
+Input: nums = [1], target = 1
+Output: 1
+'''
+class TargetSum:
+  def findTargetSumWays_dp(self, nums: List[int], target: int) -> int:
+    total_sum = sum(nums)
+    # Check if the absolute target is larger than the sum or if (target + sum) is odd
+    if abs(target) > total_sum or (target + total_sum) % 2 == 1:
+      return 0
+    # New target will be the sum needed to reach target
+    new_target = (target + total_sum) // 2
+    # Initialize dp array where dp[i] is the number of ways to sum to i
+    dp = [0] * (new_target + 1)
+    dp[0] = 1  # There is one way to have a sum of 0, by choosing no elements
+    # Fill the dp array
+    for num in nums:
+      for i in range(new_target, num - 1, -1):
+        dp[i] += dp[i - num]
+    return dp[new_target]
+  def findTargetSumWays_pull(self, nums: List[int], target: int) -> int:
+    summ = sum(nums)
+    target = abs(target)
+    if summ < target or (summ + target) % 2 != 0:
+      return 0
+    new_target = (summ + target) // 2
+    dp = [0] * (new_target + 1)  # Allocate enough space for all possible sums up to new_target
+    dp[0] = 1
+    for num in nums:
+      # Temporary list for the new values of dp, to avoid overwriting dp during iteration
+      tmp = dp.copy()  # Make a copy of dp for this iteration
+      for j in range(num, new_target + 1):  # Correct the range
+        tmp[j] += dp[j - num]
+      dp = tmp  # Update dp to the new values for the next iteration # The answer is at the index new_target
+    return dp[new_target]
+
+  def findTargetSumWays_push(self, nums: List[int], target: int) -> int:
+    summ = sum(nums)
+    target = abs(target)
+    if summ < target or (summ + target) % 2 != 0:
+      return 0
+    new_target = (summ + target) // 2
+    dp = [0] * (new_target + 1)  # Allocate enough space for all possible sums up to new_target
+    dp[0] = 1
+    for num in nums:
+      # Temporary list for the new values of dp, to avoid overwriting dp during iteration
+      tmp = dp.copy()  # Make a copy of dp for this iteration
+      for j in range(0, new_target - num + 1):  # Correct the range
+        tmp[j + num] += dp[j]
+      dp = tmp  # Update dp to the new values for the next iteration
+    return dp[new_target]  # The answer is at the index new_target
 
 class TreeNode:
   def __init__(self, val=0, left=None, right=None):
@@ -139,12 +429,41 @@ Input: nums = [3,2,1,0,4]
 Output: false
 Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0, which makes it impossible to reach the last index.
   '''
-  def canJump(self, nums: List[int]) -> bool:
+  '''
+    simpler approach than ealier ones
+    '''
+  def canJump_rev(self, nums: List[int]) -> bool:
     last_pos = len(nums) - 1
     for i in range(len(nums) - 2, -1, -1):
       if last_pos <= i + nums[i]:
         last_pos = i
     return last_pos == 0
+  def canJump_seq(self, nums: List[int]) -> bool:
+      max_reachable = 0
+      for i in range(len(nums)):
+          if i>max_reachable: return False
+          max_reachable = max(max_reachable, nums[i]+i)
+          if max_reachable>=len(nums)-1: return True
+      return False
+  def canJump_rec_seq(self, nums: List[int]) -> bool:
+      @cache
+      def dp(i):
+          if i>=len(nums)-1 or i+nums[i]>=len(nums)-1: return True
+          for j in range(1, nums[i]+1):
+              if dp(i+j):
+                  return True
+          return False
+      return dp(0)
+  def canJump_rec_rev(self, nums: List[int]) -> bool:
+      @cache
+      def dp(i):
+          if i == 0: return True  # Base case: we're at the first index
+          for j in range(i - 1, -1, -1):  # Iterate backward from the current index
+              # If index j is reachable and we can jump from j to i
+              if dp(j) and nums[j] >= i - j:
+                  return True
+          return False  # If none of the previous indices can jump to i
+      return dp(len(nums) - 1)  # Check if we can reach the last index
 
 
 
@@ -337,6 +656,19 @@ class WordBreak:
           if not dp[i]: dp[i] = dp[i - len(word)]
     return dp[-1]
 
+  def wordBreak_iter2(self, s: str, wordDict: List[str]) -> bool:
+    dp = [False] * (len(s) + 1)
+    dp[len(s)] = True
+
+    for i in range(len(s) - 1, -1, -1):
+      for w in wordDict:
+        if (i + len(w)) <= len(s) and s[i: i + len(w)] == w:
+          dp[i] = dp[i + len(w)]
+        if dp[i]:
+          break
+
+    return dp[0]
+
   def wordBreak_rec(self, s: str, wordDict: List[str]) -> bool:
     wordDict = set(wordDict)
     @cache
@@ -446,7 +778,7 @@ class WordBreakII:
     return dp(0)
 
 class StickerToSpellWord:
-  def minStickers(self, stickers: List[str], target: str) -> int:
+  def minStickers_rec(self, stickers: List[str], target: str) -> int:
     present = {}
     # present maps index of target to character
     # for example for target='that' it will be as follows-
@@ -483,35 +815,34 @@ class StickerToSpellWord:
 
     res = dp(0, (1 << m) - 1)
     return res if res < sys.maxsize else -1
-  class Solution:
-    def minStickers(self, stickers: List[str], target: str) -> int:
-      t_count = Counter(target)
-      s_count = [Counter(sticker) & t_count for sticker in stickers if any(ch in t_count for ch in sticker)] # Filter & Modify stickers
-      i = 0 # Remove dominated stickers
-      while i < len(s_count):
-        if any(all(s_count[i][ch] <= s_count[j][ch] for ch in s_count[i]) for j in range(len(s_count)) if i != j):
-          s_count.pop(i)
-        else: i += 1
-      # Convert to list and sort by frequency in target
-      s_count = [list(sticker.elements()) for sticker in s_count]
+  def minStickers_iter(self, stickers: List[str], target: str) -> int:
+    t_count = Counter(target)
+    s_count = [Counter(sticker) & t_count for sticker in stickers if any(ch in t_count for ch in sticker)] # Filter & Modify stickers
+    i = 0 # Remove dominated stickers
+    while i < len(s_count):
+      if any(all(s_count[i][ch] <= s_count[j][ch] for ch in s_count[i]) for j in range(len(s_count)) if i != j):
+        s_count.pop(i)
+      else: i += 1
+    # Convert to list and sort by frequency in target
+    s_count = [list(sticker.elements()) for sticker in s_count]
+    for sticker in s_count:
+      sticker.sort(key=lambda ch: t_count[ch], reverse=True)
+    dp = [float('inf')] * (1 << len(target)) # DP with bitmask representation
+    dp[0] = 0  # base case
+    for mask in range(1, len(dp)):
+      sub_target = [target[i] for i in range(len(target)) if mask & (1 << i)]
+      if not any(ch in sub_target for sticker in s_count for ch in sticker): continue # Early termination if impossible
       for sticker in s_count:
-        sticker.sort(key=lambda ch: t_count[ch], reverse=True)
-      dp = [float('inf')] * (1 << len(target)) # DP with bitmask representation
-      dp[0] = 0  # base case
-      for mask in range(1, len(dp)):
-        sub_target = [target[i] for i in range(len(target)) if mask & (1 << i)]
-        if not any(ch in sub_target for sticker in s_count for ch in sticker): continue # Early termination if impossible
-        for sticker in s_count:
-          if sub_target[0] not in sticker: continue           # Skip if sticker does not contain the first char of sub_target
-          rem_mask = mask  # Try to use the sticker and update the mask
-          for ch in sticker:
-            for i, tc in enumerate(target): # Find the index of the character to unset
-              if (rem_mask >> i) & 1 and tc == ch:
-                rem_mask ^= (1 << i)
-                break
-            if rem_mask == 0: break  # Early break if all chars satisfied
-          dp[mask] = min(dp[mask], 1 + dp[rem_mask]) # Update DP
-      return dp[-1] if dp[-1] != float('inf') else -1
+        if sub_target[0] not in sticker: continue           # Skip if sticker does not contain the first char of sub_target
+        rem_mask = mask  # Try to use the sticker and update the mask
+        for ch in sticker:
+          for i, tc in enumerate(target): # Find the index of the character to unset
+            if (rem_mask >> i) & 1 and tc == ch:
+              rem_mask ^= (1 << i)
+              break
+          if rem_mask == 0: break  # Early break if all chars satisfied
+        dp[mask] = min(dp[mask], 1 + dp[rem_mask]) # Update DP
+    return dp[-1] if dp[-1] != float('inf') else -1
 
 class Counting:
   '''
@@ -573,8 +904,8 @@ class Counting:
     return paths
 
   # Example
-  n = 3
-  print(findPaths(n))
+  # n = 3
+  # print(findPaths(n))
 
   '''
   926. Flip String to Monotone Increasing
@@ -725,6 +1056,8 @@ class HouseRobber:
         # The max value between robbing the current house and not robbing the current house
         memo[node] = max(rob_now, rob_later)
     return memo[root]
+
+
 
 
 

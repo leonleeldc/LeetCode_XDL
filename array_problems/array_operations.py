@@ -1,4 +1,65 @@
 '''
+238. Product of Array Except Self
+Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
+
+The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
+
+You must write an algorithm that runs in O(n) time and without using the division operation.
+
+
+
+Example 1:
+
+Input: nums = [1,2,3,4]
+Output: [24,12,8,6]
+Example 2:
+
+Input: nums = [-1,1,0,-3,3]
+Output: [0,0,9,0,0]
+'''
+from typing import List
+class ProductArrayExceptSelf:
+  def productExceptSelf(self, nums: List[int]) -> List[int]:
+    l, r = 1, 1
+    output = [1 for _ in range(len(nums))]
+    for i, j in zip(range(len(nums) - 1), range(len(nums) - 1, 0, -1)):
+      l *= nums[i]
+      r *= nums[j]
+      output[i + 1] *= l
+      output[j - 1] *= r
+    return output
+
+'''
+371. Sum of Two Integers
+Given two integers a and b, return the sum of the two integers without using the operators + and -.
+
+ 
+
+Example 1:
+
+Input: a = 1, b = 2
+Output: 3
+Example 2:
+
+Input: a = 2, b = 3
+Output: 5
+'''
+class SumTwoIntegers:
+  def getSum(self, a: int, b: int) -> int:
+    x, y = abs(a), abs(b)
+    if x < y: return self.getSum(b, a)
+    sign = 1 if a > 0 else -1
+    if a * b >= 0:
+      # sum of two positive intergers
+      while y:
+        x, y = x ^ y, (x & y) << 1
+    else:
+      # difference of two positive intergers since one of them is negative
+      while y:
+        x, y = x ^ y, ((~x) & y) << 1
+    return x * sign
+
+'''
 341. Flatten Nested List Iterator
 You are given a nested list of integers nestedList. Each element is either an integer or a list whose elements may also be integers or other lists. Implement an iterator to flatten it.
 

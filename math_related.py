@@ -1,4 +1,152 @@
 '''
+229. Majority Element II
+Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times.
+Example 1:
+Input: nums = [3,2,3]
+Output: [3]
+Example 2:
+
+Input: nums = [1]
+Output: [1]
+Example 3:
+
+Input: nums = [1,2]
+Output: [1,2]
+'''
+from typing import List
+class MajorityElement:
+  '''
+  Boyer-Moore Voting Algorithm
+  '''
+  def majorityElementII(self, nums: List[int]) -> List[int]:
+    if not nums: return []
+    # Step 1: Find potential candidates for majority element
+    count1, count2, candidate1, candidate2 = 0, 0, 0, 1
+    for num in nums:
+      if num == candidate1:
+        count1 += 1
+      elif num == candidate2:
+        count2 += 1
+      elif count1 == 0:
+        candidate1, count1 = num, 1
+      elif count2 == 0:
+        candidate2, count2 = num, 1
+      else:
+        count1, count2 = count1 - 1, count2 - 1
+    # Step 2: Verify the candidates
+    result = []
+    for candidate in [candidate1, candidate2]:
+      if nums.count(candidate) > len(nums) // 3:
+        result.append(candidate)
+    return result
+  '''
+  169. Majority Element
+  Given an array nums of size n, return the majority element.
+  The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+  '''
+  def majorityElementI(self, nums: List[int])->int:
+    pick, count = 0, 0
+    for num in nums:
+      pick = (pick, num)[not count]
+      count += (-1, 1)[num==pick]
+    return pick
+  '''
+  Boyer-Moore Voting Algorithm
+  '''
+  def majorityElementI_BMVA(self, nums: List[int])->int:
+    cnt, cand = 1, nums[0]
+    for i in range(1, len(nums)):
+      if nums[i]==cand:
+        cnt += 1
+      elif nums[i]!=cand and cnt>0:
+        cnt -= 1
+      elif nums[i]!=cand and cnt==0:
+        cnt += 1
+        cand = nums[i]
+    return cand
+
+'''
+65. Valid Number
+A valid number can be split up into these components (in order):
+
+A decimal number or an integer.
+(Optional) An 'e' or 'E', followed by an integer.
+A decimal number can be split up into these components (in order):
+
+(Optional) A sign character (either '+' or '-').
+One of the following formats:
+One or more digits, followed by a dot '.'.
+One or more digits, followed by a dot '.', followed by one or more digits.
+A dot '.', followed by one or more digits.
+An integer can be split up into these components (in order):
+
+(Optional) A sign character (either '+' or '-').
+One or more digits.
+For example, all the following are valid numbers: ["2", "0089", "-0.1", "+3.14", "4.", "-.9", "2e10", "-90E3", "3e+7", "+6e-1", "53.5e93", "-123.456e789"], while the following are not valid numbers: ["abc", "1a", "1e", "e3", "99e2.5", "--6", "-+3", "95a54e53"].
+
+Given a string s, return true if s is a valid number.
+'''
+import re
+class ValidNumber(object):
+  def isNumber_re(self, s: str) -> bool:
+    pattern = r'^\s*[+-]?(\d+\.?|\.\d)\d*(E[+-]?\d+)?(e[+-]?\d+)?\s*$'
+    return re.match(pattern, s)
+  class Solution:
+    def isNumber(self, s: str) -> bool:
+      # Define the regular expression for a valid number
+      pattern = re.compile(r"""
+              ^                      # start of string
+              [+-]?                  # optional sign
+              (                      # start of group for the main number part
+              (\d+\.\d*|\.\d+)     # decimal number with at least one digit
+              |                    # ...or...
+              \d+                  # integer with at least one digit
+              )                      # end of group for the main number part
+              ([eE][+-]?\d+)?        # optional exponent part
+              $                      # end of string
+              """, re.VERBOSE)
+
+      # Use the pattern to match the input string
+      return re.match(pattern, s) is not None
+  def isNumber(self, s):
+    # This is the DFA we have designed above
+    dfa = [
+      {"digit": 1, "sign": 2, "dot": 3},
+      {"digit": 1, "dot": 4, "exponent": 5},
+      {"digit": 1, "dot": 3},
+      {"digit": 4},
+      {"digit": 4, "exponent": 5},
+      {"sign": 6, "digit": 7},
+      {"digit": 7},
+      {"digit": 7}
+    ]
+
+    current_state = 0
+    for c in s:
+      if c.isdigit():
+        group = "digit"
+      elif c in ["+", "-"]:
+        group = "sign"
+      elif c in ["e", "E"]:
+        group = "exponent"
+      elif c == ".":
+        group = "dot"
+      else:
+        return False
+
+      if group not in dfa[current_state]:
+        return False
+
+      current_state = dfa[current_state][group]
+
+    return current_state in [1, 4, 7]
+
+  '''
+  Time: O(N)
+  Space: O(1)
+  '''
+
+'''
 681. Next Closest Time
 Given a time represented in the format "HH:MM", form the next closest time by reusing the current digits. There is no limit on how many times a digit can be reused.
 You may assume the given input string is always valid. For example, "01:34", "12:09" are all valid. "1:34", "12:9" are all invalid.
@@ -14,6 +162,49 @@ Explanation: The next closest time choosing from digits 2, 3, 5, 9, is 22:22.
 It may be assumed that the returned time is next day's time since it is smaller than the input time numerically.
 '''
 import heapq
+'''
+670. Maximum Swap
+You are given an integer num. You can swap two digits at most once to get the maximum valued number.
+Return the maximum valued number you can get.
+'''
+
+class MaximumSwap:
+  def maximumSwap_numerical(self, num: int) -> int:
+    hd = hp = ld = lp = 0
+    cur_hd, cur_hp, pos, res = -1, 0, 1, num
+    while num:
+      digit = num % 10
+      if digit > cur_hd:
+        cur_hd, cur_hp = digit, pos
+      elif digit < cur_hd:
+        hd, hp = cur_hd, cur_hp,
+        ld, lp = digit, pos
+      num //= 10
+      pos *= 10
+      # print(f'num = {num} pos = {pos} lp={lp} hp={hp} ld={ld} hd={hd} digit = {digit}')
+    res -= (hd - ld) * (hp - lp)
+    # print(res)
+    return res
+  def maximumSwap_str(self, nums: int) -> int:
+    m = nums
+    n = str(nums)
+    for i in range(len(n)):
+      num = list(n)
+      for j in range(len(n)):
+        if num[j] != num[i]:
+          num[i], num[j] = num[j], num[i]
+          m = max(m, int(''.join(num)))
+          num = list(n)  # we used again convert to orignal list
+    return m
+
+  '''
+  num = 273 pos = 10 lp=0 hp=0 ld=0 hd=0 digit = 6
+  num = 27 pos = 100 lp=10 hp=1 ld=3 hd=6 digit = 3
+  num = 2 pos = 1000 lp=10 hp=1 ld=3 hd=6 digit = 7
+  num = 0 pos = 10000 lp=1000 hp=100 ld=2 hd=7 digit = 2
+  7236
+  7236-2736=4500
+  '''
 class NextClosestTime:
   def nextClosestTime(self, time):
     hours, minutes = time.split(":")

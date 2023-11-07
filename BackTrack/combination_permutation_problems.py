@@ -144,6 +144,29 @@ Output: 0
  Time: O(TN)
 Space: O(T)
   '''
+  def combinationSum4_iter(self, nums: List[int], target: int) -> int:
+    dp = [0] * (target + 1)
+    for targ in range(1, target + 1):
+      for num in nums:
+        diff = targ - num
+        if diff == 0:
+          dp[targ] += 1
+        elif diff > 0:
+          dp[targ] += dp[diff]
+    return dp[-1]
+
+  '''
+  dp = [0, 0, 0, 0, 0]
+  targ = 1 i = 0 diff = 0 dp[targ] = 1 dp[diff] = 0  namely, 1 comes fomr 1 or implies 4 comes from 1, 1, 1, 1
+  targ = 2 i = 0 diff = 1 dp[targ] = 1 dp[diff] = 1  namely, 2 comes from 1, 1, also implies 4 comes from 1, 1, 1, 1
+  targ = 2 i = 1 diff = 0 dp[targ] = 2 dp[diff] = 0  namely, 2 comes from 2, also imples 4 comes from 2, 2
+  targ = 3 i = 0 diff = 2 dp[targ] = 2 dp[diff] = 2  3 from 1, 2 and 1, 1, 1,  or 4 from 1, 1, 2 and 1, 1, 1, 1
+  targ = 3 i = 1 diff = 1 dp[targ] = 3 dp[diff] = 1
+  targ = 3 i = 2 diff = 0 dp[targ] = 4 dp[diff] = 0
+  targ = 4 i = 0 diff = 3 dp[targ] = 4 dp[diff] = 4
+  targ = 4 i = 1 diff = 2 dp[targ] = 6 dp[diff] = 2
+  targ = 4 i = 2 diff = 1 dp[targ] = 7 dp[diff] = 1
+  '''
   def combinationSum4_rec(self, nums: List[int], target: int) -> int:
     nums.sort()
     @cache
@@ -157,17 +180,6 @@ Space: O(T)
           break
       return res
     return dp(target)
-  def combinationSum4_iter(self, nums: List[int], target: int) -> int:
-    dp = [0] * (target + 1)
-    for targ in range(1, target + 1):
-      for num in nums:
-        diff = targ - num
-        if diff == 0:
-          dp[targ] += 1
-        elif diff > 0:
-          dp[targ] += dp[diff]
-    return dp[-1]
-
   def combinationSum4(self, nums, target):
     @cache
     def backtrack(remaining):

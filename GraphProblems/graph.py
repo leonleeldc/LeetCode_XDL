@@ -134,33 +134,6 @@ The length of a clear path is the number of visited cells of this path.
     return -1  # There was no path.
 
 '''
-135. Candy
-There are n children standing in a line. Each child is assigned a rating value given in the integer array ratings.
-You are giving candies to these children subjected to the following requirements:
-Each child must have at least one candy.
-Children with a higher rating get more candies than their neighbors.
-Return the minimum number of candies you need to have to distribute the candies to the children.
-'''
-class CandyProblem:
-  def candy(self, ratings: List[int]) -> int:
-    '''
-    [4,5,3,1,0,2,8]
-    [4,5,3,1,0,2,8,9]
-    [4,5,3,1,0,2,8,9,9,9]
-    [4,5,3,1,0,2,8,9,9,9,10]
-    [4,5]
-    [1,0,2]
-    '''
-    dp = [1] * len(ratings)
-    for i in range(1, len(ratings)):
-      if ratings[i] > ratings[i - 1]:
-        dp[i] = max(dp[i - 1] + 1, dp[i])
-    for i in range(len(ratings) - 2, -1, -1):
-      if ratings[i] > ratings[i + 1]:
-        dp[i] = max(dp[i + 1] + 1, dp[i])
-    return sum(dp)
-
-'''
 200. Number of Islands
 '''
 class NumberIslands:
@@ -284,3 +257,94 @@ class RottingOranges:
 
     # Return the maximum time from the rotten_after array
     return max(map(max, rotten_after))
+'''
+1101, the  eariliest moment when everyone becomes friends
+There are n people in a social group labeled from 0 to n - 1. You are given an array logs where logs[i] = [timestampi, xi, yi] indicates that xi and yi will be friends at the time timestampi.
+Friendship is symmetric. That means if a is friends with b, then b is friends with a. Also, person a is acquainted with a person b if a is friends with b, or a is a friend of someone acquainted with b.
+Return the earliest time for which every person became acquainted with every other person. If there is no such earliest time, return -1.
+'''
+
+
+class UnionFind:
+
+  def __init__(self, size):
+    self.group = [i for i in range(size)]
+    self.rank = [0] * size
+
+  def find(self, person):
+    if self.group[person] != person:
+      self.group[person] = self.find(self.group[person])
+    return self.group[person]
+
+  def union(self, a, b):
+    group_a, group_b = self.find(a), self.find(b)
+    is_merged = False
+    if group_a == group_b:
+      return is_merged
+    is_merged = True
+    if self.rank[group_a] > self.rank[group_b]:
+      self.group[group_b] = group_a
+    elif self.rank[group_a] < self.rank[group_b]:
+      self.group[group_a] = group_b
+    else:
+      self.group[group_a] = self.group[b]
+      self.rank[group_b] += 1
+    return is_merged
+  '''
+          return: true if a and b are not connected before
+            otherwise, connect a with b and then return false
+  https://leetcode.com/problems/the-earliest-moment-when-everyone-become-friends/discuss/2030678/Java-Union-Find-or-BFS-or-DFS
+  https://leetcode.com/problems/the-earliest-moment-when-everyone-become-friends/discuss/412943/python-dict-queue-union-find
+  Time: O(N+MlogM+M alpha(N))
+  Space: O(N+M) or O(N+logM)
+  '''
+
+class UnionFindProblem:
+  def earliestAcq_uf(self, logs: List[List[int]], n: int) -> int:
+    # First, we need to sort the events in chronological order.
+    logs.sort(key=lambda x: x[0])
+    uf = UnionFind(n)
+    # Initially, we treat each individual as a separate group.
+    group_cnt = n
+    # We merge the groups along the way.
+    for timestamp, friend_a, friend_b in logs:
+      if uf.union(friend_a, friend_b):
+        group_cnt -= 1
+      # The moment when all individuals are connected to each other.
+      if group_cnt == 1:
+        return timestamp
+    # There are still more than one groups left,
+    #  i.e. not everyone is connected.
+    return -1
+
+  def earliestAcq_set(self, logs: List[List[int]], N: int) -> int:
+    if not logs:  return -1
+    d = {}
+    for t, a, b in sorted(logs):
+      d[a] = set(d.get(a, set([a])) | d.get(b, set([b])))
+      for member in d[a]:
+        d[member] = d[a]
+      if len(d[a]) == N:
+        return t
+    return -1
+  def earliestAcq_bfs(self, logs: List[List[int]], n: int) -> int:
+    logs.sort()
+    queue = deque()
+    for t, a, b in logs:
+      cur = set([a, b])
+      if not queue:
+        queue.append(cur)
+      else:
+        temp = []
+        for _ in range(len(queue)):
+          prev = queue.popleft()
+          if a in prev or b in prev:
+            temp.append(prev)
+          else:
+            queue.append(prev)
+        for s in temp:
+          cur |= s
+        queue.append(cur)
+      if len(queue) == 1 and len(queue[0]) == n:
+        return t
+    return -1

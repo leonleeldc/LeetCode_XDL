@@ -1,4 +1,46 @@
 '''
+301. Remove Invalid Parentheses
+Given a string s that contains parentheses and letters, remove the minimum number of invalid parentheses to make the input string valid.
+Return a list of unique strings that are valid with the minimum number of removals. You may return the answer in any order.
+Example 1:
+Input: s = "()())()"
+Output: ["(())()","()()()"]
+Example 2:
+Input: s = "(a)())()"
+Output: ["(a())()","(a)()()"]
+Example 3:
+Input: s = ")("
+Output: [""]
+'''
+from typing import List
+from collections import deque
+class ParenthesisProblem:
+  def removeInvalidParentheses(self, s: str) -> List[str]:
+    def is_valid(s):
+      cnt = 0
+      for ch in s:
+        if ch == '(': cnt += 1
+        if ch == ')':
+          cnt -= 1
+          if cnt < 0:  ##this is the key! when cnt<0, even if there are later '(' to balance the number, the loop is done.
+            return False
+      return cnt == 0
+    res, queue, visited = [], deque([(s, 0)]), {s}
+    is_found, min_changes = False, len(s)  ##BFS
+    while queue:
+      cur_s, num_changes = queue.popleft()
+      if is_found and min_changes < num_changes: break  ##this break is kind of tricky. This means for later pop out, nums_changes should be always larger than min_num_changes
+      if is_valid(cur_s):
+        is_found = True
+        min_changes = num_changes  ##this condition is important, since we decrease from len(s) to guaranttee that we will not decreas more once a valid one is found.
+        res.append(cur_s)
+      for i, ch in enumerate(cur_s):
+        new_s = cur_s[:i] + cur_s[i + 1:]  # generate all possible strings by removing one char from curr_s
+        if new_s not in visited:
+          visited.add(new_s)  # we might create duplicate string -> s='())' we remove i=1 or i=2 and result in the same s
+          queue.append((new_s, num_changes + 1))
+    return res
+'''
 151. Reverse Words in a String
 Example 1:
 
@@ -18,6 +60,7 @@ Explanation: You need to reduce multiple spaces between two words to a single sp
 # import nltk
 # from nltk.corpus import stopwords
 # nltk.download('stopwords')
+
 class StringProblemsClass:
   def reverseWords(self, s: str) -> str:
     ss = list(s)
@@ -118,3 +161,65 @@ Output: "56088
     while beg < len(res) and res[beg] == 0: #aims at removing beginning zeros
       beg += 1
     return ''.join(map(str, res[beg:]))
+  '''
+  424. Longest Repeating Character Replacement
+  You are given a string s and an integer k. You can choose any character of the string and change it to any other uppercase English character. You can perform this operation at most k times.
+Return the length of the longest substring containing the same letter you can get after performing the above operations.
+Example 1:
+Input: s = "ABAB", k = 2
+Output: 4
+Explanation: Replace the two 'A's with two 'B's or vice versa.
+Example 2:
+Input: s = "AABABBA", k = 1
+Output: 4
+Explanation: Replace the one 'A' in the middle with 'B' and form "AABBBBA".
+The substring "BBBB" has the longest repeating letters, which is 4.
+There may exists other ways to achieve this answer too
+  '''
+  def characterReplacement(self, s: str, k: int) -> int:
+    max_len, cur = 0, 1
+    i = 1
+    for ch in s[1:]:
+      if ch == s[i - 1]:
+        cur += 1
+      else:
+        cur += k if i + k <= len(s) else len(s) - i + 1
+        max_len = max(max_len, cur)
+        cur = 1
+      i += 1
+    max_len = max(max_len, cur)
+    return max_len
+
+  '''
+  counter(s), obtain c: cnt
+  prob1:
+  k=2
+  A:2
+  B:2
+  since len(s)==4, we can make sure, the output is 4
+  prob2:
+  k=1
+  AABABBA
+  A:4
+  B:3
+  find how many ch are connected,
+  '''
+  def characterReplacement_slide_window(self, s: str, k: int) -> int:
+    max_len = 0
+    max_count = 0
+    count = {}
+
+    left = 0
+    for right in range(len(s)):
+      count[s[right]] = count.get(s[right], 0) + 1
+      max_count = max(max_count, count[s[right]])
+
+      # If the number of chars to be replaced is more than k, shrink the window
+      while right - left + 1 - max_count > k:
+        count[s[left]] -= 1
+        left += 1
+
+      # Update max_len if the current window is larger
+      max_len = max(max_len, right - left + 1)
+
+    return max_len
