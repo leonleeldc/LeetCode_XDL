@@ -9,7 +9,7 @@ frequency
 from typing import List
 from functools import cache
 class CombinationSumSeries:
-  def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+  def combinationSum_rec(self, candidates: List[int], target: int) -> List[List[int]]:
     output = []
     def backtrack(start, remain, curr):
       if remain == 0: output.append(curr[:])
@@ -20,6 +20,35 @@ class CombinationSumSeries:
         curr.pop()
     backtrack(0, target, [])
     return output
+
+  def combinationSum_iter(self, candidates: List[int], target: int) -> List[List[int]]:
+    output = []
+    stack = [(0, target, [])]  # Start with a stack with initial parameters
+    while stack:
+      start, remain, curr = stack.pop()
+      if remain == 0:
+        output.append(curr[:])
+        continue
+      if remain < 0:
+        continue
+      for i in range(start, len(candidates)):
+        # Instead of making a recursive call, add the parameters to the stack
+        stack.append((i, remain - candidates[i], curr + [candidates[i]]))
+    return output
+
+  def combinationSum(self, candidates, target):
+    # Sort candidates to help avoid duplicates
+    candidates.sort()
+    # dp table where each element is a set of tuples, each tuple is a combination that adds up to the index
+    dp = [set() for _ in range(target + 1)]
+    dp[0].add(())
+    for num in candidates:
+      for t in range(num, target + 1):
+        for prev in dp[t - num]:
+          dp[t].add(prev + (num,))
+    # Convert the sets of tuples into a list of lists
+    return [list(comb) for comb in dp[target]]
+
   '''
   40. Combination Sum II
   Given a collection of candidate numbers (candidates) and a target number (target), find all unique combinations in candidates where the candidate numbers sum to target.

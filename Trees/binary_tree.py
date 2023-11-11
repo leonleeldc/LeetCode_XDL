@@ -13,6 +13,7 @@ Explanation: From the left child of the root, we move two coins to the root [tak
 
 from typing import Optional
 import math
+from functools import cache
 
 
 class TreeNode:
@@ -21,9 +22,66 @@ class TreeNode:
     self.left = left
     self.right = right
 '''
+1530. Number of Good Leaf Nodes Pairs
+You are given the root of a binary tree and an integer distance. A pair of two different leaf nodes of a binary tree is said to be good if the length of the shortest path between them is less than or equal to distance.
+Return the number of good leaf node pairs in the tree.
+Input: root = [1,2,3,null,4], distance = 3
+Output: 1
+Explanation: The leaf nodes of the tree are 3 and 4 and the length of the shortest path between them is 3. This is the only good pair.
+
+
+Input: root = [1,2,3,4,5,6,7], distance = 3
+Output: 2
+Explanation: The good pairs are [4,5] and [6,7] with shortest path = 2. The pair [4,6] is not good because the length of ther shortest path between them is 4.
+
+Input: root = [7,1,4,6,null,5,3,null,null,null,null,null,2], distance = 3
+Output: 1
+Explanation: The only good pair is [2,5].
+'''
+
+
+class NumberGoodLeafNodesPair:
+  def countPairs_optimized(self, root: TreeNode, distance: int) -> int:
+    ans = 0
+    @cache
+    def dfs(node):
+      nonlocal ans
+      if not node: return []
+      if not node.left and not node.right: return [1]
+      pls = dfs(node.left)
+      prs = dfs(node.right)
+      for pl in pls:
+        for pr in prs:
+          if pl + pr <= distance:
+            ans += 1
+      return [item + 1 for item in pls + prs if item + 1 < distance]
+    dfs(root)
+    return ans
+
+  def countPairs_CartesianProduct(self, root, distance):
+    def dfs(node):
+      f = [0] * (distance + 1)
+      if not node: return f, 0
+      if not node.left and not node.right:
+        f[0] = 1
+        return f, 0
+      fl, pl = dfs(node.left)
+      fr, pr = dfs(node.right)
+      pairs = 0
+      for dl, cl in enumerate(fl):
+        for dr, cr in enumerate(fr):
+          if dl + dr + 2 <= distance: pairs += cl * cr  ###Cartesian product
+      for i in range(distance):
+        f[i + 1] = fl[i] + fr[i]
+      return f, pl + pr + pairs
+
+    return dfs(root)[1]
+
+
+'''
 236. Lowest Common Ancestor of a Binary Tree
 '''
-class Solution:
+class LowestCommonAncestorBinaryTree:
   def lowestCommonAncestor_iter1(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
     ###inorder method
     stack = []
@@ -93,47 +151,47 @@ class TreeConversion:
 
     cur_root = rBuildTree(sorted_list, 0, len(sorted_list) - 1)
     return cur_root
-
-  class Solution:
-
-    def makeVine(self, grand, count=0):
-      node = grand.right
-      while node:
-        if node.left:
-          old_node = node
-          node = node.left
-          old_node.left = node.right
-          node.right = old_node
-          grand.right = node
-        else:
-          count += 1
-          grand = node
-          node = node.right
-      return count
-
-    def compress(self, grand, m):
-      node = grand.right
-      while m > 1:
-        m -= 1
+  '''
+  the following is an optimized approach. We may not need to master it.
+  '''
+  def makeVine(self, grand, count=0):
+    node = grand.right
+    while node:
+      if node.left:
         old_node = node
-        node = node.right
+        node = node.left
+        old_node.left = node.right
+        node.right = old_node
         grand.right = node
-        old_node.right = node.left
-        node.left = old_node
+      else:
+        count += 1
         grand = node
         node = node.right
+    return count
 
-    def balanceBST(self, root: TreeNode) -> TreeNode:
-      grand = TreeNode()
-      grand.right = root
-      count = self.makeVine(grand)
-      height = int(math.log2(count + 1))
-      remaining_nodes = pow(2, height) - 1
-      self.compress(grand, count - remaining_nodes)
-      while remaining_nodes > 0:
-        remaining_nodes /= 2
-        self.compress(grand, remaining_nodes)
-      return grand.right
+  def compress(self, grand, m):
+    node = grand.right
+    while m > 1:
+      m -= 1
+      old_node = node
+      node = node.right
+      grand.right = node
+      old_node.right = node.left
+      node.left = old_node
+      grand = node
+      node = node.right
+
+  def balanceBST_optimized(self, root: TreeNode) -> TreeNode:
+    grand = TreeNode()
+    grand.right = root
+    count = self.makeVine(grand)
+    height = int(math.log2(count + 1))
+    remaining_nodes = pow(2, height) - 1
+    self.compress(grand, count - remaining_nodes)
+    while remaining_nodes > 0:
+      remaining_nodes /= 2
+      self.compress(grand, remaining_nodes)
+    return grand.right
 
 class DistributeCoinsInBT:
   def distributeCoins_iter(self, root: Optional[TreeNode]) -> int:
@@ -203,32 +261,35 @@ class Node(object):
   def __str__(self):
     return 'value: {0}, count: {1}'.format(self.value, self.count)
 
-def insert(root, value):
-  if not root:
-    return Node(value)
-  elif root.value == value:
-    root.count += 1
-  elif value < root.value:
-    root.left = insert(root.left, value)
-  else:
-    root.right = insert(root.right, value)
-  return root
+class Tree(object):
+  def __int__(self):
+    pass
+  def insert(self, root, value):
+    if not root:
+      return Node(value)
+    elif root.value == value:
+      root.count += 1
+    elif value < root.value:
+      root.left = self.insert(root.left, value)
+    else:
+      root.right = self.insert(root.right, value)
+    return root
 
-def create(seq):
-  root = None
-  for word in seq:
-    root = insert(root, word)
-  return root
+  def create(self, seq):
+    root = None
+    for word in seq:
+      root = self.insert(root, word)
+    return root
 
-def search(root, word, depth=1):
-  if not root:
-    return 0, 0
-  elif root.value == word:
-    return depth, root.count
-  elif word < root.value:
-    return search(root.left, word, depth + 1)
-  else:
-    return search(root.right, word, depth + 1)
+  def search(self, root, word, depth=1):
+    if not root:
+      return 0, 0
+    elif root.value == word:
+      return depth, root.count
+    elif word < root.value:
+      return self.search(root.left, word, depth + 1)
+    else:
+      return self.search(root.right, word, depth + 1)
 
 
 def print_tree(root):
@@ -237,13 +298,13 @@ def print_tree(root):
     print(root)
     print_tree(root.right)
 
-
+tree = Tree()
 src = ['foo', 'bar', 'foobar', 'bar', 'barfoo']
-tree = create(src)
+tree.create(src)
 print_tree(tree)
 
 for word in src:
-  print('search {0}, result: {1}'.format(word, search(tree, word)))
+  print('search {0}, result: {1}'.format(word, tree.search(word)))
 
 '''
 124. Binary Tree Maximum Path Sum

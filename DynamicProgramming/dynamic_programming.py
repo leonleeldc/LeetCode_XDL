@@ -1,6 +1,81 @@
 from typing import List
 from bisect import bisect_left
 '''
+1043. Partition Array for Maximum Sum
+'''
+class PartionArray4MaximumSum:
+  def maxSumAfterPartitioning_rec(self, arr: List[int], k: int) -> int:
+    @lru_cache(maxsize=None)  # memoization decorator
+    def maxSum(i: int) -> int:
+      if i <= 0: return 0
+      max_sum = 0
+      current_max = -float('inf')
+      # Explore all possible partitions of length up to k
+      for j in range(1, min(i, k) + 1):
+        current_max = max(current_max, arr[i - j])
+        # Recursively calculate the sum and update the max_sum
+        max_sum = max(max_sum, maxSum(i - j) + current_max * j)
+      return max_sum
+    # Compute the result for the entire array
+    return maxSum(len(arr))
+
+  def maxSumAfterPartitioning_dp(self, arr: List[int], k: int) -> int:
+    dp = [0] * (len(arr) + 1)
+    for i in range(1, len(arr) + 1):
+      m = -float('inf')
+      for j in range(1, min(i, k) + 1):
+        m = max(m, arr[i - j])
+        dp[i] = max(dp[i], dp[i - j] + m * j)
+    return dp[-1]
+
+'''
+10. Regular Expression Matching
+Given an input string s and a pattern p, implement regular expression matching with support for '.' and '*' where:
+
+'.' Matches any single character.
+'*' Matches zero or more of the preceding element.
+The matching should cover the entire input string (not partial).
+
+Example 1:
+
+Input: s = "aa", p = "a"
+Output: false
+Explanation: "a" does not match the entire string "aa".
+Example 2:
+
+Input: s = "aa", p = "a*"
+Output: true
+Explanation: '*' means zero or more of the preceding element, 'a'. Therefore, by repeating 'a' once, it becomes "aa".
+Example 3:
+
+Input: s = "ab", p = ".*"
+Output: true
+Explanation: ".*" means "zero or more (*) of any character (.)".
+'''
+class RegularExpressionMatching:
+  def isMatch(self, s: str, p: str) -> bool:
+    dp = [[False] * (len(p) + 1) for _ in range(len(s) + 1)]
+    # Base case: empty string and empty pattern are a match
+    dp[0][0] = True
+    # Base case: pattern with * can match an empty string
+    for j in range(2, len(p) + 1):
+      if p[j - 1] == '*': dp[0][j] = dp[0][j - 2]
+    # Fill the dp table
+    for i in range(1, len(s) + 1):
+      for j in range(1, len(p) + 1):
+        # If characters match or pattern has '.', it's a potential match
+        if p[j - 1] == s[i - 1] or p[j - 1] == '.':
+          dp[i][j] = dp[i - 1][j - 1]
+        # If pattern has '*', there are two cases
+        elif p[j - 1] == '*':
+          # Case 1: '*' acts as zero occurrence of the preceding element
+          dp[i][j] = dp[i][j - 2]
+          # Case 2: '*' acts as one or more occurrence of the preceding element
+          if j > 1 and (s[i - 1] == p[j - 2] or p[j - 2] == '.'):
+            dp[i][j] = dp[i][j] or dp[i - 1][j]
+    return dp[-1][-1]
+
+'''
 322. Coin Change
 You are given an integer array coins representing coins of different denominations and an integer amount representing a total amount of money.
 Return the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1.

@@ -1,4 +1,27 @@
 '''
+Given boolean array of days at work, [T, F, T, T, F, F, F, T] and pto (number of PTOs one can take) - where boolean T means paid holiday and F means you can take a PTO. Find the maximum length of vacation an employee can take.
+int findMaxVacationLength(year = [F, T, F, T, F, T, F, ], pto = 2) should return 5 because if we take PTO on indices year[2] and year[4], then we can get the maximum length vacation (consecutive T's). May you help write a python script?
+'''
+def findMaxVacationLength(year, pto):
+  max_vacation = 0
+  pto_used = 0
+  window_start = 0
+
+  for window_end in range(len(year)):
+    # If it's a working day, use a PTO (if available)
+    if not year[window_end]:
+      pto_used += 1
+
+    # If we've used more than the available PTOs, move the window start forward
+    while pto_used > pto:
+      if not year[window_start]:
+        pto_used -= 1
+      window_start += 1
+
+    # Update the maximum vacation length
+    max_vacation = max(max_vacation, window_end - window_start + 1)
+  return max_vacation
+'''
 301. Remove Invalid Parentheses
 Given a string s that contains parentheses and letters, remove the minimum number of invalid parentheses to make the input string valid.
 Return a list of unique strings that are valid with the minimum number of removals. You may return the answer in any order.
