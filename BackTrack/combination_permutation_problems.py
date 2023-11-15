@@ -219,3 +219,43 @@ Space: O(T)
         count += backtrack(remaining - num)
       return count
     return backtrack(target)
+
+  '''
+  90. Subsets II
+  Given an integer array nums that may contain duplicates, return all possible 
+  subsets (the power set).
+  The solution set must not contain duplicate subsets. Return the solution in any order.
+  '''
+  def subsetsWithDup_dfs(self, nums):
+    res = []
+    def dfs(start, path):
+      res.append(path)
+      for i in range(start, len(nums)):
+        if i>start and nums[i]==nums[i-1]: continue
+        dfs(i+1, path+[nums[i]])
+    dfs(0, [])
+    return res
+
+  def subsetsWithDup_backtrack(self, nums: List[int]) -> List[List[int]]:
+    n, output = len(nums), []
+    def backtrack(start, k, curr):
+      if len(curr) == k and sorted(curr) not in output:
+        output.append(sorted(curr[:]))
+      for i in range(start, n):
+        curr.append(nums[i])
+        backtrack(i + 1, k, curr)
+        curr.pop()
+    for k in range(n + 1):
+      backtrack(0, k, [])
+    return output
+  def subsetsWithDup_iter(self, nums: List[int]) -> List[List[int]]:
+      nums.sort()
+      subsetsize, subsets = 0, [[]]
+      for i in range(len(nums)):
+          start = subsetsize if i>=1 and nums[i]==nums[i-1] else 0
+          subsetsize = len(subsets)
+          for j in range(start, subsetsize):
+              cur_sub = subsets[j][:]
+              cur_sub.append(nums[i])
+              subsets.append(cur_sub)
+      return subsets

@@ -1,8 +1,10 @@
-from DynamicProgramming.dynamic_programming import CoinChange
-cc = CoinChange()
-coins = [1,2,5]
-amount = 11
-print(cc.coinChange(coins, amount))
+from math_related import count_trailing_zeros
+print(count_trailing_zeros(100))
+# from DynamicProgramming.dynamic_programming import CoinChange
+# cc = CoinChange()
+# coins = [1,2,5]
+# amount = 11
+# print(cc.coinChange(coins, amount))
 # from GraphProblems.valid_graph import UnionFind, GraphValidTree
 # n = 5
 # edges = [[0,1],[1,2],[2,3],[1,3],[1,4]]

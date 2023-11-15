@@ -14,6 +14,16 @@ Input: nums = [1,2]
 Output: [1,2]
 '''
 from typing import List
+
+
+def count_trailing_zeros(n):
+  count = 0
+  i = 5
+  while (n // i) > 0:
+    count += n // i
+    i *= 5
+  return count
+
 class MajorityElement:
   '''
   Boyer-Moore Voting Algorithm
