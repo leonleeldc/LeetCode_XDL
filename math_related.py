@@ -15,6 +15,51 @@ Output: [1,2]
 '''
 from typing import List
 
+'''
+334. Increasing Triplet Subsequence
+Given an integer array nums, return true if there exists a triple of indices (i, j, k) such that i < j < k and nums[i] < nums[j] < nums[k]. If no such indices exists, return false.
+
+ 
+
+Example 1:
+
+Input: nums = [1,2,3,4,5]
+Output: true
+Explanation: Any triplet where i < j < k is valid.
+Example 2:
+
+Input: nums = [5,4,3,2,1]
+Output: false
+Explanation: No triplet exists.
+Example 3:
+
+Input: nums = [2,1,5,0,4,6]
+Output: true
+Explanation: The triplet (3, 4, 5) is valid because nums[3] == 0 < nums[4] == 4 < nums[5] == 6.
+
+'''
+class IncreasingTripletSubsequence:
+  def increasingTriplet(self, nums: List[int]) -> bool:
+    '''
+    [1, 90, 2, 1, 0, 2, 3]
+    looks quite simliar to longest subsequence
+    1 < first, first = 1
+    90<second, second =90
+    2 < second, second = 2
+    1 == first, first=1
+    0 < first, first =0
+    2 ==second, second = 2
+    3 is in else, return True
+    '''
+    first = second = float('inf')
+    for n in nums:
+      if n <= first:
+        first = n
+      elif n <= second:
+        second = n
+      else:
+        return True
+    return False
 
 def count_trailing_zeros(n):
   count = 0
@@ -23,6 +68,24 @@ def count_trailing_zeros(n):
     count += n // i
     i *= 5
   return count
+
+def find_pythagorean_triplets(arr):
+  squared_arr = [x ** 2 for x in arr]
+  squared_arr.sort()
+  n = len(squared_arr)
+  for i in range(n - 1, 1, -1):
+    c = squared_arr[i]
+    left = 0
+    right = i - 1
+    while left < right:
+      if squared_arr[left] + squared_arr[right] == c:
+        return True
+      elif squared_arr[left] + squared_arr[right] < c:
+        left += 1
+      else:
+        right -= 1
+  return False
+
 
 class MajorityElement:
   '''

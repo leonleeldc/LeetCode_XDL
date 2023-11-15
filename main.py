@@ -1,5 +1,10 @@
-from math_related import count_trailing_zeros
+from math_related import count_trailing_zeros, find_pythagorean_triplets
 print(count_trailing_zeros(100))
+# Example usage
+arr = [3, 1, 4, 6, 5]
+print(find_pythagorean_triplets(arr))  # Should return True for this example
+
+
 # from DynamicProgramming.dynamic_programming import CoinChange
 # cc = CoinChange()
 # coins = [1,2,5]
