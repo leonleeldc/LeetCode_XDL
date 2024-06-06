@@ -1,4 +1,34 @@
 '''
+207. Course Schedule
+There are a total of numCourses courses you have to take,
+labeled from 0 to numCourses - 1. You are given an array
+prerequisites where prerequisites[i] = [ai, bi]
+indicates that you must take course bi first if you want to take course ai.
+
+For example, the pair [0, 1], indicates that to take course 0 you have to first take course 1.
+Return true if you can finish all courses. Otherwise, return false.
+'''
+from typing import List
+class CourseSchedule:
+  def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+    g = [0] * numCourses
+    e = [[] for _ in range(numCourses)]
+    for u, v in prerequisites:
+      g[u] += 1
+      e[v].append(u)
+
+    stack = [idx for idx, u in enumerate(g) if u == 0]
+
+    while stack:
+      idx = stack.pop()
+      e_u = e[idx]
+      for u in e_u:
+        g[u] -= 1
+        if g[u] == 0:
+          stack.append(u)
+    return not any(g)
+
+'''
 269. Alien Dictionary https://leetcode.com/problems/alien-dictionary/description/
 Example 1:
 
@@ -62,8 +92,6 @@ class TopologicalSorting:
       else:
         if len(w1) > len(w2):
           return ''
-    res, word_leave = [], {}
-
     # Step 2: BFS
     queue = deque([c for c, count in in_degree.items() if count == 0])
     output = []

@@ -6,6 +6,15 @@ Return the maximum amount of water a container can store.
 '''
 from typing import List
 class TwoPointersRelated:
+  def detect_stack_op(self, push_list, pop_list) -> bool:
+    stack = []
+    idx = 0
+    for i in range(len(push_list)):
+      stack.append(push_list[i])
+      while stack and pop_list[idx] == stack[-1]:
+        stack.pop()
+        idx += 1
+    return True if not stack else False
   def maxAreaLR(self, height: List[int]) -> int:
     max_area, left, right = 0, 0, len(height) - 1
     while left < right:

@@ -1,3 +1,50 @@
+
+'''
+There are 5 coins on the table.
+two coins each worth 100 cents,
+two coins each worth 50 cents,
+and one coin worths 5 cents.
+How many different total
+values of coins can be made with these coins?
+'''
+def combine_coins():
+  # Given coins
+  coins = [100, 100, 50, 50, 5]
+  # Function to calculate all possible sums using the given coins
+  def possible_sums(coins):
+    # Starting with a set containing only 0 (no coins used)
+    sums = {0}
+    for coin in coins:
+      # Add new sums for each coin added to each of the existing sums
+      sums.update({current_sum + coin for current_sum in sums})
+    return sums
+  # Calculate the possible sums and sort them
+  possible_values = sorted(possible_sums(coins))
+  # Count of the different sums possible
+  count_possible_values = len(possible_values)
+  return count_possible_values, possible_values
+
+def math_approch():
+  from itertools import combinations
+  # We define the unique values of the coins including duplicates for 100 and 50 cents
+  unique_coin_values = [100, 100, 50, 50, 5]
+  # To store all unique sums
+  unique_sums = set()
+  unique_sums_by_comb = [] # get unique for each combination
+  sums_by_comb = []  # get unique for each combination
+  # We generate all possible combinations of coins, from choosing none to choosing all
+  for i in range(len(unique_coin_values) + 1):
+    each_set = set()
+    each_list = []
+    for combination in combinations(unique_coin_values, i):
+      unique_sums.add(sum(combination))
+      each_set.add(combination)
+      each_list.append(combination)
+    unique_sums_by_comb.append(each_set)
+    sums_by_comb.append(each_list)
+  return unique_sums, unique_sums_by_comb
+
+
 '''
 229. Majority Element II
 Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times.
@@ -14,6 +61,8 @@ Input: nums = [1,2]
 Output: [1,2]
 '''
 from typing import List
+from collections import deque
+import math
 
 '''
 334. Increasing Triplet Subsequence
@@ -426,8 +475,40 @@ You may return the answer in any order. The answer is guaranteed to be unique (e
 
 
   '''
-from typing import List
-import math
+
+class Solution:
+  def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+    """
+    :type points: List[List[int]]
+    :type k: int
+    :rtype: List[List[int]]
+    """
+    '''
+    Using minHeap we could do O(k logN) runtime
+    '''
+    minHeap = []
+    for x, y in points:
+      dist = math.sqrt(x ** 2 + y ** 2)  # using Eucledian distance
+      minHeap.append([dist, x, y])
+    heapq.heapify(minHeap)  # array to tree-based data structure ~O(n)
+
+    output = []
+    for i in range(k):  # O(k)
+      dist, x, y = heapq.heappop(minHeap)  # O(log n)
+      output.append([x, y])
+    return output
+  def kClosest_faster(self, points: List[List[int]], k: int) -> List[List[int]]:
+      '''
+      Using minHeap we could do O(k logN) runtime
+      '''
+      dists = [(-(x * x + y * y), x, y) for x, y in points]
+      min_heap = []
+      for dist in dists:
+          heapq.heappush(min_heap, dist)
+          if len(min_heap) > k:
+              heapq.heappop(min_heap)
+      return [[x, y] for _, x, y in min_heap]
+
 '''
 346. Moving Average from Data Stream
 Given a stream of integers and a window size, calculate the moving average of all integers in the sliding window.
@@ -453,7 +534,7 @@ movingAverage.next(10); // return 5.5 = (1 + 10) / 2
 movingAverage.next(3); // return 4.66667 = (1 + 10 + 3) / 3
 movingAverage.next(5); // return 6.0 = (10 + 3 + 5) / 3
 '''
-from collections import deque
+
 class MovingAverage:
     def __init__(self, size: int):
         self.size = size

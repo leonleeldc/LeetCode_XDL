@@ -1,7 +1,129 @@
 from typing import List
-from collections import deque
+from collections import deque, defaultdict
 from itertools import product
 import heapq
+
+'''
+2973. Find Number of Coins to Place in Tree Nodes
+You are given an undirected tree with n nodes labeled from 0 to n - 1, and rooted at node 0. You are given a 2D integer array edges of length n - 1, where edges[i] = [ai, bi] indicates that there is an edge between nodes ai and bi in the tree.
+You are also given a 0-indexed integer array cost of length n, where cost[i] is the cost assigned to the ith node.
+You need to place some coins on every node of the tree. The number of coins to be placed at node i can be calculated as:
+If size of the subtree of node i is less than 3, place 1 coin.
+Otherwise, place an amount of coins equal to the maximum product of cost values assigned to 3 distinct nodes in the subtree of node i. If this product is negative, place 0 coins.
+Return an array coin of size n such that coin[i] is the number of coins placed at node i.
+'''
+
+
+class NumCoinsPlacingInTreeNode:
+  def placedCoins(self, edges: List[List[int]], cost: List[int]) -> List[int]:
+    # build gr
+    gr = defaultdict(list)
+    for s, e in edges:
+      gr[s].append(e)
+      gr[e].append(s)
+
+    res = [1] * len(cost)
+    self.dfs(gr, 0, cost, None, res)
+    return res
+
+  def dfs(self, gr, node, cost, prev, res):
+    cost_level = [cost[node]]
+    for nei in gr[node]:
+      if nei == prev: continue
+      cost_level.extend(self.dfs(gr, nei, cost, node, res))
+
+    cost_level.sort()
+    size = len(cost_level)
+    if size >= 3:
+      ##note, we need to take both sides since there are negative numbers
+      left = cost_level[0] * cost_level[1]
+      right = cost_level[-3] * cost_level[-2]
+      res[node] = max(0, cost_level[-1] * max(left, right))
+    if size <= 5:
+      return cost_level
+    return [cost_level[0], cost_level[1], cost_level[-3], cost_level[-2], cost_level[-1]]
+
+  def placedCoinsBFS(self, edges: List[List[int]], cost: List[int]) -> List[int]:
+    # Build the graph
+    gr = defaultdict(list)
+    for s, e in edges:
+      gr[s].append(e)
+      gr[e].append(s)
+
+    res = [1] * len(cost)
+    subtree_costs = defaultdict(list)
+    parent = [-1] * len(cost)
+
+    # Initialize BFS
+    queue = deque([0])
+    order = []
+    # order = [i for i in range(len(cost))]  this is wrong!!!
+
+    while queue:
+      node = queue.popleft()
+      order.append(node)
+      for nei in gr[node]:
+        if nei != parent[node]:
+          parent[nei] = node
+          queue.append(nei)
+
+    # Process nodes in reverse BFS order (from leaves to root)
+    while order:
+      node = order.pop()
+      cost_level = [cost[node]]
+      for nei in gr[node]:
+        if nei != parent[node]:
+          cost_level.extend(subtree_costs[nei])
+
+      cost_level.sort()
+      size = len(cost_level)
+      if size >= 3:
+        left = cost_level[0] * cost_level[1]
+        right = cost_level[-3] * cost_level[-2]
+        res[node] = max(0, cost_level[-1] * max(left, right))
+      if size <= 5:
+        subtree_costs[node] = cost_level
+      else:
+        subtree_costs[node] = [cost_level[0], cost_level[1], cost_level[-3], cost_level[-2], cost_level[-1]]
+    return res
+
+class GraphNode:
+  def __init__(self, val=0, neighbors=[]):
+    self.val = val
+    self.neighbors = neighbors
+
+
+def cloneGraph(node):
+  old_to_new = {}  # A dictionary to map original nodes to their clones
+
+  def dfs(node):
+    # If the node is already cloned, return the clone
+    if node in old_to_new:
+      return old_to_new[node]
+
+    # Clone the node and store it in the map
+    clone = GraphNode(node.val)
+    old_to_new[node] = clone
+
+    # Iterate through the neighbors to clone them as well
+    for neighbor in node.neighbors:
+      clone.neighbors.append(dfs(neighbor))
+
+    return clone
+
+  # If the graph is empty, return None
+  if not node:
+    return None
+
+  # Start the DFS cloning process
+  return dfs(node)
+
+
+# Example usage:
+# Assuming a graph has been created with connections between nodes
+# You would call the function like this
+# cloned_graph = cloneGraph(original_graph_node)
+
 '''
 Problem Description:
 Given a 2D array, we start from the top-left corner and move towards the bottom-right corner. We can move up, down, left, or right. 

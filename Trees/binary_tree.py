@@ -1,3 +1,152 @@
+from typing import Optional, List
+import math
+from functools import cache
+class TreeNode:
+  def __init__(self, val=0, left=None, right=None):
+    self.val = val
+    self.left = left
+    self.right = right
+
+def create_binary_tree(nodes, index=0):
+  if index < len(nodes):
+    if nodes[index] is None:
+      return None
+    root = TreeNode(nodes[index])
+    root.left = create_binary_tree(nodes, 2 * index + 1)
+    root.right = create_binary_tree(nodes, 2 * index + 2)
+    return root
+  return None
+'''
+2458. Height of Binary Tree After Subtree Removal Queries
+You are given the root of a binary tree with n nodes. Each node is assigned a unique value from 1 to n. You are also given an array queries of size m.
+You have to perform m independent queries on the tree where in the ith query you do the following:
+Remove the subtree rooted at the node with the value queries[i] from the tree. It is guaranteed that queries[i] will not be equal to the value of the root.
+Return an array answer of size m where answer[i] is the height of the tree after performing the ith query.
+Note:
+The queries are independent, so the tree returns to its initial state after each query.
+The height of a tree is the number of edges in the longest simple path from the root to some node in the tree.
+'''
+class HightAfterSubRem:
+  def treeQueries(self, root: Optional[TreeNode], queries: List[int]) -> List[int]:
+    height = {}
+    def dfs(node: Optional[TreeNode]) -> int:
+      if not node: return -1
+      h = max(dfs(node.left), dfs(node.right)) + 1
+      height[node.val] = h
+      return h
+    dfs(root)
+    total_height = height[root.val]
+    node = root
+    current = 0
+    new_height = {}
+    '''
+    above while loop understanding:
+    The goal is to compute the new height of the tree if the subtree 
+    rooted at each node in queries is removed. This is achieved using 
+    a while loop that updates the new_height dictionary 
+    with the new heights after potential removals.
+    This is a really smart implementations.
+    '''
+    while node:
+      new_height[node.val] = current
+      if node.left and height[node.left.val] + 1 == height[node.val]:
+        rightH = height[node.right.val] + 1 if node.right else 0
+        if rightH + total_height - height[node.val] > current:
+          current = rightH + total_height - height[node.val]
+        node = node.left
+      else:
+        leftH = height[node.left.val] + 1 if node.left else 0
+        if leftH + total_height - height[node.val] > current:
+          current = leftH + total_height - height[node.val]
+        node = node.right
+    return [new_height.get(node, total_height) for node in queries]
+
+'''
+666. Path Sum IV
+If the depth of a tree is smaller than 5, then this tree can be represented by an array of three-digit integers. For each integer in this array:
+The hundreds digit represents the depth d of this node where 1 <= d <= 4.
+The tens digit represents the position p of this node in the level it belongs to where 1 <= p <= 8. The position is the same as that in a full binary tree.
+The units digit represents the value v of this node where 0 <= v <= 9.
+Given an array of ascending three-digit integers nums representing a binary tree with a depth smaller than 5, return the sum of all paths from the root towards the leaves.
+It is guaranteed that the given array represents a valid connected binary tree.
+Example 1
+Input: nums = [113,215,221]
+Output: 12
+Explanation: The tree that the list represents is shown.
+The path sum is (3 + 5) + (3 + 1) = 12.
+Example 2
+Input: nums = [113,221]
+Output: 4
+Explanation: The tree that the list represents is shown. 
+The path sum is (3 + 1) = 4.
+'''
+class PathSumIV:
+  def pathSum(self, nums: List[int]) -> int:
+    def getNodeInfo(num):
+      return num//100, (num%100)//10, num%10
+    def findChildIndex(node_index, child_position):
+      depth, _, _ = getNodeInfo(nums[node_index])
+      next_depth = depth + 1
+      for i in range(node_index + 1, len(nums)):
+        d, p, _ = getNodeInfo(nums[i])
+        if d == next_depth and p == child_position:
+          return i
+      return -1
+    def dfs(node_index, current_sum):
+      if node_index == -1: return 0
+      _, pos, value = getNodeInfo(nums[node_index])
+      # Calculate positions of left and right children in a full binary tree
+      left_child_pos, right_child_pos = 2 * pos - 1, 2*pos
+      left_child_index = findChildIndex(node_index, left_child_pos)
+      right_child_index = findChildIndex(node_index, right_child_pos)
+      if left_child_index == -1 and right_child_index == -1:
+        return current_sum + value
+      return dfs(left_child_index, current_sum + value) + dfs(right_child_index, current_sum + value)
+    return dfs(0, 0)
+
+'''
+1104. Path In Zigzag Labelled Binary Tree
+In an infinite binary tree where every node has two children, the nodes are labelled in row order.
+In the odd numbered rows (ie., the first, third, fifth,...), the labelling is left to right, while in the even numbered rows (second, fourth, sixth,...), the labelling is right to left.
+Given the label of a node in this tree, return the labels in the path from the root of the tree to the node with that label.
+Example 1:
+Input: label = 14
+Output: [1,3,4,14]
+Example 2:
+Input: label = 26
+Output: [1,2,6,10,26]
+'''
+class PathZigzagLabelledBinaryTree:
+  def pathInZigZagTree(self, label: int) -> List[int]:
+    depth = 0
+    node = label
+    # Calculate the depth of the node
+    while node:
+      node >>= 1
+      depth += 1
+
+    path = []
+    while label:
+      path.append(label)
+      max_num = 2 ** depth - 1  # Max number at the current depth
+      min_num = 2 ** (depth - 1)  # Min number at the current depth
+      label = (max_num + min_num - label) // 2  # Flip the label and move to parent
+      depth -= 1
+    return path[::-1]  # Reverse the path to get from root to the node
+  '''
+  label = 14
+  path = [14]
+  depth = 4
+  label = (2**4-1+2**3-14)//2 = 4
+  path = [14, 4]
+  depth = 3
+  label = (2**3-1+2**2-4)//2 =3
+  path = [14, 4, 3]
+  depth = 2
+  label = (2**2-1+2**1-3)//2=1
+  path = [14, 4, 3, 1]
+  '''
+
 '''
 979. Distribute Coins in Binary Tree
 You are given the root of a binary tree with n nodes where each node in the tree has node.val coins. There are n coins in total throughout the whole tree.
@@ -11,16 +160,79 @@ Output: 3
 Explanation: From the left child of the root, we move two coins to the root [taking two moves]. Then, we move one coin from the root of the tree to the right child.
 '''
 
-from typing import Optional
-import math
-from functools import cache
 
 
-class TreeNode:
-  def __init__(self, val=0, left=None, right=None):
-    self.val = val
-    self.left = left
-    self.right = right
+'''
+513. Find Bottom Left Tree Value
+Given the root of a binary tree, return the leftmost value in the last row of the tree.
+Input: root = [1,2,3,4,null,5,6,null,null,7]
+Output: 7
+Input: root = [2,1,3]
+Output: 1
+'''
+class FindBottomLeftTreeValue:
+  def findBottomLeftValue_iter(self, root: TreeNode) -> int:
+    if not root: return 0
+    queue = deque([root])
+    leftmost = 0
+    while queue:
+      level_length = len(queue)
+      for i in range(level_length):
+        node = queue.popleft()
+        if i == 0:
+          leftmost = node.val  # Record the first node's value of each level
+        if node.left:
+          queue.append(node.left)
+        if node.right:
+          queue.append(node.right)
+    return leftmost
+  def findBottomLeftValue_dfs(self, root: TreeNode) -> int:
+      def dfs(node, depth):
+          nonlocal max_depth, leftmost
+          if not node: return
+          # Check if we've reached a new depth
+          if depth > max_depth:
+              max_depth = depth
+              leftmost = node.val
+          dfs(node.left, depth + 1)
+          dfs(node.right, depth + 1)
+      max_depth = 0
+      leftmost = root.val
+      dfs(root, 1)
+      return leftmost
+
+'''
+404. Sum of Left Leaves
+Given the root of a binary tree, return the sum of all left leaves.
+A leaf is a node with no children. A left leaf is a leaf that is the left child of another node.
+Example 1:
+Input: root = [3,9,20,null,null,15,7]
+Output: 24
+Explanation: There are two left leaves in the binary tree, with values 9 and 15 respectively.
+Example 2:
+Input: root = [1]
+Output: 0
+'''
+class SumLeftLeaves:
+  def sumOfLeftLeaves(self, root: TreeNode) -> int:
+    if not root: return 0
+    sum_left = 0
+    def dfs(node):
+      nonlocal sum_left
+      if node.left:
+        # Check if left node is a leaf
+        if not node.left.left and not node.left.right:
+          sum_left += node.left.val
+        else:
+          dfs(node.left)
+      if node.right:
+        dfs(node.right)
+    dfs(root)
+    return sum_left
+
+
+
+
 '''
 1530. Number of Good Leaf Nodes Pairs
 You are given the root of a binary tree and an integer distance. A pair of two different leaf nodes of a binary tree is said to be good if the length of the shortest path between them is less than or equal to distance.
@@ -38,8 +250,6 @@ Input: root = [7,1,4,6,null,5,3,null,null,null,null,null,2], distance = 3
 Output: 1
 Explanation: The only good pair is [2,5].
 '''
-
-
 class NumberGoodLeafNodesPair:
   def countPairs_optimized(self, root: TreeNode, distance: int) -> int:
     ans = 0
@@ -292,19 +502,19 @@ class Tree(object):
       return self.search(root.right, word, depth + 1)
 
 
-def print_tree(root):
-  if root:
-    print_tree(root.left)
-    print(root)
-    print_tree(root.right)
+# def print_tree(root):
+#   if root:
+#     print_tree(root.left)
+#     print(root)
+#     print_tree(root.right)
 
-tree = Tree()
-src = ['foo', 'bar', 'foobar', 'bar', 'barfoo']
-tree.create(src)
-print_tree(tree)
+# tree = Tree()
+# src = ['foo', 'bar', 'foobar', 'bar', 'barfoo']
+# tree.create(src)
+# print_tree(tree)
 
-for word in src:
-  print('search {0}, result: {1}'.format(word, tree.search(word)))
+# for word in src:
+#   print('search {0}, result: {1}'.format(word, tree.search(word)))
 
 '''
 124. Binary Tree Maximum Path Sum

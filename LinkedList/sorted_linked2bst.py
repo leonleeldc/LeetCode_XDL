@@ -14,6 +14,43 @@ class TreeNode:
         self.left = left
         self.right = right
 
+'''
+25. Reverse Nodes in k-Group
+Hard
+Given the head of a linked list, reverse the nodes of the list k at a time, and return the modified list.
+k is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of k then left-out nodes, in the end, should remain as it is.
+You may not alter the values in the list's nodes, only nodes themselves may be changed.
+'''
+class Solution:
+  def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+    def reverse(node, k):
+      prev, i = None, 0
+      while node and k > 0:
+        next_node = node.next
+        node.next = prev
+        prev = node
+        node = next_node
+        k -= 1
+      return prev, node
+
+    dummy = ListNode(0)
+    temp1 = head
+    dum = dummy
+    while temp1:
+      temp2 = temp1
+      i = 0
+      while i < k and temp2:
+        temp2 = temp2.next
+        i += 1
+      if i == k:
+        dummy.next, temp1 = reverse(temp1, k)
+        while dummy.next:
+          dummy = dummy.next
+      else:
+        dummy.next = temp1
+        break
+    return dum.next
+
 class SortedList2BST:
   def sortedListToBST_stack(self, head: ListNode) -> TreeNode:
     if not head: return None

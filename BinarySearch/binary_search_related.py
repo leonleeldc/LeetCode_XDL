@@ -1,4 +1,39 @@
 '''
+74. Search a 2D Matrix
+Solved
+Medium
+Topics
+Companies
+You are given an m x n integer matrix matrix with the following two properties:
+
+Each row is sorted in non-decreasing order.
+The first integer of each row is greater than the last integer of the previous row.
+Given an integer target, return true if target is in matrix or false otherwise.
+
+You must write a solution in O(log(m * n)) time complexity.
+'''
+from typing import List
+class Searc2DhMat:
+  def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+    up, down = 0, len(matrix) - 1
+    while up < down:
+      mid = (up + down) // 2
+      if matrix[mid][0] < target:
+        up = mid + 1
+      else:
+        down = mid - 1
+    l, r = 0, len(matrix[0]) - 1
+    while l <= r:
+      mid = (l + r) // 2
+      if matrix[up][mid] < target:
+        l = mid + 1
+      else:
+        r = mid - 1
+    print(f'up=={up} and l={l}')
+    print(f'matrix[up][l]={matrix[up][l]}')
+    return True if matrix[up][l] == target else False
+
+'''
 https://www.youtube.com/watch?v=J-IQxfYRTto, good explanation given by huahua leetcode
 278. First Bad Version
 '''

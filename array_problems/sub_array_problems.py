@@ -1,3 +1,120 @@
+from typing import List
+'''
+260. Single Number III
+Given an integer array nums, in which exactly two elements appear only once and all the other elements appear exactly twice. Find the two elements that appear only once. You can return the answer in any order.
+You must write an algorithm that runs in linear runtime complexity and uses only constant extra space.
+Example 1:
+
+Input: nums = [1,2,1,3,2,5]
+Output: [3,5]
+Explanation:  [5, 3] is also a valid answer.
+Example 2:
+
+Input: nums = [-1,0]
+Output: [-1,0]
+Example 3:
+
+Input: nums = [0,1]
+Output: [1,0]
+'''
+class SingleNumberIII:
+  def singleNumber(self, nums: List[int]) -> List[int]:
+    xor = 0
+    for num in nums:
+      xor ^= num
+    # Find rightmost set bit in xor
+    rightmost_set_bit = xor & (-xor)
+
+    # Partition the numbers into two groups and XOR within each group
+    num1, num2 = 0, 0
+    for num in nums:
+      if num & rightmost_set_bit:
+        num1 ^= num
+      else:
+        num2 ^= num
+
+    return [num1, num2]
+'''
+137. Single Number II
+Given an integer array nums where every element appears three times except for one, which appears exactly once. Find the single element and return it.
+You must implement a solution with a linear runtime complexity and use only constant extra space.
+Example 1:
+Input: nums = [2,2,3,2]
+Output: 3
+Example 2:
+Input: nums = [0,1,0,1,0,1,99]
+Output: 99
+'''
+class SingleNumberII:
+  def singleNumber(self, nums):
+    result = 0
+    for i in range(32):  # Iterate over each bit position
+      bit_sum = 0
+      for num in nums:
+        bit_sum += (num >> i) & 1  # Count the number of '1's in this bit position
+      bit_sum %= 3  # Modulo 3, as each bit in other numbers appears 3 times
+      # Set the bit in 'result' if this bit is set in the single number
+      if bit_sum:
+        # Handle negative numbers
+        if i == 31:
+          result -= (1 << i)
+        else:
+          result |= (1 << i)
+    return result
+'''
+136. Single Number
+Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+You must implement a solution with a linear runtime complexity and use only constant extra space.
+Example 1:
+Input: nums = [2,2,1]
+Output: 1
+Example 2:
+Input: nums = [4,1,2,1,2]
+Output: 4
+Example 3:
+Input: nums = [1]
+Output: 1
+'''
+class SingleNumber:
+  def singleNumber(self, nums: List[int]) -> int:
+    result = 0
+    for i in range(len(nums)):
+      result ^= nums[i]
+    return result
+'''
+930. Binary Subarrays With Sum
+Given a binary array nums and an integer goal, return the number of non-empty subarrays with a sum goal.
+A subarray is a contiguous part of the array.
+
+Example 1:
+
+Input: nums = [1,0,1,0,1], goal = 2
+Output: 4
+Explanation: The 4 subarrays are bolded and underlined below:
+[1,0,1,0,1]
+[1,0,1,0,1]
+[1,0,1,0,1]
+[1,0,1,0,1]
+Example 2:
+
+Input: nums = [0,0,0,0,0], goal = 0
+Output: 15
+'''
+class BinarySubarraysWithSum:
+  def numSubarraysWithSum(self, nums, goal):
+    count = 0
+    running_sum = 0
+    sum_counts = {0: 1}  # Initialize with 0 sum having one count
+
+    for num in nums:
+      running_sum += num
+      if running_sum - goal in sum_counts:
+        count += sum_counts[running_sum - goal]
+      sum_counts[running_sum] = sum_counts.get(running_sum, 0) + 1
+
+    return count
+
+
 '''
 1749. Maximum Absolute Sum of Any Subarray
 You are given an integer array nums. The absolute sum of a subarray [numsl, numsl+1, ..., numsr-1, numsr] is abs(numsl + numsl+1 + ... + numsr-1 + numsr).
@@ -6,7 +123,6 @@ Note that abs(x) is defined as follows:
 If x is a negative integer, then abs(x) = -x.
 If x is a non-negative integer, then abs(x) = x.
 '''
-from typing import List
 '''
 1570. Dot Product of Two Sparse Vectors
 Given two sparse vectors, compute their dot product.

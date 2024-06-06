@@ -1,10 +1,53 @@
+from typing import List
+'''
+2552. Count Increasing Quadruplets
+Given a 0-indexed integer array nums of size n containing all numbers from 1 to n, 
+return the number of increasing quadruplets.
+A quadruplet (i, j, k, l) is increasing if:
+0 <= i < j < k < l < n, and
+nums[i] < nums[k] < nums[j] < nums[l].
+Example 1:
+Input: nums = [1,3,2,4,5]
+Output: 2
+Explanation:
+- When i = 0, j = 1, k = 2, and l = 3, nums[i] < nums[k] < nums[j] < nums[l].
+- When i = 0, j = 1, k = 2, and l = 4, nums[i] < nums[k] < nums[j] < nums[l].
+There are no other quadruplets, so we return 2.
+Example 2:
+Input: nums = [1,2,3,4]
+Output: 0
+Explanation: There exists only one quadruplet with i = 0, j = 1, k = 2, l = 3, but since nums[j] < nums[k], we return 0.
+Constraints:
+4 <= nums.length <= 4000
+1 <= nums[i] <= nums.length
+All the integers of nums are unique. nums is a permutation.
+'''
+class CountIncreasingQuadruplets:
+  '''
+  Now, I understand the logic. Since according to the constraints, the length of nums larger than 4, there must be quadruplets in nums.
+  Then, as long as we find cases where nums[i] < nums[j], we can add them to the cnt array.
+  '''
+  def countQuadruplets(self, nums: List[int]) -> int:
+    cnt = [0] * len(nums)
+    res = 0
+    for i in range(len(nums)):
+      prev_small = 0
+      for j in range(i):
+        if nums[i] > nums[j]:
+          prev_small += 1
+          res += cnt[j]
+        elif nums[i] < nums[j]:
+          cnt[j] += prev_small
+    return res
+
+
 '''
 1. Two Sum
 Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 You may assume that each input would have exactly one solution, and you may not use the same element twice.
 You can return the answer in any order.
 '''
-from typing import List
+
 from collections import defaultdict
 class SumSeries:
   def twoSum_2run(self, nums: List[int], target: int) -> List[int]:

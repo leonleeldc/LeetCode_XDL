@@ -14,6 +14,110 @@ Explanation: The array contains less than 2 elements, therefore return 0.
 '''
 from typing import List
 import heapq
+'''
+315. Count of Smaller Numbers After Self
+Given an integer array nums, return an integer array counts where counts[i] is the number of smaller elements to the right of nums[i].
+Example 1:
+
+Input: nums = [5,2,6,1]
+Output: [2,1,1,0]
+Explanation:
+To the right of 5 there are 2 smaller elements (2 and 1).
+To the right of 2 there is only 1 smaller element (1).
+To the right of 6 there is 1 smaller element (1).
+To the right of 1 there is 0 smaller element.
+Example 2:
+
+Input: nums = [-1]
+Output: [0]
+Example 3:
+
+Input: nums = [-1,-1]
+Output: [0,0]
+
+'''
+
+
+class TreeNode:
+  def __init__(self, value):
+    self.value = value
+    self.num_left = 0
+    self.count = 0
+    self.left = None
+    self.right = None
+
+
+class CountSmallerNumbersAfterSelf:
+  def countSmallerMergeSort(self, nums: List[int]) -> List[int]:
+    output = [0] * len(nums)
+    indexed_nums = [(num, i) for i, num in enumerate(nums)]
+    def merge_sort_like(arr):
+      if len(arr) > 1:
+        # Find the middle point and divide the array into two halves
+        mid = len(arr) // 2
+        left_half = arr[:mid]
+        right_half = arr[mid:]
+        # Recursively sort the two halves
+        merge_sort_like(left_half)
+        merge_sort_like(right_half)
+        # Merge the sorted halves
+        i = j = k = 0
+        right_count = 0
+        while i < len(left_half) and j < len(right_half):
+          if left_half[i][0] <= right_half[j][0]:
+            arr[k] = left_half[i]
+            output[left_half[i][1]] += right_count
+            i += 1
+          else:
+            arr[k] = right_half[j]
+            right_count += 1
+            j += 1
+          k += 1
+        while i < len(left_half):
+          arr[k] = left_half[i]
+          output[left_half[i][1]] += right_count
+          i += 1
+          k += 1
+        while j < len(right_half):
+          arr[k] = right_half[j]
+          j += 1
+          k += 1
+    merge_sort_like(indexed_nums)
+    return output
+  def countSmaller_bt(self, nums: List[int]) -> List[int]:
+    if not nums:
+      return []
+    nodes = sorted(set(nums))
+    root = self.construct(nodes, 0, len(nodes) - 1)
+    res = []
+    for node in reversed(nums):
+      res.append(self.insert(root, node))
+    return res[::-1]
+  def insert(self, root, node):
+    res = 0
+    while root.value != node:
+      if node < root.value:
+        root.num_left += 1
+        if not root.left:
+          root.left = TreeNode(node)
+        root = root.left
+      else:
+        res += root.count + root.num_left
+        if not root.right:
+          root.right = TreeNode(node)
+        root = root.right
+    root.count += 1
+    return res + root.num_left
+
+  def construct(self, nodes, left, right):
+    if left > right:
+      return None
+    mid = left + (right - left) // 2
+    root = TreeNode(nodes[mid])
+    root.left = self.construct(nodes, left, mid - 1)
+    root.right = self.construct(nodes, mid + 1, right)
+    return root
+
 class MaxGap:
   def maximumGap(self, nums: List[int]) -> int:
     if len(nums) < 2: return 0
@@ -66,9 +170,7 @@ class MinMoves:
   '''
   296. Best Meeting Point
   Given an m x n binary grid grid where each 1 marks the home of one friend, return the minimal total travel distance.
-
 The total travel distance is the sum of the distances between the houses of the friends and the meeting point.
-
 The distance is calculated using Manhattan Distance, where distance(p1, p2) = |p2.x - p1.x| + |p2.y - p1.y|.
   '''
   def minTotalDistance(self, grid):

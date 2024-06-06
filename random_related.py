@@ -1,3 +1,49 @@
+from typing import List
+from collections import defaultdict
+import random
+
+'''
+Given an array of integers arr, randomly return an index of the 
+maximum value seen by far.
+Example:
+Input: [11, 30, 2, 30, 30, 30, 6, 2, 62, 62]
+Having iterated up to the at element index 5 (where the last 30 is), 
+randomly give an index among [1, 3, 4, 5] which are indices of 30 - the max 
+value by far. 
+Each index should have a ¼ chance to get picked.
+Having iterated through the entire array, randomly give 
+an index between 8 and 9 which are indices of the max value 62.
+
+To solve this problem, we can use the concept of reservoir sampling, 
+which is a randomized algorithm for choosing a sample of k items from 
+a list S containing n items, where n is either a very large or unknown number. 
+Typically used for large or unknown n, the reservoir sampling ensures that 
+each item in the list has an equal probability of being chosen.
+In our case, we want to return an index of the maximum value 
+seen so far in the array. When we encounter a new maximum value, 
+we reset our sampling pool (or "reservoir"). If we encounter 
+another instance of this maximum value, we add its index 
+to the reservoir with an equal chance of picking 
+any of the indices in the reservoir.
+
+Here's how you can implement this in Python:
+'''
+class ReservoirSampling:
+    def __init__(self, arr):
+        self.arr = arr
+
+    def pickIndex(self):
+        max_val = float('-inf')
+        reservoir = []
+        for i, val in enumerate(self.arr):
+            if val > max_val:
+                max_val = val
+                reservoir = [i]
+            elif val == max_val:
+                reservoir.append(i)
+        return random.choice(reservoir)
+
+
 '''
 528. Random Pick with Weight
 You are given a 0-indexed array of positive integers w where w[i] describes the weight of the ith index.
@@ -6,10 +52,9 @@ You need to implement the function pickIndex(), which randomly picks an index in
 
 For example, if w = [1, 3], the probability of picking index 0 is 1 / (1 + 3) = 0.25 (i.e., 25%), and the probability of picking index 1 is 3 / (1 + 3) = 0.75 (i.e., 75%).
 
+
 '''
-from typing import List
-from collections import defaultdict
-import random
+
 '''
 528. Random Pick with Weight
 You are given a 0-indexed array of positive integers w where w[i] describes the weight of the ith index.

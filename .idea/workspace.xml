@@ -4,10 +4,43 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="66b2992a-57f3-4a87-8eed-50d11f00013a" name="Changes" comment="">
+    <list default="true" id="debfbcf8-47ad-4c9e-8f2a-1741de7435eb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/GoogleCodingPrep/google_coding.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Greedy/greedy_related.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/StackRelated/stack_related.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SystemOp/cache.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Trees/segment_tree.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/file_processing.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/go_to_city_by_frequency.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/machine_learning/attention_mechanism.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/machine_learning/loss_functions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/practice.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/LeetCode_XDL.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/LeetCode_XDL.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackTrack/backtrack.py" beforeDir="false" afterPath="$PROJECT_DIR$/BackTrack/backtrack.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackTrack/combination_permutation_problems.py" beforeDir="false" afterPath="$PROJECT_DIR$/BackTrack/combination_permutation_problems.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySearch/binary_search_related.py" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySearch/binary_search_related.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DynamicProgramming/dynamic_programming.py" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProgramming/dynamic_programming.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GraphProblems/graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/GraphProblems/graph.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GraphProblems/grid_problems.py" beforeDir="false" afterPath="$PROJECT_DIR$/GraphProblems/grid_problems.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LinkedList/sorted_linked2bst.py" beforeDir="false" afterPath="$PROJECT_DIR$/LinkedList/sorted_linked2bst.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SlideWindows/counts.py" beforeDir="false" afterPath="$PROJECT_DIR$/SlideWindows/counts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SlideWindows/string_dp.py" beforeDir="false" afterPath="$PROJECT_DIR$/SlideWindows/string_dp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SortingProblems/sorting_related.py" beforeDir="false" afterPath="$PROJECT_DIR$/SortingProblems/sorting_related.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StringProblems/string_comparisons.py" beforeDir="false" afterPath="$PROJECT_DIR$/StringProblems/string_comparisons.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Trees/binary_tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/Trees/binary_tree.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TwoPointers/two_pointers.py" beforeDir="false" afterPath="$PROJECT_DIR$/TwoPointers/two_pointers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/array_problems/array_operations.py" beforeDir="false" afterPath="$PROJECT_DIR$/array_problems/array_operations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/array_problems/sub_array_problems.py" beforeDir="false" afterPath="$PROJECT_DIR$/array_problems/sub_array_problems.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/array_problems/sum_series.py" beforeDir="false" afterPath="$PROJECT_DIR$/array_problems/sum_series.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/heap_related.py" beforeDir="false" afterPath="$PROJECT_DIR$/heap_related.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/intervals.py" beforeDir="false" afterPath="$PROJECT_DIR$/intervals.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/math_related.py" beforeDir="false" afterPath="$PROJECT_DIR$/math_related.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/operators.py" beforeDir="false" afterPath="$PROJECT_DIR$/operators.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/random_related.py" beforeDir="false" afterPath="$PROJECT_DIR$/random_related.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/topological_sorting.py" beforeDir="false" afterPath="$PROJECT_DIR$/topological_sorting.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,12 +58,12 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/SortingProblems/sorting_related.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/SortingProblems/sorting_related.py" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
-  <component name="ProjectId" id="2Vo8A2wilY6whnrBkIUPfQGTZgZ" />
+  <component name="ProjectId" id="2bhXfcUKpMP8uTrDiFt3TL9ZoUE" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -40,7 +73,6 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/lidingcheng/Documents/workspace/LeetCode_XDL&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -49,17 +81,8 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/BinarySearch" />
-      <recent name="$PROJECT_DIR$/BackTrack" />
-      <recent name="$PROJECT_DIR$/SlideWindows" />
-      <recent name="$PROJECT_DIR$/GraphProblems" />
-      <recent name="$PROJECT_DIR$/DynamicProgramming" />
-    </key>
-  </component>
   <component name="RunManager" selected="Python.main">
-    <configuration name="binary_search_related" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="attention_mechanism" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="LeetCode_XDL" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -67,12 +90,34 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/machine_learning" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BinarySearch/binary_search_related.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/machine_learning/attention_mechanism.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="loss_functions" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="LeetCode_XDL" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/machine_learning" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/machine_learning/loss_functions.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -103,7 +148,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="sub_array_problems" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="practice" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="LeetCode_XDL" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -111,12 +156,34 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/array_problems" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/array_problems/sub_array_problems.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/practice.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="topological_sorting" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="LeetCode_XDL" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/topological_sorting.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -128,27 +195,30 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
-        <item itemvalue="Python.binary_search_related" />
-        <item itemvalue="Python.sub_array_problems" />
+        <item itemvalue="Python.topological_sorting" />
+        <item itemvalue="Python.practice" />
+        <item itemvalue="Python.loss_functions" />
+        <item itemvalue="Python.attention_mechanism" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="66b2992a-57f3-4a87-8eed-50d11f00013a" name="Changes" comment="" />
-      <created>1695490926408</created>
+      <changelist id="debfbcf8-47ad-4c9e-8f2a-1741de7435eb" name="Changes" comment="" />
+      <created>1706668388801</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1695490926408</updated>
-      <workItem from="1695490927651" duration="2969000" />
-      <workItem from="1695494684842" duration="35678000" />
-      <workItem from="1695836745559" duration="2539000" />
-      <workItem from="1695848854190" duration="46238000" />
-      <workItem from="1696654817927" duration="129317000" />
-      <workItem from="1698121441972" duration="35535000" />
-      <workItem from="1699066021377" duration="10706000" />
-      <workItem from="1699218729100" duration="48628000" />
+      <updated>1706668388801</updated>
+      <workItem from="1706668392169" duration="9497000" />
+      <workItem from="1709089692955" duration="3109000" />
+      <workItem from="1711641391016" duration="7326000" />
+      <workItem from="1712151390805" duration="16315000" />
+      <workItem from="1714697925493" duration="9434000" />
+      <workItem from="1714938235858" duration="15428000" />
+      <workItem from="1716439073665" duration="17505000" />
+      <workItem from="1717104842998" duration="9755000" />
+      <workItem from="1717333443012" duration="7869000" />
     </task>
     <servers />
   </component>
@@ -159,286 +229,174 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>230</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>222</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/linkedList.py</url>
-          <line>102</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/linkedList.py</url>
-          <line>156</line>
+          <url>file://$PROJECT_DIR$/DynamicProgramming/dynamic_programming.py</url>
+          <line>82</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/linkedList.py</url>
-          <line>168</line>
-          <option name="timeStamp" value="8" />
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>121</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/DynamicProgramming/dynamic_programming.py</url>
-          <line>472</line>
+          <url>file://$PROJECT_DIR$/random_related.py</url>
+          <line>226</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/machine_learning/attention_mechanism.py</url>
+          <line>6</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/topological_sorting.py</url>
-          <line>67</line>
+          <url>file://$PROJECT_DIR$/machine_learning/loss_functions.py</url>
+          <line>12</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/practice.py</url>
+          <line>3</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/topological_sorting.py</url>
-          <line>33</line>
-          <option name="timeStamp" value="14" />
+          <url>file://$PROJECT_DIR$/practice.py</url>
+          <line>18</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>198</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>188</line>
+          <url>file://$PROJECT_DIR$/practice.py</url>
+          <line>15</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/math_related.py</url>
-          <line>330</line>
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>114</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/DynamicProgramming/dynamic_programming.py</url>
-          <line>480</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/DynamicProgramming/dynamic_programming.py</url>
-          <line>486</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/DynamicProgramming/dynamic_programming.py</url>
-          <line>490</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/search_dp_mutual.py</url>
-          <line>172</line>
+          <url>file://$PROJECT_DIR$/topological_sorting.py</url>
+          <line>28</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/search_dp_mutual.py</url>
-          <line>265</line>
+          <url>file://$PROJECT_DIR$/heap_related.py</url>
+          <line>168</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/search_dp_mutual.py</url>
-          <line>277</line>
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>386</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/topological_sorting.py</url>
+          <line>80</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/topological_sorting.py</url>
+          <line>96</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/topological_sorting.py</url>
+          <line>63</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/search_dp_mutual.py</url>
-          <line>257</line>
+          <url>file://$PROJECT_DIR$/heap_related.py</url>
+          <line>180</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>76</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>75</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Trees/binary_tree.py</url>
+          <line>30</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Trees/binary_tree.py</url>
+          <line>61</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/GraphProblems/graph.py</url>
+          <line>70</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/operators.py</url>
-          <line>16</line>
+          <url>file://$PROJECT_DIR$/SlideWindows/counts.py</url>
+          <line>33</line>
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>166</line>
+          <line>47</line>
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>160</line>
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/StringProblems/string_comparisons.py</url>
-          <line>86</line>
-          <option name="timeStamp" value="45" />
+          <url>file://$PROJECT_DIR$/DynamicProgramming/dynamic_programming.py</url>
+          <line>33</line>
+          <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>155</line>
-          <option name="timeStamp" value="46" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>153</line>
-          <option name="timeStamp" value="48" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/StringProblems/string_comparisons.py</url>
-          <line>44</line>
-          <option name="timeStamp" value="49" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/StringProblems/string_comparisons.py</url>
-          <line>39</line>
-          <option name="timeStamp" value="50" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/StringProblems/string_comparisons.py</url>
-          <line>31</line>
-          <option name="timeStamp" value="51" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/BackTrack/backtrack.py</url>
-          <line>22</line>
-          <option name="timeStamp" value="52" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Trees/binary_tree.py</url>
-          <line>369</line>
-          <option name="timeStamp" value="53" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Trees/binary_tree.py</url>
-          <line>384</line>
-          <option name="timeStamp" value="54" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>130</line>
-          <option name="timeStamp" value="55" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/random_related.py</url>
-          <line>171</line>
-          <option name="timeStamp" value="56" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>128</line>
-          <option name="timeStamp" value="57" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>123</line>
-          <option name="timeStamp" value="58" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>108</line>
-          <option name="timeStamp" value="59" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/HashMap/hash_map_related.py</url>
-          <line>18</line>
-          <option name="timeStamp" value="60" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/StringProblems/string_problems.py</url>
-          <line>182</line>
-          <option name="timeStamp" value="64" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/array_problems/sub_array_problems.py</url>
-          <line>91</line>
-          <option name="timeStamp" value="65" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/array_problems/sub_array_problems.py</url>
-          <line>151</line>
-          <option name="timeStamp" value="66" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/array_problems/sub_array_problems.py</url>
-          <line>157</line>
-          <option name="timeStamp" value="67" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>57</line>
-          <option name="timeStamp" value="68" />
+          <line>43</line>
+          <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/SortingProblems/sorting_related.py</url>
-          <line>94</line>
-          <option name="timeStamp" value="69" />
+          <line>97</line>
+          <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/array_problems/sum_series.py</url>
-          <line>99</line>
-          <option name="timeStamp" value="70" />
+          <url>file://$PROJECT_DIR$/SortingProblems/sorting_related.py</url>
+          <line>92</line>
+          <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/array_problems/array_operations.py</url>
-          <line>114</line>
-          <option name="timeStamp" value="71" />
+          <url>file://$PROJECT_DIR$/StackRelated/stack_related.py</url>
+          <line>145</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/StackRelated/stack_related.py</url>
+          <line>106</line>
+          <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/BinarySearch/binary_search_related.py</url>
-          <line>81</line>
-          <option name="timeStamp" value="72" />
+          <line>31</line>
+          <option name="timeStamp" value="49" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>34</line>
-          <option name="timeStamp" value="74" />
+          <url>file://$PROJECT_DIR$/heap_related.py</url>
+          <line>37</line>
+          <option name="timeStamp" value="54" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/DynamicProgramming/dynamic_programming.py</url>
-          <line>367</line>
-          <option name="timeStamp" value="75" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/math_related.py</url>
-          <line>185</line>
-          <option name="timeStamp" value="76" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/math_related.py</url>
-          <line>197</line>
-          <option name="timeStamp" value="77" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/StringProblems/string_problems.py</url>
-          <line>202</line>
-          <option name="timeStamp" value="78" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>19</line>
-          <option name="timeStamp" value="84" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>16</line>
-          <option name="timeStamp" value="85" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/DynamicProgramming/dynamic_programming.py</url>
-          <line>98</line>
-          <option name="timeStamp" value="87" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Trees/binary_tree.py</url>
-          <line>266</line>
-          <option name="timeStamp" value="88" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/math_related.py</url>
-          <line>69</line>
-          <option name="timeStamp" value="90" />
+          <url>file://$PROJECT_DIR$/BackTrack/backtrack.py</url>
+          <line>94</line>
+          <option name="timeStamp" value="65" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/LeetCode_XDL$binary_search_related.coverage" NAME="binary_search_related Coverage Results" MODIFIED="1698808200729" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/LeetCode_XDL$sub_array_problems.coverage" NAME="sub_array_problems Coverage Results" MODIFIED="1697654965117" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/array_problems" />
-    <SUITE FILE_PATH="coverage/LeetCode_XDL$main.coverage" NAME="main Coverage Results" MODIFIED="1700018747885" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/LeetCode_XDL$topological_sorting.coverage" NAME="topological_sorting Coverage Results" MODIFIED="1714578378537" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/LeetCode_XDL$main.coverage" NAME="main Coverage Results" MODIFIED="1717625491149" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/LeetCode_XDL$attention_mechanism.coverage" NAME="attention_mechanism Coverage Results" MODIFIED="1714063996425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/machine_learning" />
+    <SUITE FILE_PATH="coverage/LeetCode_XDL$dynamic_programming.coverage" NAME="dynamic_programming Coverage Results" MODIFIED="1706989290552" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DynamicProgramming" />
+    <SUITE FILE_PATH="coverage/LeetCode_XDL$loss_functions.coverage" NAME="loss_functions Coverage Results" MODIFIED="1714067065110" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/machine_learning" />
+    <SUITE FILE_PATH="coverage/LeetCode_XDL$practice.coverage" NAME="practice Coverage Results" MODIFIED="1714539680983" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

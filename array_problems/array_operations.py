@@ -1,12 +1,161 @@
 '''
+348. Design Tic-Tac-Toe
+Assume the following rules are for the tic-tac-toe game on an n x n board between two players:
+
+A move is guaranteed to be valid and is placed on an empty block.
+Once a winning condition is reached, no more moves are allowed.
+A player who succeeds in placing n of their marks in a horizontal, vertical, or diagonal row wins the game.
+Implement the TicTacToe class:
+
+TicTacToe(int n) Initializes the object the size of the board n.
+int move(int row, int col, int player) Indicates that the player with id player plays at the cell (row, col) of the board. The move is guaranteed to be a valid move, and the two players alternate in making moves. Return
+0 if there is no winner after the move,
+1 if player 1 is the winner after the move, or
+2 if player 2 is the winner after the move.
+
+
+Example 1:
+
+Input
+["TicTacToe", "move", "move", "move", "move", "move", "move", "move"]
+[[3], [0, 0, 1], [0, 2, 2], [2, 2, 1], [1, 1, 2], [2, 0, 1], [1, 0, 2], [2, 1, 1]]
+Output
+[null, 0, 0, 0, 0, 0, 0, 1]
+
+Explanation
+TicTacToe ticTacToe = new TicTacToe(3);
+Assume that player 1 is "X" and player 2 is "O" in the board.
+ticTacToe.move(0, 0, 1); // return 0 (no one wins)
+|X| | |
+| | | |    // Player 1 makes a move at (0, 0).
+| | | |
+
+ticTacToe.move(0, 2, 2); // return 0 (no one wins)
+|X| |O|
+| | | |    // Player 2 makes a move at (0, 2).
+| | | |
+
+ticTacToe.move(2, 2, 1); // return 0 (no one wins)
+|X| |O|
+| | | |    // Player 1 makes a move at (2, 2).
+| | |X|
+
+ticTacToe.move(1, 1, 2); // return 0 (no one wins)
+|X| |O|
+| |O| |    // Player 2 makes a move at (1, 1).
+| | |X|
+
+ticTacToe.move(2, 0, 1); // return 0 (no one wins)
+|X| |O|
+| |O| |    // Player 1 makes a move at (2, 0).
+|X| |X|
+
+ticTacToe.move(1, 0, 2); // return 0 (no one wins)
+|X| |O|
+|O|O| |    // Player 2 makes a move at (1, 0).
+|X| |X|
+
+ticTacToe.move(2, 1, 1); // return 1 (player 1 wins)
+|X| |O|
+|O|O| |    // Player 1 makes a move at (2, 1).
+|X|X|X|
+'''
+
+
+class TicTacToe:
+
+  def __init__(self, n: int):
+    # Initialize counters for rows, columns, and diagonals for each player
+    self.size = n
+    self.rows = [0] * n
+    self.cols = [0] * n
+    self.diagonal = 0
+    self.anti_diagonal = 0
+
+  def move(self, row: int, col: int, player: int) -> int:
+    # Determine the player's mark value (1 for player 1 and -1 for player 2)
+    player_value = 1 if player == 1 else -1
+
+    # Update rows, columns, and diagonals
+    self.rows[row] += player_value
+    self.cols[col] += player_value
+    if row == col:
+      self.diagonal += player_value
+    if row + col == self.size - 1:
+      self.anti_diagonal += player_value
+
+    # Check if the current move wins the game
+    if abs(self.rows[row]) == self.size or abs(self.cols[col]) == self.size or \
+            abs(self.diagonal) == self.size or abs(self.anti_diagonal) == self.size:
+      return player
+
+    # No winner yet
+    return 0
+
+
+
+'''
+719. Find K-th Smallest Pair Distance
+The distance of a pair of integers a and b is defined as the absolute difference between a and b.
+
+Given an integer array nums and an integer k, return the kth smallest distance among all the pairs nums[i] and nums[j] where 0 <= i < j < nums.length.
+
+
+
+Example 1:
+
+Input: nums = [1,3,1], k = 1
+Output: 0
+Explanation: Here are all the pairs:
+(1,3) -> 2
+(1,1) -> 0
+(3,1) -> 2
+Then the 1st smallest distance pair is (1,1), and its distance is 0.
+Example 2:
+
+Input: nums = [1,1,1], k = 2
+Output: 0
+Example 3:
+
+Input: nums = [1,6,1], k = 3
+Output: 5
+
+
+Constraints:
+
+n == nums.length
+2 <= n <= 104
+0 <= nums[i] <= 106
+1 <= k <= n * (n - 1) / 2
+'''
+class KSmallestPairDistance(object):
+  def smallestDistancePair(self, nums, k):
+    def possible(target):
+      # Is there k or more pairs with distance <= target?
+      count = 0
+      left = 0
+      for right, val in enumerate(nums):
+        while val - nums[left] > target:
+          left += 1
+        count += right - left
+      return count >= k
+    nums.sort()
+    left = 0
+    right = nums[-1] - nums[0]  # max - min is the largest distance
+    while left <= right:
+      mid = (left + right) // 2
+      if possible(mid):
+        right = mid - 1
+      else:
+        left = mid + 1
+    return left
+'''
 238. Product of Array Except Self
 Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
 
 The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
 
 You must write an algorithm that runs in O(n) time and without using the division operation.
-
-
 
 Example 1:
 

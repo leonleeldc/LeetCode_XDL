@@ -1,3 +1,21 @@
+def max_pins_on_screen(pins, screen_length):
+  left_pins = [pin for pin in pins if pins[0]=='L']
+  right_pins = [pin for pin in pins if pins[0] == 'R']
+  def count_max_pins(columns):
+    columns.sort(key=lambda x: (x[0], x[1]))
+    count = 0
+    cur_button = 0
+    for pin in columns:
+      if pin[0] >= cur_button:
+        cur_button = pin[1]
+        count += 1
+        if cur_button > screen_length: break
+    return count
+  max_left_pins = count_max_pins(left_pins)
+  max_right_pins = count_max_pins(right_pins)
+  total_max_pins = max_left_pins + max_right_pins
+  return total_max_pins
+
 '''
 3. Longest Substring Without Repeating Characters
 '''

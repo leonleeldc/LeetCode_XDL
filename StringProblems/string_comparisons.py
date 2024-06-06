@@ -62,6 +62,45 @@ Explanation: The groups are "a" and "bbbbbbbbbbbb". This compresses to "ab12".
       read_idx += 1
     return write_idx
   '''
+  Write a function to find the longest common prefix string amongst an array of strings.
+
+If there is no common prefix, return an empty string "".
+
+ 
+
+Example 1:
+
+Input: strs = ["flower","flow","flight"]
+Output: "fl"
+Example 2:
+
+Input: strs = ["dog","racecar","car"]
+Output: ""
+Explanation: There is no common prefix among the input strings.
+  '''
+  def longestCommonPrefix(self, strs: List[str]) -> str:
+    if len(strs) == 0: return ''
+    strs.sort(key=len)
+    com_str = strs[0]
+    for i in range(1, len(strs)):
+      for j in range(len(com_str)):
+        if com_str[j] != strs[i][j]:
+          com_str = com_str[:j]
+          break
+    return com_str
+  '''
+  example: ["abab","aba","abc"]
+  '''
+  def longestCommonPrefix_efficient(self, strs: List[str]) -> str:
+    if not strs: return ""
+    strs.sort() ##we cannot use key=len to sort since if so, we cannot pass above example
+    first, last = strs[0], strs[-1]
+    for i in range(len(first)):
+      if first[i] != last[i]:
+        return first[:i]
+    return first
+
+  '''
   3. Longest Substring Without Repeating Characters
   Example 1:
 

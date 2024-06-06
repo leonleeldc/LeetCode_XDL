@@ -1,6 +1,125 @@
 from typing import List
 from bisect import bisect_left
 '''
+975. Odd Even Jump
+Solved
+Hard
+Topics
+Companies
+You are given an integer array arr. From some starting index, you can make a series of jumps. The (1st, 3rd, 5th, ...) jumps in the series are called odd-numbered jumps, and the (2nd, 4th, 6th, ...) jumps in the series are called even-numbered jumps. Note that the jumps are numbered, not the indices.
+
+You may jump forward from index i to index j (with i < j) in the following way:
+
+During odd-numbered jumps (i.e., jumps 1, 3, 5, ...), you jump to the index j such that arr[i] <= arr[j] and arr[j] is the smallest possible value. If there are multiple such indices j, you can only jump to the smallest such index j.
+During even-numbered jumps (i.e., jumps 2, 4, 6, ...), you jump to the index j such that arr[i] >= arr[j] and arr[j] is the largest possible value. If there are multiple such indices j, you can only jump to the smallest such index j.
+It may be the case that for some index i, there are no legal jumps.
+A starting index is good if, starting from that index, you can reach the end of the array (index arr.length - 1) by jumping some number of times (possibly 0 or more than once).
+
+Return the number of good starting indices.
+
+'''
+from typing import List
+from sortedcontainers import SortedDict
+class OddEvenJump:
+    def oddEvenJumps(self, A: List[int]) -> int:
+        n = len(A)
+        if n == 1: return 1
+        dp = [[False, False] for _ in range(n)]
+        dp[-1][0] = dp[-1][1] = True
+        m = SortedDict()
+        m[A[-1]] = n - 1
+        ans = 1
+        for i in range(n - 2, -1, -1):
+            lower_keys = m.keys()
+            o = m.bisect_left(A[i])
+            if o < len(lower_keys): dp[i][0] = dp[m[lower_keys[o]]][1]
+            e = m.bisect_right(A[i])
+            if e > 0: dp[i][1] = dp[m[lower_keys[e-1]]][0]
+            if dp[i][0]: ans += 1
+            m[A[i]] = i
+        return ans
+    '''
+    the above implementations follow https://www.youtube.com/watch?v=MEqDu4hA_Wo&t=240s
+    '''
+
+
+
+'''
+689. Maximum Sum of 3 Non-Overlapping Subarrays
+Given an integer array nums and an integer k, find three non-overlapping subarrays of length k with maximum sum and return them.
+Return the result as a list of indices representing the starting position of each interval (0-indexed). If there are multiple answers, return the lexicographically smallest one.
+'''
+class MaxSum3NonOverlappingSubArrays:
+  def maxSumOfThreeSubarrays(self, nums: List[int], k: int) -> List[int]:
+    n = len(nums)
+    if n < k * 3: return []
+    ##sum of k numbers for each index
+    sum_arr = [0] * len(nums)
+    sum_arr[0] = sum(nums[0:k])
+    for i in range(1, len(nums)-k+1):
+      sum_arr[i] = sum_arr[i - 1] + nums[i + k-1] - nums[i - 1]
+      ## left max subarray
+    left_max_arr = [0] * len(nums)
+    max_sum = sum_arr[0]
+    for i in range(1, len(nums)-k+1):
+      cur_sum = sum_arr[i]
+      left_max_arr[i] = i if cur_sum>max_sum else left_max_arr[i-1]
+      max_sum = max(max_sum, cur_sum)
+    right_max_arr = [0] * len(nums)
+    max_sum = sum_arr[-1]
+    for i in range(len(nums)-2, k, -1):
+      cur_sum = sum_arr[i]
+      right_max_arr[i] = i if cur_sum>max_sum else right_max_arr[i+1]
+      max_sum = max(max_sum, cur_sum)
+    ##last comparison
+    # Find the max sum by scanning the middle subarray
+    ans = [-1, -1, -1]
+    max_sum = 0
+    for i in range(k, len(nums)-2*k+1):
+      cur_sum = sum_arr[left_max_arr[i-k]] + sum_arr[i] + sum_arr[right_max_arr[i+k]]
+      if max_sum<cur_sum:
+        ans[0], ans[1], ans[2] = left_max_arr[i-1], left_max_arr[i], left_max_arr[i+k]
+        max_sum = cur_sum
+    return ans
+
+
+
+'''
+416. Partition Equal Subset Sum
+Given an integer array nums, return true if you can partition the array into two subsets such that the sum of the elements in both subsets is equal or false otherwise.
+Example 1:
+Input: nums = [1,5,11,5]
+Output: true
+Explanation: The array can be partitioned as [1, 5, 5] and [11].
+Example 2:
+
+Input: nums = [1,2,3,5]
+Output: false
+Explanation: The array cannot be partitioned into equal sum subsets.
+'''
+
+
+class PartitionArray:
+  def canPartition_dp1(self, nums: List[int]) -> bool:
+    if sum(nums) % 2 != 0 or len(nums) < 2: return False
+    dp = [True] + [False] * sum(nums)
+    for curr in nums:
+      for i in range(sum(nums), -1, -1):
+        if dp[i]: dp[i + curr] = True
+      if dp[sum(nums) // 2]: return True
+    return False
+
+  def canPartition_dp2(self, nums: List[int]) -> bool:
+    if sum(nums) % 2 != 0 or len(nums) < 2: return False
+    subset_sum = sum(nums) // 2
+    dp = [True] + [False] * subset_sum
+    for curr in nums:
+      for i in range(subset_sum, curr - 1, -1):
+        dp[i] = dp[i] or dp[i - curr]
+    return dp[subset_sum]
+
+
+'''
 1043. Partition Array for Maximum Sum
 '''
 class PartionArray4MaximumSum:
